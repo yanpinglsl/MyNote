@@ -1,0 +1,5 @@
+D:\架构学习\总结\Demo\RedisSubscribeDB\obj\Debug\net6.0\RedisSubscribeDB.csproj.AssemblyReference.cache
+D:\架构学习\总结\Demo\RedisSubscribeDB\obj\Debug\net6.0\RedisSubscribeDB.GeneratedMSBuildEditorConfig.editorconfig
+D:\架构学习\总结\Demo\RedisSubscribeDB\obj\Debug\net6.0\RedisSubscribeDB.AssemblyInfoInputs.cache
+D:\架构学习\总结\Demo\RedisSubscribeDB\obj\Debug\net6.0\RedisSubscribeDB.AssemblyInfo.cs
+D:\架构学习\总结\Demo\RedisSubscribeDB\obj\Debug\net6.0\RedisSubscribeDB.csproj.CoreCompileInputs.cache
