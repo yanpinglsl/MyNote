@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "jqfFcg/0CBQZeWlz6/ob9r4Aj1CakFjS/FW39P8uUH7C13/jjvX8KnkdzpcPL8gt7Q5o15PIyY/boZTksWJ5aA==",
+  "success": true,
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisPublish\\RedisPublish.csproj",
+  "expectedPackageFiles": [
+    "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "D:\\packages\\servicestack.common\\6.5.0\\servicestack.common.6.5.0.nupkg.sha512",
+    "D:\\packages\\servicestack.interfaces\\6.5.0\\servicestack.interfaces.6.5.0.nupkg.sha512",
+    "D:\\packages\\servicestack.redis\\6.5.0\\servicestack.redis.6.5.0.nupkg.sha512",
+    "D:\\packages\\servicestack.text\\6.5.0\\servicestack.text.6.5.0.nupkg.sha512",
+    "D:\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "D:\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "D:\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

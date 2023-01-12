@@ -1,0 +1,17 @@
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.csproj.AssemblyReference.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.GeneratedMSBuildEditorConfig.editorconfig
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.AssemblyInfoInputs.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.AssemblyInfo.cs
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.csproj.CoreCompileInputs.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\CSharp11Demo.exe
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\CSharp11Demo.deps.json
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\CSharp11Demo.runtimeconfig.json
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\CSharp11Demo.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\CSharp11Demo.pdb
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.csproj.CopyComplete
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\refint\CSharp11Demo.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.pdb
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\CSharp11Demo.genruntimeconfig.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\CSharp11Demo\obj\Debug\net7.0\ref\CSharp11Demo.dll

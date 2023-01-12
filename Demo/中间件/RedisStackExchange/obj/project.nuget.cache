@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "8/iE2hlPyXaH6i+mFd2CVRz/24rfr3+aWkGgftu6MR4LkP3HcFHAgSntmwRwHM4NEhHR4fZaQNe0Bz+AfY/AYQ==",
+  "success": true,
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisStackExchange\\RedisStackExchange.csproj",
+  "expectedPackageFiles": [
+    "D:\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "D:\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "D:\\packages\\stackexchange.redis\\2.6.80\\stackexchange.redis.2.6.80.nupkg.sha512",
+    "D:\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

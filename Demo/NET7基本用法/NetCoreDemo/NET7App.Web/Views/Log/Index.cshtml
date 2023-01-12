@@ -1,0 +1,15 @@
+﻿@model String
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>this is A01Base--Index</h1>
+
+<h3>ViewData-User1=@base.ViewData["User1"]</h3>
+<h3>User1=@base.ViewBag.User1</h3>
+<h3>User2=@base.ViewData["User2"]</h3>
+<h3>User3=@base.TempData["User3"]</h3>
+<h3>User4=@base.Context.Session.GetString("User4")</h3>
+<h3>User5=@Model</h3>
+<h3>sdgsdfs</h3>
+

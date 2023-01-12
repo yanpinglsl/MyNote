@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "O6RXv2GJkiKuBTYyfUroJEn+FziPkA4K1CjdvseCpIwakpfZauXb0LTXWy020miEyaNHnok6oo3J971ZpN8eTA==",
+  "success": true,
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
+  "expectedPackageFiles": [
+    "D:\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
+    "D:\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "D:\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
