@@ -1,0 +1,13 @@
+{
+  "TodayJson": "JSON配置文件",
+  "JsonOptions": {
+    "HostName": "192.168.200.101",
+    "UserName": "customjson",
+    "Password": "json8888",
+    "ArrayTest": [
+      "customjson",
+      "customxml",
+      "customini"
+    ]
+  }
+}

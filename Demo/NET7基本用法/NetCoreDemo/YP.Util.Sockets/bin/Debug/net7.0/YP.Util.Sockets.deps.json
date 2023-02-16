@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "YP.Util.Sockets/1.0.0": {
+        "runtime": {
+          "YP.Util.Sockets.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "YP.Util.Sockets/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

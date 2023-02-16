@@ -1,0 +1,12 @@
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.csproj.AssemblyReference.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.GeneratedMSBuildEditorConfig.editorconfig
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.AssemblyInfoInputs.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.AssemblyInfo.cs
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.csproj.CoreCompileInputs.cache
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\bin\Debug\net7.0\YP.Util.Sockets.deps.json
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\bin\Debug\net7.0\YP.Util.Sockets.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\bin\Debug\net7.0\YP.Util.Sockets.pdb
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\refint\YP.Util.Sockets.dll
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\YP.Util.Sockets.pdb
+D:\架构学习\总结\Demo\NET7基本用法\NetCoreDemo\YP.Util.Sockets\obj\Debug\net7.0\ref\YP.Util.Sockets.dll

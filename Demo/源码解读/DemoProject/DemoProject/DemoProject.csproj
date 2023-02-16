@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="customini.ini" />
+    <None Remove="customxml.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="customini.ini" />
+    <Content Include="customxml.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Log\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebCoreExtend\WebCoreExtend.csproj" />
+  </ItemGroup>
+
+</Project>
