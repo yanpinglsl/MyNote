@@ -41,14 +41,15 @@ namespace RabbitMQ_Consumer
             #endregion
 
             #region 测试Nack回调消费
-            ConfirmConsumer.ReceiveMessage();
+            //ConfirmConsumer.ReceiveMessage();
             #endregion
 
             #region 测试死信交换机
-            // DeadExchange.TestDemo();
+            //DeadExchange.TestDemo();
             #endregion
 
             #region 测试持久化消息消费
+            DLXReceive.ReceiveMessage();
             // DurableConsumer.ReceiveMessage();
             #endregion
 
