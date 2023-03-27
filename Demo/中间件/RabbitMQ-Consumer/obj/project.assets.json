@@ -142,11 +142,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
+      "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
       "projectName": "RabbitMQ-Consumer",
-      "projectPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
+      "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
       "packagesPath": "D:\\packages",
-      "outputPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Consumer\\obj\\",
+      "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Consumer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -168,8 +168,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
-              "projectPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
+            "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
+              "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
             }
           }
         }

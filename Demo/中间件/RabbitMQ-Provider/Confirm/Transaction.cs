@@ -14,7 +14,7 @@ namespace RabbitMQ_Provider.Confirm
         /// </summary>
         public static void TransactionMode()
         {
-            ConnectionFactory factory = new ConnectionFactory { HostName = "127.0.0.1", UserName = "guest", Password = "guest", VirtualHost = "/" };
+            ConnectionFactory factory = new ConnectionFactory { HostName = "192.168.200.101", UserName = "yp", Password = "yp", VirtualHost = "/" };
             using (IConnection conn = factory.CreateConnection())
             {
                 using (IModel im = conn.CreateModel())

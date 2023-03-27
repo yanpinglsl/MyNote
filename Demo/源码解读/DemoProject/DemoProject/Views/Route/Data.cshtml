@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Route-Data";
+}
+
+<h1>Route-Data</h1>
+
+<h3>
+    @if (base.ViewBag.RoutePattenDes != null)
+    {
+        foreach (var text in base.ViewBag.RoutePattenDes.Split("<br/>"))
+        {
+            <p>@text </p>
+        }
+    }
+</h3>
+<p>*********************************************</p>
+<h3>@base.ViewBag.Des</h3>

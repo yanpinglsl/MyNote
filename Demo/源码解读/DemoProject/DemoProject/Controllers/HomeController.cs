@@ -1,9 +1,11 @@
 ﻿using DemoProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WebCoreExtend.ConventionExtend;
 
 namespace DemoProject.Controllers
 {
+    //[CustomControllerModelConvention]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -27,6 +29,11 @@ namespace DemoProject.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult CustomError()
+        {
+            return View();
         }
     }
 }

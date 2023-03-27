@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\RedisSubscribeDB.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\RedisSubscribeDB.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\RedisSubscribeDB.csproj": {
+    "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\RedisSubscribeDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
         "projectName": "RedisSubscribeDB",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

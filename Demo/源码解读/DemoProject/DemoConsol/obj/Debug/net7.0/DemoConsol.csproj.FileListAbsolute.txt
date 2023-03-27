@@ -1,3 +1,4 @@
+D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\bin\Debug\net7.0\changetoken.json
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\bin\Debug\net7.0\DemoConsol.exe
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\bin\Debug\net7.0\DemoConsol.deps.json
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\bin\Debug\net7.0\DemoConsol.runtimeconfig.json
@@ -20,4 +21,3 @@ D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\obj\Debug\net7.0
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\obj\Debug\net7.0\DemoConsol.pdb
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\obj\Debug\net7.0\DemoConsol.genruntimeconfig.cache
 D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\obj\Debug\net7.0\ref\DemoConsol.dll
-D:\架构学习\总结\Demo\源码解读\DemoProject\DemoConsol\bin\Debug\net7.0\changetoken.json

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IdG1WV39JhtNrmiKm6cz8Gr2z/zcbY3V4aVee0YrbgE=",
+  "Hash": "wqvMy8smwktPIam96QT0k9bBZak5zTHJsBKz1qr/lpI=",
   "Source": "DemoProject",
   "BasePath": "_content/DemoProject",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\Images\\Forbidden.jpg",
+      "SourceId": "DemoProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\",
+      "BasePath": "_content/DemoProject",
+      "RelativePath": "Images/Forbidden.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Forbidden.jpg"
+    },
+    {
+      "Identity": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\Images\\my.jpg",
+      "SourceId": "DemoProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\",
+      "BasePath": "_content/DemoProject",
+      "RelativePath": "Images/my.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\my.jpg"
     },
     {
       "Identity": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\js\\site.js",

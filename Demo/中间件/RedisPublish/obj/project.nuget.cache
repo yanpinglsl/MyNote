@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jqfFcg/0CBQZeWlz6/ob9r4Aj1CakFjS/FW39P8uUH7C13/jjvX8KnkdzpcPL8gt7Q5o15PIyY/boZTksWJ5aA==",
+  "dgSpecHash": "6FHLnU2skKQrGDb5EWtfnT+Xpfh/gHmid9MPIVJnfTzujN2dLimkEABihfluxu5wv0QIIl349HgcSXbBQvR/dA==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisPublish\\RedisPublish.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisPublish\\RedisPublish.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "D:\\packages\\servicestack.common\\6.5.0\\servicestack.common.6.5.0.nupkg.sha512",

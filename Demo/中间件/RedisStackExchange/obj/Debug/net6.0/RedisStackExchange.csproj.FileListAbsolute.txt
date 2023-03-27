@@ -13,3 +13,4 @@ D:\架构学习\总结\Demo\RedisStackExchange\obj\Debug\net6.0\refint\RedisStac
 D:\架构学习\总结\Demo\RedisStackExchange\obj\Debug\net6.0\RedisStackExchange.pdb
 D:\架构学习\总结\Demo\RedisStackExchange\obj\Debug\net6.0\RedisStackExchange.genruntimeconfig.cache
 D:\架构学习\总结\Demo\RedisStackExchange\obj\Debug\net6.0\ref\RedisStackExchange.dll
+D:\架构学习\总结\Demo\中间件\RedisStackExchange\obj\Debug\net6.0\RedisStackExchange.pdb

@@ -344,11 +344,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
+      "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
       "projectName": "RedisSubscribeTxt",
-      "projectPath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
+      "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
       "packagesPath": "D:\\packages",
-      "outputPath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeTxt\\obj\\",
+      "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeTxt\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

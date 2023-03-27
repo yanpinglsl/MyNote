@@ -10,16 +10,16 @@ namespace RabbitMQ_Provider.Confirm
 {
     public class ConfirmDemo
     {
-        static void ConfirmModel()
+        public static void ConfirmModel()
         {
-            ConnectionFactory factory = new ConnectionFactory { HostName = "127.0.0.1", UserName = "guest", Password = "guest", VirtualHost = "/" };
+            ConnectionFactory factory = new ConnectionFactory { HostName = "192.168.200.101", UserName = "yp", Password = "yp", VirtualHost = "/" };
             using (IConnection conn = factory.CreateConnection())
             {
                 using (IModel channel = conn.CreateModel())
                 {
-                    channel.ExchangeDeclare("my-exchange", ExchangeType.Fanout);
+                    channel.ExchangeDeclare("my-exchange", ExchangeType.Direct);
                     channel.QueueDeclare("my-queue", true, false, false, null);
-                    channel.QueueBind("my-queue", "my-exchange", "", null);
+                    channel.QueueBind("my-queue", "my-exchange", "routing.user", null);
                     var properties = channel.CreateBasicProperties();
                     properties.DeliveryMode = 2;
                     byte[] message = Encoding.UTF8.GetBytes("发送消息！");
@@ -42,8 +42,9 @@ namespace RabbitMQ_Provider.Confirm
         /// <param name="message"></param>
         static void NormalConfirm(IModel channel, IBasicProperties properties, byte[] message)
         {
+            //发布确认默认是没有开启的，如果要开启需要调用方法 confirmSelect，每当你要想使用发布确认，都需要在 channel 上调用该方法
             channel.ConfirmSelect();
-            channel.BasicPublish("my-exchange", ExchangeType.Fanout, properties, message);
+            channel.BasicPublish("my-exchange", "routing.user", properties, message);
             if (!channel.WaitForConfirms())
             {
                 Console.WriteLine("send message failed.");
@@ -63,7 +64,7 @@ namespace RabbitMQ_Provider.Confirm
             channel.ConfirmSelect();
             for (int i = 0; i < 10; i++)
             {
-                channel.BasicPublish("my-exchange", ExchangeType.Fanout, properties, message);
+                channel.BasicPublish("my-exchange", "routing.user", properties, message);
             }
             if (!channel.WaitForConfirms())
             {
@@ -107,7 +108,11 @@ namespace RabbitMQ_Provider.Confirm
             });
             channel.BasicAcks += BasicAcks;
             channel.BasicNacks += BasicNacks;
-            channel.BasicPublish("my-exchange", ExchangeType.Fanout, properties, message);
+
+            //注意：如果需要EventHandler<BasicReturnEventArgs>事件监听不可达消息的时候，一定要将mandatory设为true
+            //channel.BasicPublish("my-exchange",routingKey:"routing.abc", mandatory: true,properties, message);
+
+            channel.BasicPublish("my-exchange423423", "routing.user", properties, message);
         }
     }
 }

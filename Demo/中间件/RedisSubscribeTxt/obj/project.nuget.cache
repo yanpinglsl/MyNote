@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Oz9l14pitL3u+evaOSg9eQ59G8kO9M6PZKft75s2AAel35Ohxy+H4tLQUof4JwoJlVAIwTx0UQK0kZER2blXlQ==",
+  "dgSpecHash": "O9BjK+CXoinLLIgzYH1sP/6O1pCW8NN7JVfnwHejoH6TIrbiMWrk57xtdubCA9r+TYuWeKdJ2G/tg7Aehzg1sg==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeTxt\\RedisSubscribeTxt.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "D:\\packages\\servicestack.common\\6.5.0\\servicestack.common.6.5.0.nupkg.sha512",

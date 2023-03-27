@@ -18,3 +18,4 @@ D:\架构学习\总结\Demo\RedisSubscribeTxt\obj\Debug\net6.0\refint\RedisSubsc
 D:\架构学习\总结\Demo\RedisSubscribeTxt\obj\Debug\net6.0\RedisSubscribeTxt.pdb
 D:\架构学习\总结\Demo\RedisSubscribeTxt\obj\Debug\net6.0\RedisSubscribeTxt.genruntimeconfig.cache
 D:\架构学习\总结\Demo\RedisSubscribeTxt\obj\Debug\net6.0\ref\RedisSubscribeTxt.dll
+D:\架构学习\总结\Demo\中间件\RedisSubscribeTxt\obj\Debug\net6.0\RedisSubscribeTxt.pdb

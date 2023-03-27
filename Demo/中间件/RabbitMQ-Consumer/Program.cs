@@ -1,6 +1,7 @@
 ﻿
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ_Consumer.Confirm;
 using RabbitMQ_Consumer.Dead;
 using RabbitMQ_Consumer.Durable;
 using RabbitMQ_Consumer.Exchange.Direct;
@@ -32,11 +33,15 @@ namespace RabbitMQ_Consumer
             #endregion
 
             #region 直接队列模式
-           //DirectConsumer.ConsumerMessage();
+            //DirectConsumer.ConsumerMessage();
             #endregion
 
             #region 测试模糊匹配队列模式
             //TopicConsumer.ConsumerMessage();
+            #endregion
+
+            #region 测试Nack回调消费
+            ConfirmConsumer.ReceiveMessage();
             #endregion
 
             #region 测试死信交换机

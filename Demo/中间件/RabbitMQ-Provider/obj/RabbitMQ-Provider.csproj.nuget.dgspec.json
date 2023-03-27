@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
+    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
         "projectName": "RabbitMQ-Common",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -70,14 +70,14 @@
         }
       }
     },
-    "D:\\架构学习\\总结\\Demo\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {
+    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
         "projectName": "RabbitMQ-Provider",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Provider\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -99,8 +99,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
-                "projectPath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
+              "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
+                "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
               }
             }
           }

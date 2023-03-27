@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ca7XRNWFuZzRer+js3UiqYbA9ilqq2lw+NOyPDhq9XYTUayZmB8uarDVbiedERfPw/mooX9Ub1Ud5DXnd4p4aw==",
+  "dgSpecHash": "qp4wz4rzE7vBr77Iam4JNJj3a3pgJbDgeajg+b4R2vmGou8xNyYi8fyboO/MSGjEMJUZR5r39tPFuo7ZmkdZZQ==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Consumer\\RabbitMQ-Consumer.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
     "D:\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",

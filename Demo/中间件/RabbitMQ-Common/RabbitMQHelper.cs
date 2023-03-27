@@ -17,7 +17,7 @@ namespace RabbitMQ_Consumer
         {
             var factory = new ConnectionFactory
             {
-                HostName = "172.17.6.21", //ip
+                HostName = "192.168.200.101", //ip
                 Port = 5672, // 端口
                 UserName = "yp", // 账户
                 Password = "yp", // 密码

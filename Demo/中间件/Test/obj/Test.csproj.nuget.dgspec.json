@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\Test\\Test.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\中间件\\Test\\Test.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\Test\\Test.csproj": {
+    "D:\\架构学习\\总结\\Demo\\中间件\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\Test\\Test.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\Test\\Test.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\Test\\Test.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\Test\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -1,4 +1,6 @@
 ﻿using RabbitMQ.Client;
+using RabbitMQ_Provider.Confirm;
+using RabbitMQ_Provider.DCL;
 using RabbitMQ_Provider.Durable;
 using RabbitMQ_Provider.Exchange.Direct;
 using RabbitMQ_Provider.Exchange.Fanout;
@@ -36,9 +38,29 @@ namespace RabbitMQ_Provider
             //TopicProvider.SendMessage();
             #endregion
 
-            #region 测试持久化操作
-            //DurableDemo.SendDurableMessage();
+            #region 测试消息确认机制
+            // 确认方式
+            //ConfirmDemo.ConfirmModel();
+            // 事务方式
+            //Transaction.TransactionMode();
             #endregion
+
+            #region 测试持久化操作
+            // DurableDemo.SendDurableMessage();
+            #endregion
+
+            #region 测试优先级队列
+            // PriorityProvider.SendMessage();
+            #endregion
+
+            #region 测试死信队列
+            DCLSend.SendMessage();
+            #endregion
+
+            #region 测试延迟队列
+            //DelayProvider.SendMessage();
+            #endregion
+
 
             Console.WriteLine("=====================Provider================");
         }

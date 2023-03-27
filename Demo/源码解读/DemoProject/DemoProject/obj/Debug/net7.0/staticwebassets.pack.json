@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\DemoProject.bundle.scp.css"
     },
     {
+      "Id": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\Images\\Forbidden.jpg",
+      "PackagePath": "staticwebassets\\Images\\Forbidden.jpg"
+    },
+    {
+      "Id": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\Images\\my.jpg",
+      "PackagePath": "staticwebassets\\Images\\my.jpg"
+    },
+    {
       "Id": "D:\\架构学习\\总结\\Demo\\源码解读\\DemoProject\\DemoProject\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

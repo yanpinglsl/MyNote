@@ -18,3 +18,4 @@ D:\架构学习\总结\Demo\RedisPublish\obj\Debug\net6.0\refint\RedisPublish.dl
 D:\架构学习\总结\Demo\RedisPublish\obj\Debug\net6.0\RedisPublish.pdb
 D:\架构学习\总结\Demo\RedisPublish\obj\Debug\net6.0\RedisPublish.genruntimeconfig.cache
 D:\架构学习\总结\Demo\RedisPublish\obj\Debug\net6.0\ref\RedisPublish.dll
+D:\架构学习\总结\Demo\中间件\RedisPublish\obj\Debug\net6.0\RedisPublish.pdb

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\RedisServiceStack.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\RedisServiceStack.csproj": {
+    "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\RedisServiceStack.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
         "projectName": "RedisServiceStack",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\RedisServiceStack.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

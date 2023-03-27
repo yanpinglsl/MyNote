@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BtK4V9o6lTJoCeEAYinQb5VSGASjNiXaGXtTSLVJus4o31DWgtXsdNNn+m+ZL+XwkKycnOpyerNIkf5NMrnZ0g==",
+  "dgSpecHash": "fRxoaOr/nPT9LEcuNGLCxkU2+kDmyZzX47n3CByHRvRuFT3pTCEjA6vxlXiI++kJums2eh3rsrYbpMHm9u4XKQ==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisSubscribeDB\\RedisSubscribeDB.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "D:\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

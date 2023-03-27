@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fSiGq4KwdeFqIT59jfyII68jeH1idxd/FFUmhbwRQKJafoTrRM79jabidOXX3+9TfAe/IHImD82Ru60FQ33rxQ==",
+  "dgSpecHash": "WQb/0mdPajmEDBnWkGTi1DfFyDNn3P3ec44wYK5QzvEOu862rBDOSPSF8rHjDXJfvGzbtGEdDZf7VGA5SYhfMQ==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisServiceStack\\RedisServiceStack.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "D:\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",

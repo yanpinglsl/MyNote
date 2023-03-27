@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8/iE2hlPyXaH6i+mFd2CVRz/24rfr3+aWkGgftu6MR4LkP3HcFHAgSntmwRwHM4NEhHR4fZaQNe0Bz+AfY/AYQ==",
+  "dgSpecHash": "6NKUeD8wSyl4Bis8ERpB81EVJO/Dfpl70HHRw3ooiVjGoMWKk834ckd6t9xj83QYkHkzLMqJK+5KfGeR7gaLaQ==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\RedisStackExchange\\RedisStackExchange.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisStackExchange\\RedisStackExchange.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "D:\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",

@@ -35,18 +35,22 @@ namespace RabbitMQ_Provider.DCL
                                         new Dictionary<string, object> {
                                              { "x-dead-letter-exchange",exchangeD}, //设置当前队列的DLX
                                              { "x-dead-letter-routing-key",routeD}, //设置DLX的路由key，DLX会根据该值去找到死信消息存放的队列
-                                             { "x-message-ttl",10000} //设置消息的存活时间，即过期时间
-                                         });
+                                             //{ "x-message-ttl",10000}, //设置消息的存活时间，即过期时间
+                                             { "x-max-length", 5 }//队列最大长度为100，超出这个长度后接收的消息为dead message
+                });
                     channel.QueueBind(queueA, exchangeA, routeA);
 
 
                     var properties = channel.CreateBasicProperties();
                     properties.Persistent = true;
-                    //发布消息
-                    channel.BasicPublish(exchange: exchangeA,
-                                         routingKey: routeA,
-                                         basicProperties: properties,
-                                         body: Encoding.UTF8.GetBytes("message"));
+                    for(int i = 0; i < 10; i++)
+                    {
+                        //发布消息
+                        channel.BasicPublish(exchange: exchangeA,
+                                             routingKey: routeA,
+                                             basicProperties: properties,
+                                             body: Encoding.UTF8.GetBytes("message"));
+                    }
                 }
             }
             

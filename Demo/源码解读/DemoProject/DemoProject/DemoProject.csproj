@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -9,23 +9,54 @@
   <ItemGroup>
     <None Remove="customini.ini" />
     <None Remove="customxml.xml" />
+    <None Remove="StaticFiles\site.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="customini.ini" />
     <Content Include="customxml.xml" />
+    <Content Include="StaticFiles\site.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Authentication\Index.cshtml" />
+    <None Include="Views\Authentication\InfoWithAllowAnonymous.cshtml" />
+    <None Include="Views\Authentication\InfoWithAuthorize.cshtml" />
+    <None Include="Views\Authentication\InfoWithPolicy.cshtml" />
+    <None Include="Views\Authentication\InfoWithRolesAdmin.cshtml" />
     <None Include="Views\Log\Index.cshtml" />
+    <None Include="Views\Middleware\Exceptions.cshtml" />
+    <None Include="Views\Middleware\Index.cshtml" />
+    <None Include="Views\Middleware\Limiter.cshtml" />
+    <None Include="Views\Middleware\Route.cshtml" />
+    <None Include="Views\Middleware\Session.cshtml" />
+    <None Include="Views\Route\About.cshtml" />
+    <None Include="Views\Route\Data.cshtml" />
+    <None Include="Views\Route\GenderInfo.cshtml" />
+    <None Include="Views\Route\HostInfo.cshtml" />
+    <None Include="Views\Route\Index.cshtml" />
+    <None Include="Views\Route\Info.cshtml" />
+    <None Include="Views\Route\PageInfo.cshtml" />
+    <None Include="Views\Route\StaticPage.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WebCoreExtend\WebCoreExtend.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="StaticFiles\Common.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
