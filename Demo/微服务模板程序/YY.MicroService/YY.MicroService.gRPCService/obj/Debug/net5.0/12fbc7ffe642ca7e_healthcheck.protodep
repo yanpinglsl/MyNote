@@ -1,0 +1,2 @@
+obj\Debug\net5.0\Protos/Healthcheck.cs \
+obj\Debug\net5.0\Protos/HealthcheckGrpc.cs: Protos/healthcheck.proto

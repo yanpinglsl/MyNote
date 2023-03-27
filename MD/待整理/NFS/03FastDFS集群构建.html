@@ -1,0 +1,529 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>朝夕教育Gerry:FastDFS集群构建</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="docker-compose-fastdfs-">Docker-Compose构建FastDFS集群</h1>
+<h2 id="-docker">一、安装Docker</h2>
+<p>1） 安装／升级Docker客户端，安装必要的一些系统工具。</p>
+<pre><code>yum update -y
+yum install -y yum-utils device-mapper-persistent-data lvm2
+</code></pre><p>2） 添加软件源信息</p>
+<pre><code>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre><p>3） 更新并安装</p>
+<pre><code>yum makecache fast
+yum -y install docker-ce
+</code></pre><p>4） 开启Docker服务</p>
+<pre><code>service docker start &amp;&amp; systemctl enable docker
+</code></pre><p>5）配置镜像加速器，为docker容器设置默认网段</p>
+<pre><code>1mkdir -p /etc/docker
+123456789101112tee /etc/docker/daemon.json &lt;&lt;-&#39;EOF&#39;
+{
+  &quot;debug&quot; : true,
+  &quot;registry-mirrors&quot;: [&quot;https://dpayzz9i.mirror.aliyuncs.com&quot;],
+  &quot;default-address-pools&quot; : [
+    {
+      &quot;base&quot; : &quot;172.31.0.0/16&quot;,
+      &quot;size&quot; : 24
+    }
+  ]
+}
+EOF
+</code></pre><p>6）重启，并设置开机自启</p>
+<pre><code>systemctl daemon-reload
+systemctl restart docker
+systemctl enable docker
+</code></pre><h2 id="-docker-compose">二、安装Docker-Compose</h2>
+<p>1）下载二进制文件</p>
+<pre><code class="lang-bash">curl -L &quot;https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+# 若是github访问太慢，可以用daocloud下载
+sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+</code></pre>
+<p>2）设置文件执行权限</p>
+<pre><code class="lang-bash"># 执行文件执行权限
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>3）查看docker-compose版本</p>
+<pre><code class="lang-bash">docker-compose --version
+---------------信息为---------------------
+docker-compose version 1.25.5, build 1719ceb
+</code></pre>
+<h2 id="-">三、集群搭建规划</h2>
+<table>
+<thead>
+<tr>
+<th>IP地址</th>
+<th>主机名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.3.248</td>
+<td>node01</td>
+<td>tracker+storage</td>
+</tr>
+<tr>
+<td>192.168.3.249</td>
+<td>node01</td>
+<td>tracker+storage</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>开放端口: 22122（tracker服务的端口）、23002（storage服务的端口）、8888（nginx服务的端口）</p>
+<p>安装根目录：/data/fastdfs</p>
+</blockquote>
+<h2 id="-fastdfs-">四、开始搭建FastDFS集群</h2>
+<h3 id="1-">1） 拉取镜像包</h3>
+<pre><code class="lang-bash">docker pull morunchang/fastdfs
+</code></pre>
+<h3 id="2-tracker-">2） 创建tracker工作目录</h3>
+<pre><code class="lang-bash">mkdir -p /data/fastdfs/tracker/data /data/fastdfs/tracker/conf
+</code></pre>
+<h3 id="3-tracker-conf-">3）创建tracker.conf配置文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/tracker/conf/tracker.conf
+disabled=false
+bind_addr=
+port=22122
+connect_timeout=30
+network_timeout=30
+base_path=/data/fast_data
+max_connections=256
+accept_threads=1
+work_threads=4
+store_lookup=2
+store_group=group1
+store_server=0
+store_path=0
+download_server=0
+reserved_storage_space = 10%
+log_level=info
+run_by_group=
+run_by_user=
+allow_hosts=*
+sync_log_buff_interval = 10
+check_active_interval = 120
+thread_stack_size = 64KB
+storage_ip_changed_auto_adjust = true
+storage_sync_file_max_delay = 86400
+storage_sync_file_max_time = 300
+use_trunk_file = false
+slot_min_size = 256
+slot_max_size = 16MB
+trunk_file_size = 64MB
+trunk_create_file_advance = false
+trunk_create_file_time_base = 02:00
+trunk_create_file_interval = 86400
+trunk_create_file_space_threshold = 20G
+trunk_init_check_occupying = false
+trunk_init_reload_from_binlog = false
+trunk_compress_binlog_min_interval = 0
+use_storage_id = false
+storage_ids_filename = storage_ids.conf
+id_type_in_filename = ip
+store_slave_file_use_link = false
+rotate_error_log = false
+error_log_rotate_time=00:00
+rotate_error_log_size = 0
+log_file_keep_days = 0
+use_connection_pool = false
+connection_pool_max_idle_time = 3600
+http.server_port=8080
+http.check_alive_interval=30
+http.check_alive_type=tcp
+http.check_alive_uri=/status.html
+EOF
+</code></pre>
+<h3 id="4-tracker-sh-">4）创建tracker.sh文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/tracker.sh
+#!/bin/sh
+/data/fastdfs/tracker/fdfs_trackerd /etc/fdfs/tracker.conf
+/etc/nginx/sbin/nginx
+tail -f /data/fast_data/logs/trackerd.log
+EOF
+</code></pre>
+<h3 id="5-">5）如果你开启了防火墙必须进行下面操作</h3>
+<pre><code class="lang-bash"># 放行22122端口
+firewall-cmd --zone=public --add-port=22122/tcp --permanent
+# 重新加载新的放行列表
+firewall-cmd --reload
+# 查看放行端口列表中是否存在
+firewall-cmd --list-all
+</code></pre>
+<h3 id="6-storage-">6） 创建storage工作目录</h3>
+<pre><code class="lang-bash">mkdir -p /data/fastdfs/storage/data /data/fastdfs/storage/conf
+</code></pre>
+<h3 id="7-storage-conf-">7）创建storage.conf配置文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/storage.conf
+disabled=false
+group_name=group1
+bind_addr=
+client_bind=true
+port=23002
+connect_timeout=30
+network_timeout=30
+heart_beat_interval=30
+stat_report_interval=60
+base_path=/data/fast_data
+max_connections=256
+buff_size = 256KB
+accept_threads=1
+work_threads=4
+disk_rw_separated = true
+disk_reader_threads = 1
+disk_writer_threads = 1
+sync_wait_msec=50
+sync_interval=0
+sync_start_time=00:00
+sync_end_time=23:59
+write_mark_file_freq=500
+store_path_count=1
+store_path0=/data/fast_data
+subdir_count_per_path=256
+# tracker集群（必须改为自己的IP）
+tracker_server=192.168.3.248:22122
+tracker_server=192.168.3.249:22122
+log_level=debug
+run_by_group=
+run_by_user=
+allow_hosts=*
+file_distribute_path_mode=0
+file_distribute_rotate_count=100
+fsync_after_written_bytes=0
+sync_log_buff_interval=10
+sync_binlog_buff_interval=10
+sync_stat_file_interval=300
+thread_stack_size=512KB
+upload_priority=10
+if_alias_prefix=
+check_file_duplicate=0
+file_signature_method=hash
+key_namespace=FastDFS
+keep_alive=0
+use_access_log = true
+rotate_access_log = false
+access_log_rotate_time=00:00
+rotate_error_log = false
+error_log_rotate_time=00:00
+rotate_access_log_size = 0
+rotate_error_log_size = 0
+log_file_keep_days = 0
+file_sync_skip_invalid_record=false
+use_connection_pool = false
+connection_pool_max_idle_time = 3600
+http.domain_name=
+http.server_port=8888
+EOF
+</code></pre>
+<h3 id="8-nginx-conf-">8）创建nginx.conf配置文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/nginx.conf
+user  root;
+worker_processes  1;
+error_log  /data/fast_data/logs/nginx-error.log;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;
+                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+                      &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;
+
+    access_log  /data/fast_data/logs/nginx-access.log  main;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    server {
+        listen       8888;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        location ~ /group1/M00 {
+                    root /data/fast_data/data;
+                    ngx_fastdfs_module;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+}
+EOF
+</code></pre>
+<h3 id="9-mod_fastdfs-conf-">9）创建mod_fastdfs.conf配置文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/mod_fastdfs.conf
+connect_timeout=30
+network_timeout=30
+base_path=/data/fast_data
+load_fdfs_parameters_from_tracker=true
+storage_sync_file_max_delay = 86400
+use_storage_id = false
+storage_ids_filename = storage_ids.conf
+#tracker集群
+tracker_server=192.168.3.248:22122
+tracker_server=192.168.3.249:22122
+storage_server_port=23002
+group_name=group1
+url_have_group_name = true
+store_path_count=1
+store_path0=/data/fast_data
+log_level=info
+log_filename=
+response_mode=proxy
+if_alias_prefix=
+flv_support = true
+flv_extension = flv
+group_count = 0
+
+#HTTP default content type
+http.default_content_type = application/octet-stream
+
+#MIME types mapping filename
+#MIME types file format: MIME_type extensions
+#such as: image/jpeg jpeg jpg jpe
+#you can use apache’s MIME file: mime.types
+http.mime_types_filename=/etc/nginx/conf/mime.types
+EOF
+</code></pre>
+<h3 id="10-storage-sh-">10）创建storage.sh启动脚本</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/storage.sh
+#!/bin/sh
+/data/fastdfs/storage/fdfs_storaged /etc/fdfs/storage.conf
+/etc/nginx/sbin/nginx
+tail -f /data/fast_data/logs/storaged.log
+EOF
+</code></pre>
+<h3 id="11-client-conf-">11）创建client.conf配置文件</h3>
+<pre><code class="lang-bash">cat &lt;&lt;EOF &gt; /data/fastdfs/storage/conf/client.conf
+# connect timeout in seconds
+# default value is 30s
+connect_timeout=30
+
+# network timeout in seconds
+# default value is 30s
+network_timeout=30
+
+# the base path to store log files
+base_path=/data/fast_data
+
+# tracker_server can ocur more than once, and tracker_server format is
+#  &quot;host:port&quot;, host can be hostname or ip address
+#tracker集群
+tracker_server=192.168.3.248:22122
+tracker_server=192.168.3.249:22122
+
+#standard log level as syslog, case insensitive, value list:
+### emerg for emergency
+### alert
+### crit for critical
+### error
+### warn for warning
+### notice
+### info
+### debug
+log_level=info
+
+# if use connection pool
+# default value is false
+# since V4.05
+use_connection_pool = false
+
+# connections whose the idle time exceeds this time will be closed
+# unit: second
+# default value is 3600
+# since V4.05
+connection_pool_max_idle_time = 3600
+
+# if load FastDFS parameters from tracker server
+# since V4.05
+# default value is false
+load_fdfs_parameters_from_tracker=false
+
+# if use storage ID instead of IP address
+# same as tracker.conf
+# valid only when load_fdfs_parameters_from_tracker is false
+# default value is false
+# since V4.05
+use_storage_id = false
+
+# specify storage ids filename, can use relative or absolute path
+# same as tracker.conf
+# valid only when load_fdfs_parameters_from_tracker is false
+# since V4.05
+storage_ids_filename = storage_ids.conf
+
+#HTTP settings
+http.tracker_server_port=80
+
+#use &quot;#include&quot; directive to include HTTP other settiongs
+#include http.conf
+EOF
+</code></pre>
+<h3 id="12-storage-">12）开放Storage的端口</h3>
+<pre><code class="lang-bash">firewall-cmd --zone=public --add-port=23002/tcp --permanent
+firewall-cmd --zone=public --add-port=8888/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+</code></pre>
+<h3 id="13-docker-compose-yml-">13）创建docker-compose.yml编排文件</h3>
+<pre><code class="lang-yml">cat &lt;&lt;EOF &gt; /data/fastdfs/docker-compose.yml
+version: &#39;3.7&#39;
+services:
+  fastdfs-tracker:
+    image: morunchang/fastdfs
+    container_name: fastdfs-tracker
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /data/fastdfs/tracker/data:/data/fast_data
+      - /data/fastdfs/tracker/conf/tracker.conf:/etc/fdfs/tracker.conf
+    environment:
+      - TZ=Asia/Shanghai
+    network_mode: &quot;host&quot;
+    command: &quot;sh tracker.sh&quot;
+
+  fastdfs-storage:
+    image: morunchang/fastdfs
+    container_name: fastdfs-storage
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /data/fastdfs/storage/data:/data/fast_data
+      - /data/fastdfs/storage/conf/storage.sh:/storage.sh
+      - /data/fastdfs/storage/conf/storage.conf:/etc/fdfs/storage.conf
+      - /data/fastdfs/storage/conf/nginx.conf:/etc/nginx/conf/nginx.conf
+      - /data/fastdfs/storage/conf/mod_fastdfs.conf:/etc/fdfs/mod_fastdfs.conf
+      - /data/fastdfs/storage/conf/client.conf:/data/fastdfs/conf/client.conf
+    environment:
+      - TZ=Asia/Shanghai
+    network_mode: &quot;host&quot;
+    command: &quot;sh storage.sh&quot;
+EOF
+</code></pre>
+<h3 id="14-">14）启动编排好的服务</h3>
+<pre><code class="lang-bash">cd /data/fastdfs/ &amp;&amp; docker-compose up -d
+</code></pre>
+<h3 id="15-">15）查看启动日志</h3>
+<pre><code class="lang-bash">docker-compose logs -f
+</code></pre>
+<h3 id="16-">16）查看启动的服务</h3>
+<pre><code class="lang-bash">docker-compose ps
+</code></pre>
+<h3 id="17-fastdfs-">17）查看fastdfs集群运行情况</h3>
+<pre><code class="lang-bash">docker exec -it fastdfs-storage fdfs_monitor /data/fastdfs/conf/client.conf
+</code></pre>
+<blockquote>
+<p>参数说明
+tracker_server_count：2 --表示2个Tracker Server
+tracker server is 192.168.163.130:22122 --表示Leader Tracker
+group count: 1 --表示有1个group
+group name = group1 --组名称是group1
+storage server count = 2 --组内有2个storage
+active server count = 2 --活动的storage有2个
+storage server port = 23002 --storage的端口
+storage HTTP port = 8888   --storage的文件访问端口
+store path count = 1 --storage只挂了一个存储目录
+total_upload_count = 11 --总共上传了多少个文件
+total_upload_bytes = 691405 --总共上传了多少字节
+success_upload_bytes = 691405 --成功上传了多少字节
+total_download_count = 2 --总共下载了多少文件（使用java客户端）</p>
+</blockquote>
+<h2 id="-net5-">五、.NET5连接集群</h2>
+<h1 id="-">附录：</h1>
+<p>解决tree乱码问题：</p>
+<pre><code class="lang-bahs">alias tree=&#39;tree --charset ASCII&#39;
+</code></pre>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

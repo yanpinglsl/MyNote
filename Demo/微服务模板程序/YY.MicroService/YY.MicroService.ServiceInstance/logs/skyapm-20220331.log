@@ -1,0 +1,62 @@
+2022-03-31 14:16:33.352 +08:00 [SkyWalking_User] [Information] SkyApm.InstrumentStartup : Initializing ...
+2022-03-31 14:16:33.376 +08:00 [SkyWalking_User] [Information] SkyApm.Service.RegisterService : Loaded instrument service [SkyApm.Service.RegisterService].
+2022-03-31 14:16:33.376 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Loaded instrument service [SkyApm.Service.PingService].
+2022-03-31 14:16:33.376 +08:00 [SkyWalking_User] [Information] SkyApm.Service.SegmentReportService : Loaded instrument service [SkyApm.Service.SegmentReportService].
+2022-03-31 14:16:33.377 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Loaded instrument service [SkyApm.Service.CLRStatsService].
+2022-03-31 14:16:33.377 +08:00 [SkyWalking_User] [Information] SkyApm.Sampling.SimpleCountSamplingInterceptor : Loaded instrument service [SkyApm.Sampling.SimpleCountSamplingInterceptor].
+2022-03-31 14:16:33.377 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.ConnectService : Loaded instrument service [SkyApm.Transport.Grpc.ConnectService].
+2022-03-31 14:16:33.400 +08:00 [SkyWalking_User] [Information] SkyApm.Diagnostics.TracingDiagnosticProcessorObserver : Loaded diagnostic listener [Microsoft.AspNetCore].
+2022-03-31 14:16:33.400 +08:00 [SkyWalking_User] [Information] SkyApm.InstrumentStartup : Started SkyAPM .NET Core Agent.
+2022-03-31 14:16:33.414 +08:00 [SkyWalking_User] [Information] SkyApm.Diagnostics.TracingDiagnosticProcessorObserver : Loaded diagnostic listener [HttpHandlerDiagnosticListener].
+2022-03-31 14:16:33.439 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.ConnectionManager : Connected server[192.168.200.104:11800].
+2022-03-31 14:16:34.008 +08:00 [SkyWalking_User] [Information] SkyApm.Service.RegisterService : Reported Service Instance Properties[Service=SkyWalking_User,InstanceId=192.168.200.100@cf6869e5baa24055bda8baafe80d0f3e].
+2022-03-31 14:16:36.468 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0791534s
+2022-03-31 14:16:45.398 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0150316s
+2022-03-31 14:16:54.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0065345s
+2022-03-31 14:17:03.420 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Ping server @2022/3/31 6:17:03 +00:00
+2022-03-31 14:17:03.426 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 8M ThreadPool 32765 32767 1000 1000
+2022-03-31 14:17:06.392 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0043778s
+2022-03-31 14:17:15.390 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0063325s
+2022-03-31 14:17:24.390 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0055537s
+2022-03-31 14:17:33.394 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 8M ThreadPool 32759 32767 1000 1000
+2022-03-31 14:17:36.388 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0057516s
+2022-03-31 14:17:45.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0050361s
+2022-03-31 14:17:51.397 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 2 trace segment. cost: 00:00:00.0140995s
+2022-03-31 14:17:54.399 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0104339s
+2022-03-31 14:18:03.411 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Ping server @2022/3/31 6:18:03 +00:00
+2022-03-31 14:18:03.416 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 9M ThreadPool 32759 32767 1000 1000
+2022-03-31 14:18:06.391 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0063695s
+2022-03-31 14:18:15.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0063108s
+2022-03-31 14:18:24.399 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0225015s
+2022-03-31 14:18:33.395 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 10M ThreadPool 32764 32767 1000 1000
+2022-03-31 14:18:36.394 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0093624s
+2022-03-31 14:18:45.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0058216s
+2022-03-31 14:18:54.390 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0046271s
+2022-03-31 14:19:03.390 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Ping server @2022/3/31 6:19:03 +00:00
+2022-03-31 14:19:03.392 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 10M ThreadPool 32762 32767 1000 1000
+2022-03-31 14:19:06.392 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0092974s
+2022-03-31 14:19:15.394 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0048999s
+2022-03-31 14:19:24.392 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0037547s
+2022-03-31 14:19:33.391 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 10M ThreadPool 32764 32767 1000 1000
+2022-03-31 14:19:36.392 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0038055s
+2022-03-31 14:19:45.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0037630s
+2022-03-31 14:19:54.403 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0188546s
+2022-03-31 14:20:03.391 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Ping server @2022/3/31 6:20:03 +00:00
+2022-03-31 14:20:03.396 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 11M ThreadPool 32759 32767 1000 1000
+2022-03-31 14:20:06.390 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0041808s
+2022-03-31 14:20:15.389 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0063464s
+2022-03-31 14:20:24.390 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0047861s
+2022-03-31 14:20:33.390 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 11M ThreadPool 32763 32767 1000 1000
+2022-03-31 14:20:36.391 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0077334s
+2022-03-31 14:20:45.388 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0047104s
+2022-03-31 14:20:54.391 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0079265s
+2022-03-31 14:21:03.401 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Report CLR Stats. CPU UsagePercent 0 GenCollectCount 0 0 0 11M ThreadPool 32759 32767 1000 1000
+2022-03-31 14:21:03.403 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Ping server @2022/3/31 6:21:03 +00:00
+2022-03-31 14:21:06.394 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.V8.SegmentReporter : Report 1 trace segment. cost: 00:00:00.0038116s
+2022-03-31 14:21:08.823 +08:00 [SkyWalking_User] [Information] SkyApm.Service.RegisterService : Stopped instrument service RegisterService.
+2022-03-31 14:21:08.823 +08:00 [SkyWalking_User] [Information] SkyApm.Service.PingService : Stopped instrument service PingService.
+2022-03-31 14:21:08.823 +08:00 [SkyWalking_User] [Information] SkyApm.Service.SegmentReportService : Stopped instrument service SegmentReportService.
+2022-03-31 14:21:08.823 +08:00 [SkyWalking_User] [Information] SkyApm.Service.CLRStatsService : Stopped instrument service CLRStatsService.
+2022-03-31 14:21:08.824 +08:00 [SkyWalking_User] [Information] SkyApm.Sampling.SimpleCountSamplingInterceptor : Stopped instrument service SimpleCountSamplingInterceptor.
+2022-03-31 14:21:08.824 +08:00 [SkyWalking_User] [Information] SkyApm.Transport.Grpc.ConnectService : Stopped instrument service ConnectService.
+2022-03-31 14:21:08.824 +08:00 [SkyWalking_User] [Information] SkyApm.InstrumentStartup : Stopped SkyAPM .NET Core Agent.

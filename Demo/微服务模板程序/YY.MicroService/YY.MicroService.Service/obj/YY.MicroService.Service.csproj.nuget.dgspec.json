@@ -1,0 +1,342 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Service\\YY.MicroService.Service.csproj": {}
+  },
+  "projects": {
+    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
+        "projectName": "YY.MicroService.Framework",
+        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
+        "packagesPath": "D:\\packages",
+        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
+            "Autofac.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Autofac.Extras.DynamicProxy": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Consul": {
+              "target": "Package",
+              "version": "[1.6.10.4, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Caching.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.DiagnosticAdapter": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
+            "SkyAPM.Agent.AspNetCore": {
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "zipkin4net": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
+            "zipkin4net.middleware.aspnetcore": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\YY.MicroService.Interface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\YY.MicroService.Interface.csproj",
+        "projectName": "YY.MicroService.Interface",
+        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\YY.MicroService.Interface.csproj",
+        "packagesPath": "D:\\packages",
+        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
+                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj"
+              },
+              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
+                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
+        "projectName": "YY.MicroService.Model",
+        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
+        "packagesPath": "D:\\packages",
+        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Service\\YY.MicroService.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Service\\YY.MicroService.Service.csproj",
+        "projectName": "YY.MicroService.Service",
+        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Service\\YY.MicroService.Service.csproj",
+        "packagesPath": "D:\\packages",
+        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
+                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj"
+              },
+              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\YY.MicroService.Interface.csproj": {
+                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Interface\\YY.MicroService.Interface.csproj"
+              },
+              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
+                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

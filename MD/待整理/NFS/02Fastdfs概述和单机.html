@@ -1,0 +1,169 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>朝夕教育Gerry:Fastdfs</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="docker-fastdfs">Docker部署FastDFS</h1>
+<h2 id="1-fastdfs-">1. FastDFS简介</h2>
+<p>  FastDFS是一个开源的分布式文件系统，它对文件进行管理，功能包括：文件存储、文件同步、文件访问（文件上传、文件下载）等，解决了大容量存储和负载均衡的问题。特别适合以文件（建议：4KB ~ 500MB）为载体的在线服务，如相册网站、视频网站等等。
+  FastDFS系统有三个角色：跟踪服务器（Tracker Server）、存储服务器（Storage Server）和客户端（Client）。
+  <strong>Tracker Server：</strong>跟踪服务器，主要负责Group和Storage Server之间的负载均衡；每个Storage Server 在启动后会连接Tracker Server，告知自己所属Group 等信息，并保持周期性心跳。
+  <strong>Storage Server：</strong>存储服务器，主要负责容量和备份服务；以Group为单位，每个Group中可以有多个Storage Server，数据互为备份。
+  <strong>Client：</strong>客户端，即用于上传和下载所在工程部署的服务器。</p>
+<p><img src="img/1119097-20200810165254047-540772457.jpg" alt="img"></p>
+<h2 id="2-fastdfs-">2. FastDFS存储策略</h2>
+<p>  为了支持大容量，存储节点（服务器）采用了分卷（或分组）的组织方式。存储系统由一个或多个卷组成，卷与卷之间的文件是相互独立的，所有卷 的文件容量累加就是整个存储系统中的文件容量。一个卷可以由一台或多台存储服务器组成，一个卷下的存储服务器中的文件都是相同的，卷中的多台存储服务器起到了冗余备份和负载均衡的作用。
+  在卷中增加服务器时，同步已有的文件由系统自动完成，同步完成后，系统自动将新增服务器切换到线上提供服务。
+  当存储空间不足或即将耗尽时，可以动态添加卷。只需要增加一台或多台服务器，并将它们配置为一个新的卷，这样就扩大了存储系统的容量。
+  FastDFS中的文件标识分为两个部分：卷名和文件名，二者缺一不可。</p>
+<h2 id="3-fastdfs-">3. FastDFS文件上传和下载流程</h2>
+<h3 id="3-1-">3.1 上传文件交互过程</h3>
+<ul>
+<li>Client询问Tracker上传到的Storage，不需要附加参数；</li>
+<li>Tracker返回一台可用的Storage；</li>
+<li>Client直接和Storage通讯完成文件上传。
+<img src="img/1119097-20200810165303748-222612223.jpg" alt="img"></li>
+</ul>
+<h3 id="3-2-">3.2 下载文件交互过程</h3>
+<ul>
+<li>Client询问Tracker下载文件的Storage，参数为文件标识（卷名和文件名）；</li>
+<li>Tracker返回一台可用的Storage；</li>
+<li>Client直接和Storage通讯完成文件下载。
+<img src="img/1119097-20200810165310069-1198586725.jpg" alt="img"></li>
+</ul>
+<h2 id="4-fastdfs-">4. FastDFS文件同步</h2>
+<p>  写文件时，Client将文件写至Group内一个Storage Server即为写文件成功，Storage Server写文件完成后，后台线程会将文件同步至同Group内其他Storage Server。
+  每个Storage Server写文件件完成后，同时会写一份binlog，binlog里不包含文件数据，只包含文件名等元信息，用于后台同步，Storage会记录同Group内其他Storage同步的进度，以便重启后能继续同步；进度以时间戳的方式进行记录，所以最好能保证集群内所有服务器的时间保持同步。
+  Storage的同步进度会作为元数据的一部分反馈给Tracker，Tracke在选择读Storage时会以同步进度作为参考。</p>
+<h2 id="5-docker-fastdfs">5. Docker部署FastDFS</h2>
+<pre><code class="lang-bash">Copy# 搜索镜像
+docker search fastdfs
+
+# 拉取镜像（已经内置Nginx）
+docker pull delron/fastdfs
+
+# 构建Tracker
+# 22122 =&gt; Tracker默认端口
+docker run --name=tracker-server --network=host --privileged=true -v /var/fdfs/tracker:/var/fdfs -d delron/fastdfs tracker
+
+# 构建Storage
+# 23000 =&gt; Storage默认端口
+# 8888 =&gt; 内置Nginx默认端口
+# TRACKER_SERVER =&gt; 执行Tracker的ip和端口
+# --net=host =&gt; 避免因为Docker网络问题导致外网客户端无法上传文件，因此使用host网络模式
+docker run --name=storage-server --privileged=true --network=host -v /var/fdfs/storage:/var/fdfs -e TRACKER_SERVER=192.168.3.248:22122 -e GROUP_NAME=group1 -d delron/fastdfs storage
+
+# 查看容器
+docker ps
+
+# 进入tracker容器
+docker exec -it tracker-server bash
+# 修改配置信息，也可以直接挂载这个配置文件
+vi /etc/fdfs/client.conf
+----------------------------
+tracker_server=你自己的ip:22122
+# 重启tracker容器
+docker restart tracker-server
+</code></pre>
+<h2 id="6-">6. 测试上传和访问</h2>
+<ul>
+<li>将图片上传到服务器/var/fdfs/storage/</li>
+<li>进入storage-server</li>
+</ul>
+<pre><code>docker exec -it storage /bin/bash
+
+cd /var/fdfs/
+
+/usr/bin/fdfs_upload_file /etc/fdfs/client.conf test.jpg
+
+# 记录返回的文件名称（卷名和文件名）信息
+group1/M00/00/00/rBEAA2C2_mmAaiHtAAQNsWG90hY512.jpg
+</code></pre><ul>
+<li>浏览器访问（注意防火墙）</li>
+</ul>
+<p><a href="http://192.168.3.248:8888/group1/M00/00/00/rBEAA2C2_mmAaiHtAAQNsWG90hY512.jpg">http://192.168.3.248:8888/group1/M00/00/00/rBEAA2C2_mmAaiHtAAQNsWG90hY512.jpg</a></p>
+<h1 id="fastdfs-net-core">FastDFS对接.NET Core</h1>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

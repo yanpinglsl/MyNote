@@ -1,0 +1,713 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>06-RabbitMQ消息可靠性、幂等、顺序性</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url('file:///C://Users//Administrator//AppData//Roaming//Typora/themes/vue/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@import '';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    padding-left: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+    color: #42b983;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #42b983;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+.md-diagram-panel {
+    position: static !important;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: var(--font-sans-serif);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h1><a name="开发实战常见问题分析和解决" class="md-header-anchor"></a><span>开发实战常见问题分析和解决</span></h1><h2><a name="一消息的可靠性分析和解决" class="md-header-anchor"></a><span>一、消息的可靠性分析和解决</span></h2><p><img src="img/image-20210520104556390.png" referrerpolicy="no-referrer" alt="image-20210520104556390"></p><p><strong><span>RabbitMQ收发消息的时候，有几个主要环节和疑问</span></strong></p><ol start='' ><li><span>消息从生产者发送到Broker，生产者把消息发到Broker之后，怎么知道自己的消息是否被接收。</span></li><li><span>消息从Exchange路由到Queue，Exchange是一个绑定列表，职责是分发消息。如果找不到队列或者找不到正确的对垒，怎么处理。</span></li><li><span>消息在Queue中存储，队列有自己的数据库Mnesia，用来存储消息，如果没有被消费会一直存在，如何保证消息在队列中稳定地存储呢？</span></li><li><span>消费者订阅Queue并消费消息，队列是FIFO的，被消费之后删库才投递下一条，Broker如何知道消费者已经接收了消息呢？</span></li></ol><h3><a name="11-消息发送到broker" class="md-header-anchor"></a><span>1.1 消息发送到Broker</span></h3><blockquote><p><strong><span>出现失败的原因:</span></strong>
+<span>例如设备故障等导致消息发送失败，生产者不能确定Broker有没有正确接收。这就需要给生产者发送消息的接口一个应答。</span></p><p><strong><span>解决方案：</span></strong>
+<span>1) 事务模式</span>
+<span>2) Confirm模式</span></p></blockquote><h3><a name="12-消息从交换机到路由到队列" class="md-header-anchor"></a><span>1.2 消息从交换机到路由到队列</span></h3><blockquote><p><strong><span>导致原因：</span></strong>
+<span>什么情况情况下，消息会无法路由到正确的队列？可能因为routingkey错误，或者队列不存在。</span></p><p><strong><span>解决方案</span></strong>
+<span>1）服务端重发生产者</span>
+<span>2）交换机路由到另一个备份的交换机。</span></p></blockquote><h3><a name="13-消息队列中存储" class="md-header-anchor"></a><span>1.3 消息队列中存储</span></h3><blockquote><p><strong><span>导致原因：</span></strong>
+<span>重启可能导致内存消息消失，这就要把消息本身和元数据（队列，交换机，绑定）都保存到磁盘。</span></p><p><strong><span>解决方案：</span></strong>
+<span>1）队列持久化</span>
+<span>2）交换机持久化</span>
+<span>3）消息持久化</span></p></blockquote><h3><a name="14-消息投递到消费者" class="md-header-anchor"></a><span>1.4 消息投递到消费者</span></h3><blockquote><p><span>1) 自动Ack</span>
+<span>2）手动Ack</span></p></blockquote><h3><a name="15-消费者回调根据业务来）" class="md-header-anchor"></a><span>1.5 消费者回调（根据业务来）</span></h3><blockquote><p><span>从生产者到Broker，交换机到队列，队列本身，队列到消费者，都有响应的方法知道msg是否正常流转。但是服务端收到ack或者nack之后，生产者知道吗？根据经验是不知道的。但是如果为了保证一致性，生产者必须知道消费者有没有成功消费，怎么办？</span>
+<span>这个是需要从业务层面来进行，两种方式：</span>
+<span>（1）回调，消费者收到消息，处理完毕后，调用生产者的API。</span>
+<span>（2）消费者发送一条响应消息给生产者。</span></p></blockquote><h3><a name="16-补偿机制" class="md-header-anchor"></a><span>1.6 补偿机制</span></h3><blockquote><p><span>如果生产者的API没有被调用，也没有收到消费者的响应消息，该如何做？</span>
+<span>这时候可以稍微等一下，可能是消费者处理时间太长或者网络超时，超时之后还没有得到响应的消息才确定为失败，消费失败以后重发消息。</span>
+<span>但是问题又来了，谁来发，多久发一次，一共发几次，发一模一样的消息吗？消费者如何进行</span><strong><span>幂等</span></strong><span>呢？</span></p></blockquote><p><span> </span><strong><span>谁来发</span></strong>
+<span>实际的发送方是业务人员，对于异步操作，发完工作就结束了，所以肯定不是业务发进行重发的。</span>
+<span>此时可以创建一个定时任务，找到这些中间状态的记录，查出来之后构建为MQ，重新发送，这种方式用的最多。</span>
+<span>其实还有一种情况就是定时执行一直不行之后还是要给上层返回错误的，例如我做的结算系统中就遇到这种情况，如果服务不可用，再重试也无用，此时就需要人员重做结算，此时将失败信息记录起来，然后重新结算。</span></p><p><strong><span>多久发一次</span></strong><span>(重复频率)</span>
+<span>这个可以由业务根据情况灵活设置，没有固定值，可以按照恒定间隔执行，也可以设置衰减期，例如先一分钟一次，之后2分钟，再5分钟等等。这个可以在定时任务中设置</span></p><p><strong><span>一共重发几次</span></strong><span>（重试次数）</span>
+<span>这个也可以设置，如果服务不可用而大量发送，会产生大量无效数据导致MQ消息堆积，一般设置为3~5次就够了。</span>
+<span>这个要在消息表里记录次数来实现，发一次就加1.</span></p><p><strong><span>重发什么内容</span></strong><span>（幂等）</span>
+<span>肯定不能发一模一样的消息，不然消费端因为无法区分而导致幂等性问题，至少应该个加个时间戳或者id之类的来区分吧。</span></p><p><span>不过RabbitMQ除了同一批次的消息有个DeliveryTag外，没有这种完整的防重复设置，也不知道什么才是重复的消息，这需要消费端来处理（用异常队列或者死信队列来做，通常更多的是通过业务端来控制）</span></p><h2><a name="二幂等性" class="md-header-anchor"></a><span>二、幂等性</span></h2><blockquote><p><strong><span>（1）重复消费产生原因：</span></strong></p><p><span>网络延迟传输中，消费出现异常或者 消息延迟消费，会造成MQ进行重试补偿，在重试过程中可能会造成重复消费，重复消费问题就是幂等性问题</span></p><p><strong><span>（2）重复消费消息的几种场景</span></strong></p><p><span>场景1：消费者干的事是拿一条数据往数据库写一条，如果消息重复两次就写了两条，导致数据出错。</span></p><p><span>     解决场景1：同一条消息消息到第二次时判断一下是否已消费过，若是则直接扔掉，一条数据出现两次但是数据库只有一条，这就保证了系统的</span><strong><span>幂等性</span></strong></p><p><strong><span>（3）何为幂等性？（官方定义）：</span></strong></p><p><span>一次和多次请求某资源对于资源本身应该有相同的结果（网络超时除外）。也就是，</span><strong><span>任意多次执行对资源本身产生的影响均与一次执行的结果相同</span></strong></p><p><strong><span>（4）解决幂等性（重复消费）的几种业务场景</span></strong></p><p><span>业务场景1：从生产者拿到个数据后要写库，先根据主键查一下，如果这个数据有了就别插了直接update</span></p><p><span>业务场景2：如果是写redis的都没问题，因为每次都是set，redis天然的幂等性（）</span></p><p><span>-- &gt; 写入消息的时候添加消息的ID =&gt;使用redis命令进行setnx 返回是1 =&gt;消费端消费完成后把ID写入redis--&gt; 签收消息</span>
+<span>--&gt; 入消息的时候添加消息的ID =&gt; 使用redis命令进行setnx 返回是0</span></p><p><span>业务场景3：需要让生产者发送每条数据的时候加上一个全局唯一的id,消费的时候先根据id去比如redis查一下判断是否消费过，若没有则处理然后这个id写redis,若消费过就不处理</span></p><p><span>业务场景4：如果数据库有唯一建约束了，插入只会报错，不会导致数据库出现脏数据，本身幂等了</span></p><p><strong><span>（5）解决决幂等性（重复消费）的几种方法</span></strong></p><p><span>方法1：唯一ID + 指纹码机制，利用数据库主键去重</span></p><p><span>思路：根据消息生成一个全局唯一ID,然后加上一个指纹码。指纹码可以系统生成也可以根据某些规则自定义拼接，目的是确定本次才做唯一，将ID+指纹码作为拼接好的值作为主键就可以去重了，在消费消息前先去数据库查看这条消息指纹码是否存在，没有就插入有就忽视。</span></p><p><span>高并发写数据库性能瓶颈：可以跟进ID进行分库分表策略，采用一些路由算法进行分流，要保证ID通过这种算法消息即使投递多次都落在同一数据库分片上，这样就由单台数据库幂等变成多库的幂等。</span></p><p><span>方法1：利用Redis的原子性去实现</span></p><p><span>redis是单线程的，但是性能好也有很多原子性的命令，比如setnx命令，在接收到消息后将消息ID作为key去执行setnx命令，如果执行成功则表示没有执行过这条消息，可以进行消费（setnx命令特点：当且仅当key不存在，将key值设为value值；若key已存在该命令不做任何操作）</span></p><p><strong><span>方法3：使用全局ID区分消息，解决幂等性（常用）</span></strong></p><p><span>对于方法3还是以生产者和消费者代码举例：</span></p><p><span>生产者：在请求头设置消息id（messageId），可以用随机ID比如，也可以用业务逻辑唯一ID</span></p></blockquote><h2><a name="三顺序消费" class="md-header-anchor"></a><span>三、顺序消费</span></h2><blockquote><h3><a name="1为什么要保证顺序" class="md-header-anchor"></a><span>1.为什么要保证顺序</span></h3><p><span>消息队列中的若干消息如果是对同一个数据进行操作，这些操作具有前后的关系，必须要按前后的顺序执行，否则就会造成数据异常。举例：</span>
+<span>比如通过mysql binlog进行两个数据库的数据同步，由于对数据库的数据操作是具有顺序性的，如果操作顺序搞反，就会造成不可估量的错误。比如数据库对一条数据依次进行了 插入-&gt;更新-&gt;删除操作，这个顺序必须是这样，如果在同步过程中，消息的顺序变成了 删除-&gt;插入-&gt;更新，那么原本应该被删除的数据，就没有被删除，造成数据的不一致问题。</span></p></blockquote><h3><a name="31-出现顺序错乱的场景" class="md-header-anchor"></a><span>3.1. 出现顺序错乱的场景</span></h3><p><span>（1）rabbitmq</span>
+<span>①一个queue，有多个consumer去消费，这样就会造成顺序的错误，consumer从MQ里面读取数据是有序的，但是每个consumer的执行时间是不固定的，无法保证先读到消息的consumer一定先完成操作，这样就会出现消息并没有按照顺序执行，造成数据顺序错误。</span></p><p><img src="img/92dcc94804ff28dfe28edfc3994ceebf.png" referrerpolicy="no-referrer" alt="img"></p><p><span>②一个queue对应一个consumer，但是consumer里面进行了多线程消费，这样也会造成消息消费顺序错误。</span></p><p><img src="img/a7bad77071975d3adb3b16c847b9ffcc.png" referrerpolicy="no-referrer" alt="img"></p><h3><a name="32-保证消息的消费顺序" class="md-header-anchor"></a><span>3.2. 保证消息的消费顺序</span></h3><p><span>（1）rabbitmq</span>
+<span>①拆分多个queue，每个queue一个consumer，就是多一些queue而已，确实是麻烦点；这样也会造成吞吐量下降，可以在消费者内部采用多线程的方式取消费。</span></p><p><span> </span></p><p><span> </span></p><p><img src="https://img-blog.csdnimg.cn/img_convert/9871eb1ac5f262506d2f482d682aa3aa.png" referrerpolicy="no-referrer" alt="img"></p><p><span>②或者就一个queue但是对应一个consumer，然后这个consumer内部用内存队列做排队，然后分发给底层不同的worker来处理</span></p><p><img src="https://img-blog.csdnimg.cn/img_convert/cbf6d109c7ffe61800bd0a6903a93b3b.png" referrerpolicy="no-referrer" alt="img"></p><h2><a name="四延迟队列" class="md-header-anchor"></a><span>四、延迟队列</span></h2><p><img src="img/image-20210520180316453.png" referrerpolicy="no-referrer" alt="image-20210520180316453"></p><h2><a name="五消息队列选型" class="md-header-anchor"></a><span>五、消息队列选型</span></h2><h2><a name="1选型标准" class="md-header-anchor"></a><span>1、选型标准</span></h2><blockquote><p><span>1) 必须开源产品，有BUG才能够自己修复</span></p><p><span>2) 必须近几年流行，社区活跃很高的,遇到BUG才能解决</span></p><p><span>3）与周边的生态兼容和集成程度较高</span></p><p><span>4) 消息传递可靠性 确保消息不丢失 支持集群 有良好的性能且满足大多数的业务场景</span></p><p><span>5）与团技术栈接轨 </span></p></blockquote><blockquote><p><strong><span>第一梯队</span></strong>
+<span>RabbitMQ(高并发要求)    Kafka(高吞吐) 10W/S   RocketMQ（响应速度飞快，可以解决延时，内置一套可靠型消息系统，无中心化设计,国产消息队列）10W/s</span></p><p><strong><span>第二梯队</span></strong></p><p><span>ActiveMQ  ZeroMQ  Plusar</span></p><p><span>对比队列各种优势根据业务进行选择 ===&gt; 技术选型</span></p></blockquote><p><span>===================</span></p><p><span>文件共享系统（nfs fastdfs）golang</span></p></div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#节点1的配置信息
+#集群名称，节点之间要保持一致
+cluster.name: elasticsearch-cluster
+#节点名称，集群内要唯一
+node.name: es-node2
+network.bind_host: 0.0.0.0
+network.publish_host: 120.78.170.106
+http.port: 9201
+cluster.initial_master_nodes: ["120.78.170.106:9300"]
+transport.tcp.port: 9301
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+node.master: true
+node.data: true
+discovery.zen.ping.unicast.hosts: ["120.78.170.106:9300","120.78.170.106:9301","120.78.170.106:9302"]
+discovery.zen.minimum_master_nodes: 2

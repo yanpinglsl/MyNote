@@ -1,0 +1,41 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/U/{url}", //网关地址--url变量
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamPathTemplate": "/api/{url}", //服务地址--url变量
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "YYUserService", //consul服务名称
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //"RoundRobin" //轮询      LeastConnection-最少连接数的服务器   NoLoadBalance不负载均衡
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/O/{url}", //网关地址--url变量
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamPathTemplate": "/api/{url}", //服务地址--url变量
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": true,
+      "ServiceName": "YYOrderService", //consul服务名称
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //"RoundRobin" //轮询      LeastConnection-最少连接数的服务器   NoLoadBalance不负载均衡
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://127.0.0.1:6299", //网关对外地址
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 8500, //Consul集群的统一入口
+      "Type": "Consul" //由Consul提供服务发现, 每次请求去consul
+    }
+    //"ServiceDiscoveryProvider": {
+    //  "Host": "192.168.3.105",
+    //  "Port": 8500,
+    //  "Type": "Consul", //由Consul提供服务发现,定期访问
+    //  "PollingInterval": 1000 //定期放consul,频率毫秒，缓存起来用--down掉是不知道的
+    //  //"Token": "footoken"//需要ACL的话
+    //}
+  }
+}

@@ -1,0 +1,9 @@
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.deps.json
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.AssemblyInfoInputs.cache
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.AssemblyInfo.cs
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.csproj.CoreCompileInputs.cache
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Model\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.csprojAssemblyReference.cache

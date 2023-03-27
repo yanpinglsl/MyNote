@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kbirUuSihxnkSXglZSzV1JyetGrVMcaRfMUebyCdT3YAmzS3DelDZ+z0ptyKYpbvQjKtXBMGWcCC8xyftWVHQg==",
+  "success": true,
+  "projectFilePath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
+  "expectedPackageFiles": [
+    "D:\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "D:\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,14 @@
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.deps.json
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.AssemblyInfoInputs.cache
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.AssemblyInfo.cs
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.csproj.CoreCompileInputs.cache
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Interface.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.dll
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Interface.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\bin\Debug\netcoreapp3.1\Zhaoxi.MicroService.Model.pdb
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.csprojAssemblyReference.cache
+D:\架构学习\Source\Zhaoxi.MicroService\Zhaoxi.MicroService.Service\obj\Debug\netcoreapp3.1\Zhaoxi.MicroService.Service.csproj.CopyComplete

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "YY.MicroService.gRPCService";//生成类的namespace
+
+package MyTest;//生成的类名字
+
+service MyTest {
+  rpc FindLesson (MyTestRequest) returns (MyTestReply);
+
+  //rpc FindLesson2 (MyTestRequest) returns (MyTestReply);
+  //rpc FindLesson3 (MyTestRequest) returns (MyTestReply);
+  //rpc FindLesson1 (MyTestRequest) returns (MyTestReply);
+  //alt+上下  可以移动行
+}
+
+
+
+message MyTestRequest {//定义对象
+  int32 Id = 1;
+}
+
+message MyTestReply {//定义对象
+  TestModel Lesson = 1;
+  message TestModel{
+        int32 Id = 1;
+        string Name=2;
+        string Remark=3;
+  }
+}

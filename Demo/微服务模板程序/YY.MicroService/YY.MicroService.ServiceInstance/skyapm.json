@@ -1,0 +1,30 @@
+{
+  "SkyWalking": {
+    "ServiceName": "SkyWalking_User",//服务名称，必须与环境变量保持一致
+    "Namespace": "",
+    "HeaderVersions": [
+      "sw8"
+    ],
+    "Sampling": {
+      "SamplePer3Secs": -1,
+      "Percentage": -1.0
+    },
+    "Logging": {
+      "Level": "Information",
+      "FilePath": "logs\\skyapm-{Date}.log"
+    },
+    "Transport": {
+      "Interval": 3000,
+      "ProtocolVersion": "v8",
+      "QueueSize": 30000,
+      "BatchSize": 3000,
+      "gRPC": {
+        "Servers": "192.168.200.104:11800", //Skywalking服务地址，生产环境替需替换成生产skyapm发布后的地址
+        "Timeout": 10000,
+        "ConnectTimeout": 10000,
+        "ReportTimeout": 600000,
+        "Authentication": ""
+      }
+    }
+  }
+}

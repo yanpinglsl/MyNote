@@ -1,0 +1,2 @@
+obj\Debug\net5.0\Protos/Mytest.cs \
+obj\Debug\net5.0\Protos/MytestGrpc.cs: Protos/mytest.proto
