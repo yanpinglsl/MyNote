@@ -1,6 +1,7 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ_Provider.Confirm;
 using RabbitMQ_Provider.DCL;
+using RabbitMQ_Provider.Delay;
 using RabbitMQ_Provider.Durable;
 using RabbitMQ_Provider.Exchange.Direct;
 using RabbitMQ_Provider.Exchange.Fanout;
@@ -54,11 +55,12 @@ namespace RabbitMQ_Provider
             #endregion
 
             #region 测试死信队列
-            DCLSend.SendMessage();
+            //DCLSend.SendMessage();
             #endregion
 
             #region 测试延迟队列
-            //DelayProvider.SendMessage();
+            DelayProvider.SendMessage();
+            //DelayPluginProvider.SendMessage();
             #endregion
 
 

@@ -29,6 +29,12 @@ using WebCoreExtend.StartupExtend;
 using WebCoreExtend.AuthenticationExtend;
 using System.Security.Claims;
 using WebCoreExtend.AuthorizationExtend.Requirement;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.Security.Cryptography;
+using WebCoreExtend.JWTExtend;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 
 namespace DemoProject
 {
@@ -251,8 +257,11 @@ namespace DemoProject
             #endregion
 
             #region 授权
+            builder.Services.AddSingleton<IAuthorizationHandler, DateOfBirthRequirementHandler>();
+            builder.Services.AddSingleton<IAuthorizationHandler, CountryRequirementHandler>();
+            builder.Services.AddSingleton<IAuthorizationHandler, ZhaoxiMailHandler>();//接口和父类分开，就得IOC注入
+            builder.Services.AddSingleton<IAuthorizationHandler, QQMailHandler>();
             //builder.Services.AddAuthorization();//授权相关的IOC注册--在AddMVC已经有了
-
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminPolicy", policyBuilder =>
@@ -273,19 +282,139 @@ namespace DemoProject
                     {
                         return context.User.HasClaim(c => c.Type == "Email")
                         && context.User.Claims.First(c => c.Type == "Email").Value.Equals("12345678@163.com");
-                    })
-                    .AddRequirements(new SingleEmailRequirement("@qq.com"));
+                    });
+                    //.AddRequirements(new SingleEmailRequirement("@qq.com"));
+
+
+                    policyBuilder.Requirements.Add(new SingleEmailRequirement("@qq.com"));
+                    policyBuilder.Requirements.Add(new DateOfBirthRequirement());
+                    policyBuilder.Requirements.Add(new DoubleEmailRequirement());
+
                     //policyBuilder.Requirements.Add(new SingleEmailRequirement("@qq.com"));
                     //policyBuilder.Combine(new AuthorizationPolicyBuilder().AddRequirements(new SingleEmailRequirement("@qq.com")).Build());
                 });
             });
 
-            #endregion
+
 
             #endregion
 
             #endregion
 
+            #region JWT鉴权+授权  HS方式
+            JWTTokenOptions tokenOptions = new JWTTokenOptions();
+            builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Scheme
+                  .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //JWT有一些默认的属性，就是给鉴权时就可以筛选了
+                    ValidateIssuer = true,//是否验证Issuer
+                    ValidateAudience = true,//是否验证Audience
+                    ValidateLifetime = true,//是否验证失效时间---默认还添加了300s后才过期
+                    ClockSkew = TimeSpan.FromSeconds(0),//token过期后立马过期
+                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+
+                    ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
+                    ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey)),//拿到SecurityKey
+                };
+            });
+            #endregion
+
+            #region JWT鉴权+授权  RS方式
+            //  JWTTokenOptions tokenOptions = new JWTTokenOptions();
+            //  builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
+            //  //这里的SecurityKey其实没有意义了,换成下面的公钥
+            //  #region 读取RSA的Key
+            //  string path = Path.Combine(Directory.GetCurrentDirectory(), "key.public.json");
+            //  string key = File.ReadAllText(path);
+            //  Console.WriteLine($"KeyPath:{path}");
+            //  var keyParams = JsonConvert.DeserializeObject<RSAParameters>(key);
+            //  var credentials = new SigningCredentials(new RsaSecurityKey(keyParams), SecurityAlgorithms.RsaSha256Signature);
+            //  #endregion
+            //  builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,//是否验证Issuer
+            //        ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+
+            //        ValidateAudience = true,//是否验证Audience
+            //        ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
+
+            //        ValidateLifetime = true,//是否验证失效时间
+            //        ClockSkew = TimeSpan.FromSeconds(0),//token过期后立马过期
+
+            //        ValidateIssuerSigningKey = true,//是否验证SecurityKey
+            //        IssuerSigningKey = new RsaSecurityKey(keyParams),
+
+            //        IssuerSigningKeyValidator = (m, n, z) =>
+            //        {
+            //            Console.WriteLine("This is IssuerValidator");
+            //            return true;
+            //        },//自定义校验过程
+
+            //        IssuerValidator = (m, n, z) =>
+            //        {
+            //            Console.WriteLine("This is IssuerValidator");
+            //            return "http://localhost:5726";
+            //        },//自定义校验过程
+            //        AudienceValidator = (m, n, z) =>
+            //        {
+            //            Console.WriteLine("This is AudienceValidator");
+            //            return true;
+            //            //return m != null && m.FirstOrDefault().Equals(this.Configuration["Audience"]);
+            //        },//自定义校验规则，可以新登录后将之前的无效
+            //    };
+
+            //    #region Events
+            //    //即提供了委托扩展，也可以直接new新对象，override方法
+            //    options.Events = new JwtBearerEvents()
+            //    {
+            //        OnAuthenticationFailed = context =>
+            //        {
+            //            Console.WriteLine($"This JWT Authentication OnAuthenticationFailed");
+            //            if (context.Exception.GetType().Name.Equals("SecurityTokenExpiredException"))
+            //            {
+            //                context.Response.Headers.Add("JWTAuthenticationFailed", "1");//
+            //            }
+            //            return Task.CompletedTask;
+            //        },
+            //        OnChallenge = context =>
+            //        {
+            //            Console.WriteLine($"This JWT Authentication OnChallenge");
+            //            context.Response.Headers.Add("JWTChallenge", "expired");//告诉客户端是过期了
+            //            return Task.CompletedTask;
+            //        },
+            //        OnForbidden = context =>
+            //        {
+            //            Console.WriteLine($"This JWT Authentication OnForbidden");
+            //            context.Response.Headers.Add("JWTForbidden", "1");//
+            //            return Task.CompletedTask;
+            //        },
+            //        OnMessageReceived = context =>
+            //        {
+            //            Console.WriteLine($"This JWT Authentication OnMessageReceived");
+            //            context.Response.Headers.Add("JWTMessageReceived", "1");//
+            //            return Task.CompletedTask;
+            //        },
+            //        OnTokenValidated = context =>
+            //        {
+            //            Console.WriteLine($"This JWT Authentication OnTokenValidated");
+            //            context.Response.Headers.Add("JWTTokenValidated", "1");//
+            //            return Task.CompletedTask;
+            //        }
+            //    };
+            //    #endregion
+            //});
+
+            #endregion
+
+            #endregion
 
             #region Build
             var app = builder.Build();

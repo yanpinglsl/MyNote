@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
         "projectName": "YY.MicroService.Framework",
-        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -124,18 +124,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.425\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj": {
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj",
         "projectName": "YY.MicroService.GatewayCenter",
-        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.GatewayCenter\\YY.MicroService.GatewayCenter.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.GatewayCenter\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.GatewayCenter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -147,18 +147,18 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net50"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
+          "net50": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
-                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj"
+              "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj": {
+                "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Framework\\YY.MicroService.Framework.csproj"
               }
             }
           }
@@ -170,67 +170,14 @@
         }
       },
       "frameworks": {
-        "net5.0": {
+        "net50": {
           "targetAlias": "net5.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[5.0.0, )",
-              "noWarn": [
-                "NU1605"
-              ]
-            },
-            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
-              "target": "Package",
-              "version": "[5.0.0, )",
-              "noWarn": [
-                "NU1605"
-              ]
-            },
-            "Ocelot": {
-              "target": "Package",
-              "version": "[17.0.0, )"
-            },
-            "Ocelot.Administration": {
-              "target": "Package",
-              "version": "[17.0.0, )"
-            },
-            "Ocelot.Cache.CacheManager": {
-              "target": "Package",
-              "version": "[17.0.0, )"
-            },
-            "Ocelot.Provider.Consul": {
-              "target": "Package",
-              "version": "[17.0.0, )"
-            },
-            "Ocelot.Provider.Polly": {
-              "target": "Package",
-              "version": "[17.0.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.425\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
         }
       }
     }

@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <input type="button" id="btnLogin" value="点我登陆" />
+</p>
+
+<p>
+    <input type="button" id="btnGet" value="Get请求" />
+    <input type="button" id="btnPost" value="Post请求" />
+</p>
+<p>
+    <input type="button" id="btnPolicy" value="授权检测" />
+</p>
+<p>
+    <input type="button" id="btnLoginRefresh" value="点我登陆(带刷新)" />
+</p>
+
+<p>
+    <input type="button" id="btnGetRefresh" value="Get请求(带刷新)" />
+    <input type="button" id="btnPostRefresh" value="Post请求(带刷新)" />
+</p>
+@section Scripts{
+<script type="text/javascript">
+       $(function () {
+                  $("#btnLogin").on("click", function () {
+                      $.ajax({
+                          url: "/Token/Login?Name=Eleven&Password=123456",
+                          type: "get",
+                          data: {},
+                          success: function (data) {
+                              if(data.result){
+                                 localStorage["token"] =data.tValue;
+                                 alert(data.tValue);
+                               }
+                           },
+                           datatype: "json"
+                       });
+                  });
+
+                    $("#btnGet").on("click", function () {
+                      $.ajax({
+                          url: "/Token/InfoGet",
+                          type: "get",
+                          data: {},
+                          beforeSend: function (XHR) {
+                              //发送ajax请求之前向http的head里面加入验证信息
+                              XHR.setRequestHeader('Authorization', 'Bearer ' +  localStorage["token"]);
+                          },
+                          success: function (data) {
+                              alert(data.result);
+                               alert(data.tValue);
+                                  }
+                          , datatype: "json"
+                        })
+                      });
+
+                   $("#btnPost").on("click", function () {
+                      $.ajax({
+                          url: "/Token/InfoPost",
+                          type: "post",
+                          data: {},
+                          beforeSend: function (XHR) {
+                              //发送ajax请求之前向http的head里面加入验证信息
+                              XHR.setRequestHeader('Authorization', 'Bearer ' +  localStorage["token"]);
+                          },
+                          success: function (data) {
+                              alert(data.result);
+                               alert(data.tValue);
+                                  }
+                          , datatype: "json"
+                        });
+                      });
+
+            $("#btnPolicy").on("click", function () {
+                $.ajax({
+                    url: "/Token/InfoPolicy",
+                    type: "post",
+                    data: {},
+                    beforeSend: function (XHR) {
+                        //发送ajax请求之前向http的head里面加入验证信息
+                        XHR.setRequestHeader('Authorization', 'Bearer ' + localStorage["token"]);
+                    },
+                    success: function (data) {
+                        alert(data.result);
+                        alert(data.tValue);
+                    }
+                    , datatype: "json"
+                });
+            });
+
+                      //Refresh
+                      $("#btnLoginRefresh").on("click", function () {
+                      $.ajax({
+                          url: "/Token/LoginWithRefresh?Name=Eleven&Password=123456",
+                          type: "get",
+                          data: {},
+                          success: function (data) {
+                              if(data.result){
+                                 localStorage["accessToken"] =data.tValue;
+                                 //alert(data.tValue);
+                                 localStorage["refreshToken"] = data.otherValue;
+                                 //alert(data.otherValue);
+                               }
+                           },
+                           datatype: "json"
+                       });
+                   });
+
+                    $("#btnGetRefresh").on("click", function () {
+                      $.ajax({
+                          url: "/Token/InfoGet", type: "get", data: {},
+                          beforeSend: function (XHR) {
+                              //发送ajax请求之前向http的head里面加入验证信息
+                              XHR.setRequestHeader('Authorization', 'Bearer ' +  localStorage["accessToken"]);
+                          },
+                          success: function (data) {
+                              alert(data.result+data.tValue);
+                                  },
+                          datatype: "json",
+                          error:function(xhr, status, error){
+                                 alert(xhr.getAllResponseHeaders());//打印全部头信息
+                                 alert(xhr.status);//也可以用状态作比较
+                                 if(xhr.getAllResponseHeaders().indexOf('jwtchallenge: expired')>0)
+                                 {
+                                     //refreshToken($("#btnGetRefresh").click);//直接传递回调最好，没成功
+                                     refreshToken($("#btnGetRefresh"));//传递按钮
+                                 }
+                              }
+                            });
+                      });
+
+                      var refreshTime=0;
+                      function refreshToken(callback){
+                          alert("refresh-token");
+                          if(refreshTime==0)
+                          {
+                              refreshTime++;
+                          }
+                          else
+                          {
+                              alert("需要重新登陆");
+                              //跳转登录页
+                          }
+                      $.ajax({
+                          url: "/Token/LoginByRefresh",
+                          type: "post",
+                          data: {"refreshToken":localStorage["refreshToken"]},
+                          success: function (data) {
+                              if(data.result){
+                                 localStorage["accessToken"] =data.tValue;
+                                 localStorage["refreshToken"] =data.otherValue;
+                                 //alert(data.tValue);
+                                 //callback();
+                                 callback.trigger("click");
+                               }
+                           },
+                           datatype: "json"
+                       });
+                   }
+
+                   $("#btnPostRefresh").on("click", function () {
+                      $.ajax({
+                          url: "/Token/InfoPost", type: "post", data: {},
+                          beforeSend: function (XHR) {
+                              //发送ajax请求之前向http的head里面加入验证信息
+                              XHR.setRequestHeader('Authorization', 'Bearer ' +  localStorage["accessToken"]);
+                          },
+                          success: function (data) {
+                              alert(data.result);
+                               alert(data.tValue);
+                                  }
+                          , datatype: "json",
+                           error:function(xhr, status, error){
+                              //alert(xhr.getAllResponseHeaders());//打印全部头信息
+                              //alert(xhr.status);//也可以用状态作比较
+                              if( xhr.getAllResponseHeaders().indexOf('jwtchallenge: expired')>0)
+                              {
+                                  //refreshToken($("#btnGetRefresh").click);//直接传递回调最好，没成功
+                                  refreshToken($("#btnGetRefresh"));//传递按钮
+                              }
+                              }
+                         })
+                      });
+    });
+</script>
+}
+

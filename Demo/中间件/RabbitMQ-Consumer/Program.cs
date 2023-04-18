@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using RabbitMQ_Consumer.Confirm;
 using RabbitMQ_Consumer.Dead;
+using RabbitMQ_Consumer.Delay;
 using RabbitMQ_Consumer.Durable;
 using RabbitMQ_Consumer.Exchange.Direct;
 using RabbitMQ_Consumer.Exchange.Fanout;
@@ -48,8 +49,13 @@ namespace RabbitMQ_Consumer
             //DeadExchange.TestDemo();
             #endregion
 
+            #region 测试延迟队列
+            DelayConsumer.ReceiveMessage();
+            //DelayPluginConsumer.ReceiveMessage();
+            #endregion
+
             #region 测试持久化消息消费
-            DLXReceive.ReceiveMessage();
+            //DLXReceive.ReceiveMessage();
             // DurableConsumer.ReceiveMessage();
             #endregion
 

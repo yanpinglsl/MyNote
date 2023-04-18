@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj": {}
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
         "projectName": "YY.MicroService.Model",
-        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -59,18 +59,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.425\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj": {
+    "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
+        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
         "projectName": "YY.MicroService.Polly",
-        "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
+        "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
         "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\obj\\",
+        "outputPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -92,8 +92,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
-                "projectPath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj"
+              "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj": {
+                "projectPath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj"
               }
             }
           }
@@ -132,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.425\\RuntimeIdentifierGraph.json"
         }
       }
     }

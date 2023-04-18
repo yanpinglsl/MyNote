@@ -12,31 +12,32 @@ namespace RabbitMQ_Consumer.Delay
     {
         public static void ReceiveMessage()
         {
-            var connection = RabbitMQHelper.GetConnection("192.168.3.10", 5672);
+            var exchangetest = "exchange.business.test";
+            var routetest = "businessRoutingkey";
+            var queuetest = "queue.business.test";
+            //创建连接
+            using (var connection = RabbitMQHelper.GetConnection())
             {
-                var channel = connection.CreateModel();
-                {
-                    channel.ExchangeDeclare(exchange: "exchange-direct", type: "direct");
-                    string name = channel.QueueDeclare().QueueName;
-                    channel.QueueBind(queue: name, exchange: "exchange-direct", routingKey: "routing-delay");
+                //创建通道
+                using (var channel = connection.CreateModel())
+                {                  //业务的交换机和队列绑定
+                    channel.ExchangeDeclare(exchangetest, "direct", true, false, null);
+                    channel.QueueDeclare(queuetest, true, false, false, null);
+                    channel.QueueBind(queuetest, exchangetest, routetest, null);
 
                     //回调，当consumer收到消息后会执行该函数
                     var consumer = new EventingBasicConsumer(channel);
                     consumer.Received += (model, ea) =>
                     {
-                        var body = ea.Body.ToArray();
-                        var message = Encoding.UTF8.GetString(body);
-                        Console.WriteLine(ea.RoutingKey);
-                        Console.WriteLine(" [x] Received {0}", message);
+                        var message = Encoding.UTF8.GetString(ea.Body.ToArray());
+                        //打印消费的消息
+                        Console.WriteLine(message);
+                        channel.BasicAck(ea.DeliveryTag, false);
                     };
 
-                    //Console.WriteLine("name:" + name);
-                    //消费队列"hello"中的消息
-                    channel.BasicConsume(queue: name,
-                                         autoAck: true,
-                                         consumer: consumer);
+                    //消费queue.business.test队列的消息
+                    channel.BasicConsume(queuetest, false, consumer);
 
-                    Console.WriteLine(" Press [enter] to exit.");
                     Console.ReadLine();
                 }
             }

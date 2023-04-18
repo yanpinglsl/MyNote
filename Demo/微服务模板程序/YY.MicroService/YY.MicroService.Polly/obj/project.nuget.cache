@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kbirUuSihxnkSXglZSzV1JyetGrVMcaRfMUebyCdT3YAmzS3DelDZ+z0ptyKYpbvQjKtXBMGWcCC8xyftWVHQg==",
+  "dgSpecHash": "d/WSeDEwhmyfsRc3uK4HwnO2fTKtcRtIy5CTZCxgLyeheS2dbZF6SZv5ZlFuOI/ToaFliRLHg8bC7n9oXakbxw==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\NetSouce\\Templet\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
+  "projectFilePath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
   "expectedPackageFiles": [
     "D:\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "D:\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512"

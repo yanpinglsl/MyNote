@@ -36,6 +36,74 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5mb1dpdGhSb2xlc0FkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5Qb2xpY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminQQEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5RUUVtYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5Vc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminZhaoxiEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5aaGFveGlFbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoDoubleEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvRG91YmxlRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorize.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aUF1dGhvcml6ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorizeOneFaild.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aUF1dGhvcml6ZU9uZUZhaWxkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiScheme.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aVNjaGVtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiSchemeAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aVNjaGVtZUFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoQQEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvUVFFbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserAdminPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlckFkbWluUG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlclBvbGljeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserQQEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlclFRRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Bind.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxCaW5kLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -146,6 +214,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Token/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9rZW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/_ViewImports.cshtml]

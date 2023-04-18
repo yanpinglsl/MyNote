@@ -42,9 +42,11 @@
     <None Include="Views\Route\Info.cshtml" />
     <None Include="Views\Route\PageInfo.cshtml" />
     <None Include="Views\Route\StaticPage.cshtml" />
+    <None Include="Views\Token\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
   </ItemGroup>
