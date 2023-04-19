@@ -907,7 +907,7 @@ public class DelayPluginConsumer
 }
 ```
 
-## 9. 集群
+## 9. 集群（待整理）
 
 ## 10. 其他知识
 
@@ -1024,12 +1024,6 @@ public class DelayPluginConsumer
 - 一个queue但是对应一个consumer，然后这个consumer内部用内存队列做排队，然后分发给底层不同的worker来处理
 
   ![image-20230410102410298](images/image-20230410102410298.png)
-
-
-
-
-
-
 
 D:\架构学习\Source\Templet\资料\RabbitMQ
 
