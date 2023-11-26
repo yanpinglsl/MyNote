@@ -35,6 +35,8 @@ using System.Security.Cryptography;
 using WebCoreExtend.JWTExtend;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using WebCoreExtend.FilterExtend.RegisterWayShow;
+using WebCoreExtend.FilterExtend.DIShow;
 
 namespace DemoProject
 {
@@ -123,10 +125,23 @@ namespace DemoProject
             // Add services to the container.
             builder.Services.AddControllersWithViews(services =>
             {
+                #region 全局注册Filter
+                //services.Filters.Add(new CustomGlobalRegisterActionFilterAttribute());//全局注册的Filter
+                #endregion
+
+                #region Filter注入
+                //services.Filters.Add<CustomDIActionFilterAttribute>();//全局式
+                #endregion
+
                 #region Conventions
                 //services.Conventions.Add(new CustomControllerModelConvention());//全局式注册Conventions
                 #endregion
             });
+
+            #region ServiceFilter注入需要---CustomIOCFilterFactory注入需要
+            builder.Services.AddTransient<CustomDIActionFilterAttribute>();
+            //builder.Services.AddTransient<CustomDisposeActionFilterAttribute>();
+            #endregion
 
             #region Routing
             builder.Services.AddRouting(options => {
@@ -195,11 +210,11 @@ namespace DemoProject
             #region Session
             builder.Services.AddSession();
 
-            builder.Services.AddDistributedRedisCache(options =>
-            {
-                options.Configuration = "127.0.0.1:6379";
-                options.InstanceName = "RedisDistributedCache123";
-            });
+            //builder.Services.AddDistributedRedisCache(options =>
+            //{
+            //    options.Configuration = "127.0.0.1:6379";
+            //    options.InstanceName = "RedisDistributedCache123";
+            //});
             #endregion
 
             #region 鉴权授权
@@ -230,25 +245,25 @@ namespace DemoProject
             #endregion
             
             #region 多Scheme鉴权
-            //默认scheme是UrlTokenScheme
-            builder.Services.AddAuthentication(options =>
-            {
-                options.AddScheme<UrlTokenAuthenticationHandler>(UrlTokenAuthenticationDefaults.AuthenticationScheme, "UrlTokenScheme-Demo");
-                //其实会保存成key-value     也就是name不能重复  value就是UrlTokenAuthenticationHandler
-                options.DefaultAuthenticateScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultForbidScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignOutScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-            {
-                //options.ExpireTimeSpan//过期时间
-                options.LoginPath = "/Home/Index";//未登录，则跳转至/Home/Index页面
-                options.AccessDeniedPath = "/Home/Privacy";//有登陆，但未授权，则跳转至/Home/Privacy页面
-            })//使用Cookie的方式
-            //.AddJWT
-            ;
+            ////默认scheme是UrlTokenScheme
+            //builder.Services.AddAuthentication(options =>
+            //{
+            //    options.AddScheme<UrlTokenAuthenticationHandler>(UrlTokenAuthenticationDefaults.AuthenticationScheme, "UrlTokenScheme-Demo");
+            //    //其实会保存成key-value     也就是name不能重复  value就是UrlTokenAuthenticationHandler
+            //    options.DefaultAuthenticateScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultSignInScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultForbidScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
+            //    options.DefaultSignOutScheme = UrlTokenAuthenticationDefaults.AuthenticationScheme;
+            //})
+            //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            //{
+            //    //options.ExpireTimeSpan//过期时间
+            //    options.LoginPath = "/Home/Index";//未登录，则跳转至/Home/Index页面
+            //    options.AccessDeniedPath = "/Home/Privacy";//有登陆，但未授权，则跳转至/Home/Privacy页面
+            //})//使用Cookie的方式
+            ////.AddJWT
+            //;
             #endregion
 
             #region CustomAdd
@@ -302,115 +317,115 @@ namespace DemoProject
             #endregion
 
             #region JWT鉴权+授权  HS方式
-            JWTTokenOptions tokenOptions = new JWTTokenOptions();
-            builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
+            //JWTTokenOptions tokenOptions = new JWTTokenOptions();
+            //builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
 
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Scheme
-                  .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    //JWT有一些默认的属性，就是给鉴权时就可以筛选了
-                    ValidateIssuer = true,//是否验证Issuer
-                    ValidateAudience = true,//是否验证Audience
-                    ValidateLifetime = true,//是否验证失效时间---默认还添加了300s后才过期
-                    ClockSkew = TimeSpan.FromSeconds(0),//token过期后立马过期
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
-
-                    ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
-                    ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey)),//拿到SecurityKey
-                };
-            });
-            #endregion
-
-            #region JWT鉴权+授权  RS方式
-            //  JWTTokenOptions tokenOptions = new JWTTokenOptions();
-            //  builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
-            //  //这里的SecurityKey其实没有意义了,换成下面的公钥
-            //  #region 读取RSA的Key
-            //  string path = Path.Combine(Directory.GetCurrentDirectory(), "key.public.json");
-            //  string key = File.ReadAllText(path);
-            //  Console.WriteLine($"KeyPath:{path}");
-            //  var keyParams = JsonConvert.DeserializeObject<RSAParameters>(key);
-            //  var credentials = new SigningCredentials(new RsaSecurityKey(keyParams), SecurityAlgorithms.RsaSha256Signature);
-            //  #endregion
-            //  builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //.AddJwtBearer(options =>
+            //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Scheme
+            //      .AddJwtBearer(options =>
             //{
             //    options.TokenValidationParameters = new TokenValidationParameters
             //    {
+            //        //JWT有一些默认的属性，就是给鉴权时就可以筛选了
             //        ValidateIssuer = true,//是否验证Issuer
-            //        ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-
             //        ValidateAudience = true,//是否验证Audience
-            //        ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
-
-            //        ValidateLifetime = true,//是否验证失效时间
+            //        ValidateLifetime = true,//是否验证失效时间---默认还添加了300s后才过期
             //        ClockSkew = TimeSpan.FromSeconds(0),//token过期后立马过期
-
             //        ValidateIssuerSigningKey = true,//是否验证SecurityKey
-            //        IssuerSigningKey = new RsaSecurityKey(keyParams),
 
-            //        IssuerSigningKeyValidator = (m, n, z) =>
-            //        {
-            //            Console.WriteLine("This is IssuerValidator");
-            //            return true;
-            //        },//自定义校验过程
-
-            //        IssuerValidator = (m, n, z) =>
-            //        {
-            //            Console.WriteLine("This is IssuerValidator");
-            //            return "http://localhost:5726";
-            //        },//自定义校验过程
-            //        AudienceValidator = (m, n, z) =>
-            //        {
-            //            Console.WriteLine("This is AudienceValidator");
-            //            return true;
-            //            //return m != null && m.FirstOrDefault().Equals(this.Configuration["Audience"]);
-            //        },//自定义校验规则，可以新登录后将之前的无效
+            //        ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
+            //        ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey)),//拿到SecurityKey
             //    };
-
-            //    #region Events
-            //    //即提供了委托扩展，也可以直接new新对象，override方法
-            //    options.Events = new JwtBearerEvents()
-            //    {
-            //        OnAuthenticationFailed = context =>
-            //        {
-            //            Console.WriteLine($"This JWT Authentication OnAuthenticationFailed");
-            //            if (context.Exception.GetType().Name.Equals("SecurityTokenExpiredException"))
-            //            {
-            //                context.Response.Headers.Add("JWTAuthenticationFailed", "1");//
-            //            }
-            //            return Task.CompletedTask;
-            //        },
-            //        OnChallenge = context =>
-            //        {
-            //            Console.WriteLine($"This JWT Authentication OnChallenge");
-            //            context.Response.Headers.Add("JWTChallenge", "expired");//告诉客户端是过期了
-            //            return Task.CompletedTask;
-            //        },
-            //        OnForbidden = context =>
-            //        {
-            //            Console.WriteLine($"This JWT Authentication OnForbidden");
-            //            context.Response.Headers.Add("JWTForbidden", "1");//
-            //            return Task.CompletedTask;
-            //        },
-            //        OnMessageReceived = context =>
-            //        {
-            //            Console.WriteLine($"This JWT Authentication OnMessageReceived");
-            //            context.Response.Headers.Add("JWTMessageReceived", "1");//
-            //            return Task.CompletedTask;
-            //        },
-            //        OnTokenValidated = context =>
-            //        {
-            //            Console.WriteLine($"This JWT Authentication OnTokenValidated");
-            //            context.Response.Headers.Add("JWTTokenValidated", "1");//
-            //            return Task.CompletedTask;
-            //        }
-            //    };
-            //    #endregion
             //});
+            #endregion
+
+            #region JWT鉴权+授权  RS方式
+            JWTTokenOptions tokenOptions = new JWTTokenOptions();
+            builder.Configuration.Bind("JWTTokenOptions", tokenOptions);
+            //这里的SecurityKey其实没有意义了,换成下面的公钥
+            #region 读取RSA的Key
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "key.public.json");
+            string key = File.ReadAllText(path);
+            Console.WriteLine($"KeyPath:{path}");
+            var keyParams = JsonConvert.DeserializeObject<RSAParameters>(key);
+            var credentials = new SigningCredentials(new RsaSecurityKey(keyParams), SecurityAlgorithms.RsaSha256Signature);
+            #endregion
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+          .AddJwtBearer(options =>
+          {
+              options.TokenValidationParameters = new TokenValidationParameters
+              {
+                  ValidateIssuer = true,//是否验证Issuer
+                  ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+
+                  ValidateAudience = true,//是否验证Audience
+                  ValidAudience = tokenOptions.Audience,//Audience,需要跟前面签发jwt的设置一致
+
+                  ValidateLifetime = true,//是否验证失效时间
+                  ClockSkew = TimeSpan.FromSeconds(0),//token过期后立马过期
+
+                  ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                  IssuerSigningKey = new RsaSecurityKey(keyParams),
+
+                  IssuerSigningKeyValidator = (m, n, z) =>
+                  {
+                      Console.WriteLine("This is IssuerValidator");
+                      return true;
+                  },//自定义校验过程
+
+                  IssuerValidator = (m, n, z) =>
+                  {
+                      Console.WriteLine("This is IssuerValidator");
+                      return "http://localhost:5726";
+                  },//自定义校验过程
+                  AudienceValidator = (m, n, z) =>
+                  {
+                      Console.WriteLine("This is AudienceValidator");
+                      return true;
+                      //return m != null && m.FirstOrDefault().Equals(this.Configuration["Audience"]);
+                  },//自定义校验规则，可以新登录后将之前的无效
+              };
+
+              #region Events
+              //即提供了委托扩展，也可以直接new新对象，override方法
+              options.Events = new JwtBearerEvents()
+              {
+                  OnAuthenticationFailed = context =>
+                  {
+                      Console.WriteLine($"This JWT Authentication OnAuthenticationFailed");
+                      if (context.Exception.GetType().Name.Equals("SecurityTokenExpiredException"))
+                      {
+                          context.Response.Headers.Add("JWTAuthenticationFailed", "1");//
+                      }
+                      return Task.CompletedTask;
+                  },
+                  OnChallenge = context =>
+                  {
+                      Console.WriteLine($"This JWT Authentication OnChallenge");
+                      context.Response.Headers.Add("JWTChallenge", "expired");//告诉客户端是过期了
+                      return Task.CompletedTask;
+                  },
+                  OnForbidden = context =>
+                  {
+                      Console.WriteLine($"This JWT Authentication OnForbidden");
+                      context.Response.Headers.Add("JWTForbidden", "1");//
+                      return Task.CompletedTask;
+                  },
+                  OnMessageReceived = context =>
+                  {
+                      Console.WriteLine($"This JWT Authentication OnMessageReceived");
+                      context.Response.Headers.Add("JWTMessageReceived", "1");//
+                      return Task.CompletedTask;
+                  },
+                  OnTokenValidated = context =>
+                  {
+                      Console.WriteLine($"This JWT Authentication OnTokenValidated");
+                      context.Response.Headers.Add("JWTTokenValidated", "1");//
+                      return Task.CompletedTask;
+                  }
+              };
+              #endregion
+          });
 
             #endregion
 

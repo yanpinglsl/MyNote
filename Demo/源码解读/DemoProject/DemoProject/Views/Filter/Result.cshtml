@@ -1,0 +1,17 @@
+﻿@{
+	ViewData["Title"] = "Result";
+}
+
+<h1>Filter-Result</h1>
+<h3>Now:@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")</h3>
+<p>
+	@if (1 < 3)
+	{
+		Console.WriteLine("This is Filter Result View");
+		<h4> 111111111111111111 </h4>
+	}
+	@if (base.ViewBag.Id == 1)
+	{
+		throw new Exception("This is Eleven's Filter/Result/1 View  Exception");
+	}
+</p>

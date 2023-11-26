@@ -9,225 +9,269 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DemoProject
 build_property.RootNamespace = DemoProject
-build_property.ProjectDir = D:\架构学习\总结\Demo\源码解读\DemoProject\DemoProject\
+build_property.ProjectDir = F:\架构学习\MyNote\Demo\源码解读\DemoProject\DemoProject\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = D:\架构学习\总结\Demo\源码解读\DemoProject\DemoProject
+build_property.MSBuildProjectDirectory = F:\架构学习\MyNote\Demo\源码解读\DemoProject\DemoProject
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithAllowAnonymous.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithAllowAnonymous.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5mb1dpdGhBbGxvd0Fub255bW91cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithAuthorize.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithAuthorize.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5mb1dpdGhBdXRob3JpemUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithPolicy.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5mb1dpdGhQb2xpY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithRolesAdmin.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authentication/InfoWithRolesAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cSW5mb1dpdGhSb2xlc0FkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Info.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/Info.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdmin.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminPolicy.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5Qb2xpY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminQQEmail.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminQQEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5RUUVtYWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminUser.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5Vc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminZhaoxiEmail.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoAdminZhaoxiEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvQWRtaW5aaGFveGlFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoDoubleEmail.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoDoubleEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvRG91YmxlRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorize.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorize.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aUF1dGhvcml6ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorizeOneFaild.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiAuthorizeOneFaild.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aUF1dGhvcml6ZU9uZUZhaWxkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiScheme.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiScheme.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aVNjaGVtZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiSchemeAll.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoMutiSchemeAll.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvTXV0aVNjaGVtZUFsbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoQQEmail.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoQQEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvUVFFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUser.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserAdminPolicy.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserAdminPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlckFkbWluUG9saWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserPolicy.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlclBvbGljeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserQQEmail.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Authorization/InfoUserQQEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxJbmZvVXNlclFRRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Bind.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Bind.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxCaW5kLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/CommandLine.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/CommandLine.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxDb21tYW5kTGluZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Custom.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Custom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxDdXN0b20uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/INI.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/INI.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxJTkkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/JSON.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/JSON.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxKU09OLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Memory.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/Memory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxNZW1vcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/XML.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Configuration/XML.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uZmlndXJhdGlvblxYTUwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Home/CustomError.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Action.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEFjdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/AlwaysRunResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEFsd2F5c1J1blJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Authorization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEF1dGhvcml6YXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/DI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXERJLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/ExceptionView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEV4Y2VwdGlvblZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Factory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEZhY3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXE9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/RegisterWay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXFJlZ2lzdGVyV2F5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Resource.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXFJlc291cmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Filter/Result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmlsdGVyXFJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Home/CustomError.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDdXN0b21FcnJvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Home/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Home/Privacy.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Log/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Log/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Exceptions.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Exceptions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlkZGxld2FyZVxFeGNlcHRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlkZGxld2FyZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Limiter.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Limiter.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlkZGxld2FyZVxMaW1pdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Route.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Route.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlkZGxld2FyZVxSb3V0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Session.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Middleware/Session.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlkZGxld2FyZVxTZXNzaW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Options/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Options/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3B0aW9uc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/About.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/Data.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/Data.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcRGF0YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/GenderInfo.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/GenderInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcR2VuZGVySW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/HostInfo.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/HostInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcSG9zdEluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/Info.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/Info.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcSW5mby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/PageInfo.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/PageInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcUGFnZUluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Route/StaticPage.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Route/StaticPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm91dGVcU3RhdGljUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Shared/Error.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Shared/_ValidationScriptsPartial.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Token/Index.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Token/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9rZW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/_ViewImports.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/_ViewStart.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/架构学习/总结/Demo/源码解读/DemoProject/DemoProject/Views/Shared/_Layout.cshtml]
+[F:/架构学习/MyNote/Demo/源码解读/DemoProject/DemoProject/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-weigspagay

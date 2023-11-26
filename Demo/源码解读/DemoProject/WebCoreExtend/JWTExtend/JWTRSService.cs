@@ -15,7 +15,9 @@ using WebCoreExtend.JWTExtend.RSA;
 
 namespace WebCoreExtend.JWTExtend
 {
-
+    /// <summary>
+    /// 非对称可逆加密
+    /// </summary>
     public class JWTRSService : IJWTService
     {
         private static Dictionary<string, CurrentUserModel> TokenCache = new Dictionary<string, CurrentUserModel>();

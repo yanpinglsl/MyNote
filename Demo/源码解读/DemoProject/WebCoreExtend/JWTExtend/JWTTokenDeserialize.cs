@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,16 +26,29 @@ namespace WebCoreExtend.JWTExtend
         {
             try
             {
-                string result = token.AnalysisToken();
-                if (string.IsNullOrEmpty(result))
+                //IEnumerable<Claim> result = token.AnalysisToken();
+                //if (string.IsNullOrEmpty(result))
+                //{
+                //    return false;
+                //}
+                //else
+                //{
+                //    var jsonResult = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                //    DateTime expiredTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+                //    expiredTime = expiredTime.AddSeconds(int.Parse(exp));
+                //    return expiredTime >= DateTime.Now;
+                //}
+                IEnumerable<Claim> result = token.AnalysisToken();
+                if (result.Count() == 0)
                 {
                     return false;
                 }
                 else
                 {
-                    var jsonResult = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                    //var jsonResult = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+                    string exp = result.FirstOrDefault(l => l.Type == "exp").Value;
                     DateTime expiredTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-                    expiredTime = expiredTime.AddSeconds(int.Parse(jsonResult["exp"]));
+                    expiredTime = expiredTime.AddSeconds(int.Parse(exp));
                     return expiredTime >= DateTime.Now;
                 }
             }
@@ -58,23 +74,27 @@ namespace WebCoreExtend.JWTExtend
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        private static string AnalysisToken(this string token)
+        private static IEnumerable<Claim> AnalysisToken(this string token)
         {
+            IEnumerable <Claim> result = new List<Claim>();
             try
             {
-                IJsonSerializer serializer = new JsonNetSerializer();
-                IDateTimeProvider provider = new UtcDateTimeProvider();
-                IJwtValidator validator = new JWT.JwtValidator(serializer, provider);
-                IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-                IJwtAlgorithm alg = new HMACSHA256Algorithm();
-                IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder, alg);
-                var json = decoder.Decode(token);
+                //IJsonSerializer serializer = new JsonNetSerializer();
+                //IDateTimeProvider provider = new UtcDateTimeProvider();
+                //IJwtValidator validator = new JWT.JwtValidator(serializer, provider);
+                //IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+                //IJwtAlgorithm alg = new HMACSHA256Algorithm();
+                //IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder, alg);
+                //var json = decoder.Decode(token);
+
+                var handler = new JwtSecurityTokenHandler();
+                var payload = handler.ReadJwtToken(token).Payload;
                 //校验通过，返回解密后的字符串
-                return json;
+                return payload.Claims;
             }
             catch (Exception ex)
             {
-                return "";
+                return result;
             }
         }
 

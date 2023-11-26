@@ -28,6 +28,17 @@
     <None Include="Views\Authentication\InfoWithAuthorize.cshtml" />
     <None Include="Views\Authentication\InfoWithPolicy.cshtml" />
     <None Include="Views\Authentication\InfoWithRolesAdmin.cshtml" />
+    <None Include="Views\Filter\Action.cshtml" />
+    <None Include="Views\Filter\AlwaysRunResult.cshtml" />
+    <None Include="Views\Filter\Authorization.cshtml" />
+    <None Include="Views\Filter\DI.cshtml" />
+    <None Include="Views\Filter\ExceptionView.cshtml" />
+    <None Include="Views\Filter\Factory.cshtml" />
+    <None Include="Views\Filter\Index.cshtml" />
+    <None Include="Views\Filter\Order.cshtml" />
+    <None Include="Views\Filter\RegisterWay.cshtml" />
+    <None Include="Views\Filter\Resource.cshtml" />
+    <None Include="Views\Filter\Result.cshtml" />
     <None Include="Views\Log\Index.cshtml" />
     <None Include="Views\Middleware\Exceptions.cshtml" />
     <None Include="Views\Middleware\Index.cshtml" />

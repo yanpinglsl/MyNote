@@ -24,4 +24,8 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebCoreExtend\WebCoreExtend.csproj" />
+  </ItemGroup>
+
 </Project>

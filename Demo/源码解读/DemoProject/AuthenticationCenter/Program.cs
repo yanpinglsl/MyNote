@@ -55,24 +55,22 @@ namespace AuthenticationCenter
             #endregion
 
 
-
             #region HS256 对称可逆加密
-            builder.Services.AddScoped<IJWTService, JWTHSService>();
-            builder.Services.Configure<JWTTokenOptions>(builder.Configuration.GetSection("JWTTokenOptions"));
-            #endregion
-
-            #region RS256 非对称可逆加密，需要获取一次公钥
-            ////程序启动时，即初始化一组秘钥
-            //string keyDir = Directory.GetCurrentDirectory();
-            //if (!RSAHelper.TryGetKeyParameters(keyDir, true, out RSAParameters keyParams))
-            //{
-            //    keyParams = RSAHelper.GenerateAndSaveKey(keyDir);
-            //}
-
-            //builder.Services.AddScoped<IJWTService, JWTRSService>();
+            //builder.Services.AddScoped<IJWTService, JWTHSService>();
             //builder.Services.Configure<JWTTokenOptions>(builder.Configuration.GetSection("JWTTokenOptions"));
             #endregion
 
+            #region RS256 非对称可逆加密，需要获取一次公钥
+            //程序启动时，即初始化一组秘钥
+            string keyDir = Directory.GetCurrentDirectory();
+            if (!RSAHelper.TryGetKeyParameters(keyDir, true, out RSAParameters keyParams))
+            {
+                keyParams = RSAHelper.GenerateAndSaveKey(keyDir);
+            }
+
+            builder.Services.AddScoped<IJWTService, JWTRSService>();
+            builder.Services.Configure<JWTTokenOptions>(builder.Configuration.GetSection("JWTTokenOptions"));
+            #endregion
 
             #region 鉴权授权
             JWTTokenOptions tokenOptions = new JWTTokenOptions();
@@ -90,7 +88,8 @@ namespace AuthenticationCenter
                         ValidateIssuerSigningKey = true,//是否验证SecurityKey
                         ValidAudience = tokenOptions.Audience,//
                         ValidIssuer = tokenOptions.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
+                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
+                        IssuerSigningKey = new RsaSecurityKey(keyParams)
                     };
                 });
             #endregion

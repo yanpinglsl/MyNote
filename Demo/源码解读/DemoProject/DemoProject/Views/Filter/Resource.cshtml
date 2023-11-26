@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Resource";
+}
+
+<h1>Filter-Resource</h1>
+<h3>ActionNow:@base.ViewBag.Now.ToString("yyyy-MM-dd HH:mm:ss fff")</h3>
+<h3>AlwasRunResultNow:@base.Context.Items["AlwasRunResultNow"]</h3>
+<h3>Now:@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")</h3>
+<p>
+    @if (1 < 3)
+    {
+        Console.WriteLine("This is Filter Resource View");
+        <h4> 111111111111111111 </h4>
+    }
+</p>
