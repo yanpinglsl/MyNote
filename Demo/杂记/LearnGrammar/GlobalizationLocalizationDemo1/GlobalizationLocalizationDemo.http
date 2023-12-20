@@ -1,0 +1,6 @@
+@GlobalizationLocalizationDemo_HostAddress = http://localhost:5083
+
+GET {{GlobalizationLocalizationDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

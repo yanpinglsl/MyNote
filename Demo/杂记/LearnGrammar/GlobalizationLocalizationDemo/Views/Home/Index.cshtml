@@ -1,0 +1,14 @@
+﻿
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IHtmlLocalizer<SharedResource> HtmlSharedResource
+@* IViewLocalizer是专门服务于视图的，他没有泛型版本，也没有工厂类，所以它只能用来获取当前视图资源文件中的资源，如果想要使用其他资源，可以使用IStringLocalizer或IHtmlLocalizer *@
+@inject IViewLocalizer L
+
+<div class="text-center">
+    @HtmlSharedResource["Welcome", "John"]
+</div>
+
+<div class="text-center">
+    <h1>@L["Welcome", "jjj"]</h1>
+</div>

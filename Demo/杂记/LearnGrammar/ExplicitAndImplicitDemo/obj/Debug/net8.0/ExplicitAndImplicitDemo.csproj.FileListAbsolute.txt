@@ -1,0 +1,14 @@
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\bin\Debug\net8.0\ExplicitAndImplicitDemo.exe
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\bin\Debug\net8.0\ExplicitAndImplicitDemo.deps.json
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\bin\Debug\net8.0\ExplicitAndImplicitDemo.runtimeconfig.json
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\bin\Debug\net8.0\ExplicitAndImplicitDemo.dll
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\bin\Debug\net8.0\ExplicitAndImplicitDemo.pdb
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.GeneratedMSBuildEditorConfig.editorconfig
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.AssemblyInfoInputs.cache
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.AssemblyInfo.cs
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.csproj.CoreCompileInputs.cache
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.dll
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\refint\ExplicitAndImplicitDemo.dll
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.pdb
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ExplicitAndImplicitDemo.genruntimeconfig.cache
+G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\obj\Debug\net8.0\ref\ExplicitAndImplicitDemo.dll
