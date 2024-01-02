@@ -33,20 +33,22 @@
             // 
             // txtMsg
             // 
-            txtMsg.Location = new Point(12, 12);
+            txtMsg.Location = new Point(15, 14);
+            txtMsg.Margin = new Padding(4, 4, 4, 4);
             txtMsg.Multiline = true;
             txtMsg.Name = "txtMsg";
-            txtMsg.Size = new Size(440, 153);
+            txtMsg.Size = new Size(565, 179);
             txtMsg.TabIndex = 3;
             // 
             // FrmClient01
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(465, 180);
+            ClientSize = new Size(598, 212);
             Controls.Add(txtMsg);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "FrmClient01";
-            Text = "客户端（1）";
+            Text = " ";
             ResumeLayout(false);
             PerformLayout();
         }

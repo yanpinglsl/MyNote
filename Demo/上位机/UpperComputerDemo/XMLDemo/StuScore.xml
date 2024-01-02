@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Students>
+  <Student>
+    <StuName>王永利</StuName>
+    <StuAge>19</StuAge>
+    <Gender>男</Gender>
+    <ClassName>计算机1班</ClassName>
+  </Student>
+  <Student>
+    <StuName>王大拿</StuName>
+    <StuAge>22</StuAge>
+    <Gender>男</Gender>
+    <ClassName>计算机2班</ClassName>
+  </Student>
+  <Student>
+    <StuName>刘军民</StuName>
+    <StuAge>21</StuAge>
+    <Gender>男</Gender>
+    <ClassName>计算机3班</ClassName>
+  </Student>
+  <Student>
+    <StuName>刘莉莉</StuName>
+    <StuAge>23</StuAge>
+    <Gender>女</Gender>
+    <ClassName>计算机4班</ClassName>
+  </Student>
+  <Student>
+    <StuName>赵鑫鑫</StuName>
+    <StuAge>20</StuAge>
+    <Gender>女</Gender>
+    <ClassName>计算机5班</ClassName>
+  </Student>
+  <DataInfo>
+    <Version vNo="1.2" pTime="2012-12-12">数据版本信息</Version>
+  </DataInfo>
+</Students>
