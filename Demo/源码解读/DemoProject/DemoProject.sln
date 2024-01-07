@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreExtend", "WebCoreExt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoConsol", "DemoConsol\DemoConsol.csproj", "{2F6FB004-02BE-45EB-83D3-626285C73ED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationCenter", "AuthenticationCenter\AuthenticationCenter.csproj", "{A4656C57-8AD2-49DA-A756-07CA22E8483E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationCenter", "AuthenticationCenter\AuthenticationCenter.csproj", "{A4656C57-8AD2-49DA-A756-07CA22E8483E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwaggerDemo", "SwaggerDemo\SwaggerDemo.csproj", "{E83D2C0C-EAA5-4A8F-A19B-E638391E671B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A4656C57-8AD2-49DA-A756-07CA22E8483E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4656C57-8AD2-49DA-A756-07CA22E8483E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4656C57-8AD2-49DA-A756-07CA22E8483E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E83D2C0C-EAA5-4A8F-A19B-E638391E671B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E83D2C0C-EAA5-4A8F-A19B-E638391E671B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E83D2C0C-EAA5-4A8F-A19B-E638391E671B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E83D2C0C-EAA5-4A8F-A19B-E638391E671B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

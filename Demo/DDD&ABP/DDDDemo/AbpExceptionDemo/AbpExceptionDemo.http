@@ -1,0 +1,6 @@
+@AbpExceptionDemo_HostAddress = http://localhost:5297
+
+GET {{AbpExceptionDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

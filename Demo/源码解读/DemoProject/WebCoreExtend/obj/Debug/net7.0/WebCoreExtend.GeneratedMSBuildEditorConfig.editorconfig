@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebCoreExtend
-build_property.ProjectDir = F:\架构学习\MyNote\Demo\源码解读\DemoProject\WebCoreExtend\
+build_property.ProjectDir = G:\架构学习\Demo\源码解读\DemoProject\WebCoreExtend\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

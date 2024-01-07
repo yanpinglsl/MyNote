@@ -1,0 +1,439 @@
+2023-08-19 13:22:08.360 +08:00 [INF] Starting web host.
+2023-08-19 13:22:08.585 +08:00 [INF] Loaded ABP modules:
+2023-08-19 13:22:08.586 +08:00 [INF] - SerilogDemo.AppModule
+2023-08-19 13:22:08.586 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Auditing.AbpAuditingModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2023-08-19 13:22:08.586 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.Uow.AbpUnitOfWorkModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Json.AbpJsonModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2023-08-19 13:22:08.586 +08:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2023-08-19 13:22:08.586 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2023-08-19 13:22:08.586 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2023-08-19 13:22:08.586 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2023-08-19 13:22:08.586 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2023-08-19 13:22:08.586 +08:00 [INF]                 - Volo.Abp.Threading.AbpThreadingModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingContractsModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Http.AbpHttpModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Http.AbpHttpAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Minify.AbpMinifyModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Authorization.AbpAuthorizationModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Validation.AbpValidationModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationContractsModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.UI.AbpUiModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2023-08-19 13:22:08.586 +08:00 [INF]     - Volo.Abp.Application.AbpDddApplicationModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Caching.AbpCachingModule
+2023-08-19 13:22:08.586 +08:00 [INF]           - Volo.Abp.Serialization.AbpSerializationModule
+2023-08-19 13:22:08.586 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainSharedModule
+2023-08-19 13:22:08.586 +08:00 [INF]       - Volo.Abp.Features.AbpFeaturesModule
+2023-08-19 13:22:08.586 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2023-08-19 13:22:08.754 +08:00 [INF] User profile is available. Using 'C:\Users\buker\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-19 13:22:08.789 +08:00 [INF] Initialized all ABP modules.
+2023-08-19 13:22:08.847 +08:00 [INF] Now listening on: https://localhost:5001
+2023-08-19 13:22:08.847 +08:00 [INF] Now listening on: http://localhost:5000
+2023-08-19 13:22:08.847 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-19 13:22:08.847 +08:00 [INF] Hosting environment: Development
+2023-08-19 13:22:08.847 +08:00 [INF] Content root path: E:\教案\架构班\朝夕-第03期\01-.NET7 跨平台\04-ABP 框架模块\课件\Sample\SerilogDemo
+2023-08-19 13:22:59.317 +08:00 [INF] Starting web host.
+2023-08-19 13:22:59.515 +08:00 [INF] Loaded ABP modules:
+2023-08-19 13:22:59.515 +08:00 [INF] - SerilogDemo.AppModule
+2023-08-19 13:22:59.515 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Auditing.AbpAuditingModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2023-08-19 13:22:59.515 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.Uow.AbpUnitOfWorkModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Json.AbpJsonModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2023-08-19 13:22:59.515 +08:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2023-08-19 13:22:59.515 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2023-08-19 13:22:59.515 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2023-08-19 13:22:59.515 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2023-08-19 13:22:59.515 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2023-08-19 13:22:59.515 +08:00 [INF]                 - Volo.Abp.Threading.AbpThreadingModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingContractsModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Http.AbpHttpModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Http.AbpHttpAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Minify.AbpMinifyModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Authorization.AbpAuthorizationModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Validation.AbpValidationModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationContractsModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.UI.AbpUiModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2023-08-19 13:22:59.515 +08:00 [INF]     - Volo.Abp.Application.AbpDddApplicationModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Caching.AbpCachingModule
+2023-08-19 13:22:59.515 +08:00 [INF]           - Volo.Abp.Serialization.AbpSerializationModule
+2023-08-19 13:22:59.515 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainSharedModule
+2023-08-19 13:22:59.515 +08:00 [INF]       - Volo.Abp.Features.AbpFeaturesModule
+2023-08-19 13:22:59.515 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2023-08-19 13:22:59.632 +08:00 [INF] User profile is available. Using 'C:\Users\buker\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-19 13:22:59.668 +08:00 [INF] Initialized all ABP modules.
+2023-08-19 13:22:59.719 +08:00 [INF] Now listening on: https://localhost:5001
+2023-08-19 13:22:59.719 +08:00 [INF] Now listening on: http://localhost:5000
+2023-08-19 13:22:59.719 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-19 13:22:59.719 +08:00 [INF] Hosting environment: Development
+2023-08-19 13:22:59.719 +08:00 [INF] Content root path: E:\教案\架构班\朝夕-第03期\01-.NET7 跨平台\04-ABP 框架模块\课件\Sample\SerilogDemo
+2023-08-19 13:23:13.520 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/api/sample01 - -
+2023-08-19 13:23:13.600 +08:00 [INF] Executing endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-08-19 13:23:13.637 +08:00 [INF] Route matched with {action = "Get", controller = "Sample01", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ObjectResult Get() on controller SerilogDemo.Controllers.Sample01Controller (SerilogDemo).
+2023-08-19 13:23:13.767 +08:00 [WRN] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": "Sample:001",
+  "message": "这是一个业务异常.",
+  "details": null,
+  "data": {
+    "msg": "这是一个参数化的错误消息"
+  },
+  "validationErrors": null
+}
+
+2023-08-19 13:23:13.768 +08:00 [WRN] Exception of type 'Volo.Abp.BusinessException' was thrown.
+Volo.Abp.BusinessException: Exception of type 'Volo.Abp.BusinessException' was thrown.
+   at SerilogDemo.Controllers.Sample01Controller.Get() in E:\教案\架构班\朝夕-第03期\01-.NET7 跨平台\04-ABP 框架模块\课件\Sample\SerilogDemo\Controllers\Sample01Controller.cs:line 16
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2023-08-19 13:23:13.768 +08:00 [WRN] Code:Sample:001
+2023-08-19 13:23:13.769 +08:00 [WRN] Details:
+2023-08-19 13:23:13.770 +08:00 [WRN] ---------- Exception Data ----------
+msg = 这是一个参数化的错误消息
+
+2023-08-19 13:23:13.788 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2023-08-19 13:23:13.805 +08:00 [INF] Executed action SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo) in 162.377ms
+2023-08-19 13:23:13.807 +08:00 [INF] Executed endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-08-19 13:23:13.810 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/api/sample01 - - - 400 - application/json;+charset=utf-8 289.3914ms
+2023-08-19 21:58:02.635 +08:00 [INF] Starting web host.
+2023-08-19 21:58:07.013 +08:00 [INF] Loaded ABP modules:
+2023-08-19 21:58:07.014 +08:00 [INF] - SerilogDemo.AppModule
+2023-08-19 21:58:07.014 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Auditing.AbpAuditingModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2023-08-19 21:58:07.014 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2023-08-19 21:58:07.014 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]           - Volo.Abp.Uow.AbpUnitOfWorkModule
+2023-08-19 21:58:07.014 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Json.AbpJsonModule
+2023-08-19 21:58:07.014 +08:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2023-08-19 21:58:07.014 +08:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2023-08-19 21:58:07.014 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2023-08-19 21:58:07.014 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2023-08-19 21:58:07.014 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2023-08-19 21:58:07.014 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2023-08-19 21:58:07.014 +08:00 [INF]                 - Volo.Abp.Threading.AbpThreadingModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2023-08-19 21:58:07.014 +08:00 [INF]           - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingContractsModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Http.AbpHttpModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Http.AbpHttpAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Minify.AbpMinifyModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Authorization.AbpAuthorizationModule
+2023-08-19 21:58:07.014 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Validation.AbpValidationModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationContractsModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.UI.AbpUiModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2023-08-19 21:58:07.014 +08:00 [INF]     - Volo.Abp.Application.AbpDddApplicationModule
+2023-08-19 21:58:07.014 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2023-08-19 21:58:07.015 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2023-08-19 21:58:07.015 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2023-08-19 21:58:07.015 +08:00 [INF]           - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2023-08-19 21:58:07.015 +08:00 [INF]           - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2023-08-19 21:58:07.015 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2023-08-19 21:58:07.015 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2023-08-19 21:58:07.015 +08:00 [INF]         - Volo.Abp.Caching.AbpCachingModule
+2023-08-19 21:58:07.015 +08:00 [INF]           - Volo.Abp.Serialization.AbpSerializationModule
+2023-08-19 21:58:07.015 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainSharedModule
+2023-08-19 21:58:07.015 +08:00 [INF]       - Volo.Abp.Features.AbpFeaturesModule
+2023-08-19 21:58:07.015 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2023-08-19 21:58:07.308 +08:00 [INF] User profile is available. Using 'C:\Users\buker\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-08-19 21:58:07.349 +08:00 [INF] Initialized all ABP modules.
+2023-08-19 21:58:07.414 +08:00 [INF] Now listening on: https://localhost:5001
+2023-08-19 21:58:07.414 +08:00 [INF] Now listening on: http://localhost:5000
+2023-08-19 21:58:07.414 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-08-19 21:58:07.414 +08:00 [INF] Hosting environment: Development
+2023-08-19 21:58:07.414 +08:00 [INF] Content root path: E:\教案\架构班\朝夕-第03期\01-.NET7 跨平台\04-ABP 框架模块\课件\Sample\SerilogDemo
+2023-08-19 21:58:17.229 +08:00 [INF] Request starting HTTP/1.1 POST https://localhost:5001/api/sample01 application/json 65
+2023-08-19 21:58:17.265 +08:00 [INF] Executing endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-08-19 21:58:17.286 +08:00 [INF] Route matched with {action = "Get", controller = "Sample01", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ObjectResult Get() on controller SerilogDemo.Controllers.Sample01Controller (SerilogDemo).
+2023-08-19 21:58:17.357 +08:00 [WRN] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": "Sample:001",
+  "message": "这是一个业务异常.",
+  "details": null,
+  "data": {
+    "msg": "这是一个参数化的错误消息"
+  },
+  "validationErrors": null
+}
+
+2023-08-19 21:58:17.357 +08:00 [WRN] Exception of type 'Volo.Abp.BusinessException' was thrown.
+Volo.Abp.BusinessException: Exception of type 'Volo.Abp.BusinessException' was thrown.
+   at SerilogDemo.Controllers.Sample01Controller.Get() in E:\教案\架构班\朝夕-第03期\01-.NET7 跨平台\04-ABP 框架模块\课件\Sample\SerilogDemo\Controllers\Sample01Controller.cs:line 16
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2023-08-19 21:58:17.357 +08:00 [WRN] Code:Sample:001
+2023-08-19 21:58:17.358 +08:00 [WRN] Details:
+2023-08-19 21:58:17.358 +08:00 [WRN] ---------- Exception Data ----------
+msg = 这是一个参数化的错误消息
+
+2023-08-19 21:58:17.367 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2023-08-19 21:58:17.375 +08:00 [INF] Executed action SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo) in 86.3708ms
+2023-08-19 21:58:17.375 +08:00 [INF] Executed endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-08-19 21:58:17.376 +08:00 [INF] Request finished HTTP/1.1 POST https://localhost:5001/api/sample01 application/json 65 - 400 - application/json;+charset=utf-8 148.4846ms
+2023-12-22 10:18:15.716 +08:00 [INF] Starting web host.
+2023-12-22 10:18:17.673 +08:00 [INF] Loaded ABP modules:
+2023-12-22 10:18:17.674 +08:00 [INF] - SerilogDemo.AppModule
+2023-12-22 10:18:17.674 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Auditing.AbpAuditingModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2023-12-22 10:18:17.674 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.Uow.AbpUnitOfWorkModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Json.AbpJsonModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2023-12-22 10:18:17.674 +08:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2023-12-22 10:18:17.674 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2023-12-22 10:18:17.674 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2023-12-22 10:18:17.674 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2023-12-22 10:18:17.674 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2023-12-22 10:18:17.674 +08:00 [INF]                 - Volo.Abp.Threading.AbpThreadingModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingContractsModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Http.AbpHttpModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Http.AbpHttpAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Minify.AbpMinifyModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Authorization.AbpAuthorizationModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Validation.AbpValidationModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationContractsModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.UI.AbpUiModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2023-12-22 10:18:17.674 +08:00 [INF]     - Volo.Abp.Application.AbpDddApplicationModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Caching.AbpCachingModule
+2023-12-22 10:18:17.674 +08:00 [INF]           - Volo.Abp.Serialization.AbpSerializationModule
+2023-12-22 10:18:17.674 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainSharedModule
+2023-12-22 10:18:17.674 +08:00 [INF]       - Volo.Abp.Features.AbpFeaturesModule
+2023-12-22 10:18:17.674 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2023-12-22 10:18:18.217 +08:00 [INF] User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-12-22 10:18:18.266 +08:00 [INF] Initialized all ABP modules.
+2023-12-22 10:18:18.324 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 10:18:18.325 +08:00 [INF] Hosting environment: Development
+2023-12-22 10:18:18.325 +08:00 [INF] Content root path: G:\BaiduNetdisk\20230819Architect03Course037DDD&ABP-6\20230819Architect03Course037DDD&ABP-6\Sample\SerilogDemo
+2023-12-22 10:18:18.351 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - -
+2023-12-22 10:18:18.511 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - - - 404 - - 160.6496ms
+2023-12-22 10:18:27.520 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/api/Sample01 - -
+2023-12-22 10:18:27.536 +08:00 [INF] Executing endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-12-22 10:18:27.555 +08:00 [INF] Route matched with {action = "Get", controller = "Sample01", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ObjectResult Get() on controller SerilogDemo.Controllers.Sample01Controller (SerilogDemo).
+2023-12-22 10:18:29.515 +08:00 [WRN] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": "Sample:001",
+  "message": "这是一个业务异常.",
+  "details": null,
+  "data": {
+    "msg": "这是一个参数化的错误消息"
+  },
+  "validationErrors": null
+}
+
+2023-12-22 10:18:29.515 +08:00 [WRN] Exception of type 'Volo.Abp.BusinessException' was thrown.
+Volo.Abp.BusinessException: Exception of type 'Volo.Abp.BusinessException' was thrown.
+   at SerilogDemo.Controllers.Sample01Controller.Get() in G:\BaiduNetdisk\20230819Architect03Course037DDD&ABP-6\20230819Architect03Course037DDD&ABP-6\Sample\SerilogDemo\Controllers\Sample01Controller.cs:line 16
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2023-12-22 10:18:29.515 +08:00 [WRN] Code:Sample:001
+2023-12-22 10:18:29.516 +08:00 [WRN] Details:
+2023-12-22 10:18:29.522 +08:00 [WRN] ---------- Exception Data ----------
+msg = 这是一个参数化的错误消息
+
+2023-12-22 10:18:29.536 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2023-12-22 10:18:29.546 +08:00 [INF] Executed action SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo) in 1988.3621ms
+2023-12-22 10:18:29.546 +08:00 [INF] Executed endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-12-22 10:18:29.546 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/api/Sample01 - - - 400 - application/json;+charset=utf-8 2025.7450ms
+2023-12-22 10:35:23.474 +08:00 [INF] Starting web host.
+2023-12-22 10:35:24.338 +08:00 [INF] Loaded ABP modules:
+2023-12-22 10:35:24.339 +08:00 [INF] - SerilogDemo.AppModule
+2023-12-22 10:35:24.339 +08:00 [INF]   - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Auditing.AbpAuditingModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Data.AbpDataModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2023-12-22 10:35:24.339 +08:00 [INF]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]             - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.Uow.AbpUnitOfWorkModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Json.AbpJsonModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.Json.SystemTextJson.AbpJsonSystemTextJsonModule
+2023-12-22 10:35:24.339 +08:00 [INF]             - Volo.Abp.Json.AbpJsonAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2023-12-22 10:35:24.339 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2023-12-22 10:35:24.339 +08:00 [INF]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2023-12-22 10:35:24.339 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2023-12-22 10:35:24.339 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2023-12-22 10:35:24.339 +08:00 [INF]                 - Volo.Abp.Threading.AbpThreadingModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.MultiTenancy.AbpMultiTenancyAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingContractsModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Http.AbpHttpModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Http.AbpHttpAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Minify.AbpMinifyModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Authorization.AbpAuthorizationModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Validation.AbpValidationModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationContractsModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.UI.AbpUiModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2023-12-22 10:35:24.339 +08:00 [INF]     - Volo.Abp.Application.AbpDddApplicationModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Domain.AbpDddDomainModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.EventBus.AbpEventBusModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Specifications.AbpSpecificationsModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Caching.AbpCachingModule
+2023-12-22 10:35:24.339 +08:00 [INF]           - Volo.Abp.Serialization.AbpSerializationModule
+2023-12-22 10:35:24.339 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainSharedModule
+2023-12-22 10:35:24.339 +08:00 [INF]       - Volo.Abp.Features.AbpFeaturesModule
+2023-12-22 10:35:24.339 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2023-12-22 10:35:24.612 +08:00 [INF] User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-12-22 10:35:24.671 +08:00 [INF] Initialized all ABP modules.
+2023-12-22 10:35:24.723 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-12-22 10:35:24.723 +08:00 [INF] Hosting environment: Development
+2023-12-22 10:35:24.723 +08:00 [INF] Content root path: G:\BaiduNetdisk\20230819Architect03Course037DDD&ABP-6\20230819Architect03Course037DDD&ABP-6\Sample\SerilogDemo
+2023-12-22 10:35:24.756 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44312/ - -
+2023-12-22 10:35:24.898 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44312/ - - - 404 - - 142.3100ms
+2023-12-22 10:35:33.653 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/Sample01 - -
+2023-12-22 10:35:33.666 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/Sample01 - - - 404 - - 13.2131ms
+2023-12-22 10:35:34.901 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/Sample01 - -
+2023-12-22 10:35:34.904 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/Sample01 - - - 404 - - 2.4845ms
+2023-12-22 10:35:36.061 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/Sample01 - -
+2023-12-22 10:35:36.062 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/Sample01 - - - 404 - - 0.8622ms
+2023-12-22 10:36:27.605 +08:00 [INF] Request starting HTTP/1.1 GET https://localhost:44312/api/Sample01 - -
+2023-12-22 10:36:27.614 +08:00 [INF] Executing endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-12-22 10:36:27.634 +08:00 [INF] Route matched with {action = "Get", controller = "Sample01", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ObjectResult Get() on controller SerilogDemo.Controllers.Sample01Controller (SerilogDemo).
+2023-12-22 10:36:29.216 +08:00 [WRN] ---------- RemoteServiceErrorInfo ----------
+{
+  "code": "Sample:001",
+  "message": "这是一个业务异常.",
+  "details": null,
+  "data": {
+    "msg": "这是一个参数化的错误消息"
+  },
+  "validationErrors": null
+}
+
+2023-12-22 10:36:29.217 +08:00 [WRN] Exception of type 'Volo.Abp.BusinessException' was thrown.
+Volo.Abp.BusinessException: Exception of type 'Volo.Abp.BusinessException' was thrown.
+   at SerilogDemo.Controllers.Sample01Controller.Get() in G:\BaiduNetdisk\20230819Architect03Course037DDD&ABP-6\20230819Architect03Course037DDD&ABP-6\Sample\SerilogDemo\Controllers\Sample01Controller.cs:line 16
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|26_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+2023-12-22 10:36:29.217 +08:00 [WRN] Code:Sample:001
+2023-12-22 10:36:29.217 +08:00 [WRN] Details:
+2023-12-22 10:36:29.224 +08:00 [WRN] ---------- Exception Data ----------
+msg = 这是一个参数化的错误消息
+
+2023-12-22 10:36:29.239 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.RemoteServiceErrorResponse'.
+2023-12-22 10:36:29.251 +08:00 [INF] Executed action SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo) in 1613.9983ms
+2023-12-22 10:36:29.251 +08:00 [INF] Executed endpoint 'SerilogDemo.Controllers.Sample01Controller.Get (SerilogDemo)'
+2023-12-22 10:36:29.251 +08:00 [INF] Request finished HTTP/1.1 GET https://localhost:44312/api/Sample01 - - - 400 - application/json;+charset=utf-8 1646.3735ms

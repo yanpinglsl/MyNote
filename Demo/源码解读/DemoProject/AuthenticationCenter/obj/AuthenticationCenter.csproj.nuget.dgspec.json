@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj": {}
+    "G:\\架构学习\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj": {}
   },
   "projects": {
-    "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj": {
+    "G:\\架构学习\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj",
+        "projectUniqueName": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj",
         "projectName": "AuthenticationCenter",
-        "projectPath": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj",
-        "packagesPath": "C:\\Users\\10650\\.nuget\\packages\\",
-        "outputPath": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\obj\\",
+        "projectPath": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\AuthenticationCenter.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\AuthenticationCenter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\vs2022\\Shared\\NuGetPackages"
+          "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\10650\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj": {
-                "projectPath": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj"
+              "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj": {
+                "projectPath": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj"
               }
             }
           }
@@ -80,24 +81,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj": {
+    "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj",
+        "projectUniqueName": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj",
         "projectName": "WebCoreExtend",
-        "projectPath": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj",
-        "packagesPath": "C:\\Users\\10650\\.nuget\\packages\\",
-        "outputPath": "F:\\架构学习\\MyNote\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\obj\\",
+        "projectPath": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\WebCoreExtend.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "G:\\架构学习\\Demo\\源码解读\\DemoProject\\WebCoreExtend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\vs2022\\Shared\\NuGetPackages"
+          "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\10650\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -106,6 +107,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -169,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
