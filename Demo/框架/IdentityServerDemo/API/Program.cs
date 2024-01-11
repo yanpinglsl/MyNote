@@ -1,5 +1,3 @@
-using Microsoft.OpenApi.Models;
-
 namespace API
 {
     public class Program
@@ -41,7 +39,6 @@ namespace API
             app.UseRouting();
             app.UseAuthentication(); // 将身份认证中间件添加到管道中，因此将在每次调用API时自动执行身份验证
             app.UseAuthorization();
-
 
             app.MapControllers();
 
