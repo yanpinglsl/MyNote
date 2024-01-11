@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace OpenIDConnectMVC
 {
@@ -11,6 +13,8 @@ namespace OpenIDConnectMVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             builder.Services.AddAuthentication(options =>
             {
@@ -25,6 +29,7 @@ namespace OpenIDConnectMVC
                 //需要nuget Microsoft.AspNetCore.Authentication.OpenIdConnect
                 .AddOpenIdConnect("oidc", options =>
                 {
+                    #region OpenIdConnect简化流程
                     //远程认证地址
                     //与 RequireHttpsMetadata属性要同步
                     options.Authority = "http://localhost:5000";
@@ -32,28 +37,49 @@ namespace OpenIDConnectMVC
                     options.RequireHttpsMetadata = false;
 
                     //客户端ID
-                    options.ClientId = "ro.client";    //客户端ID
+                    options.ClientId = "mvc";    //客户端ID
                     options.ClientSecret = "secret"; //客户端秘钥                                                 
                     options.ResponseType = OpenIdConnectResponseType.Code;    //授权码模式
-                    options.ResponseMode = OpenIdConnectResponseMode.Query;
+                    //options.ResponseMode = OpenIdConnectResponseMode.Query;
                     options.SaveTokens = true;
+                    #endregion
+
+                    #region 混合模式
+                    //options.SignInScheme = "Cookies";
+
+                    //options.Authority = "http://localhost:5000";
+                    //options.RequireHttpsMetadata = false;
+
+                    //options.ClientId = "hybrid";
+                    //options.ClientSecret = "secret";
+                    //options.ResponseType = "code";
+
+                    //options.SaveTokens = true;
+                    //options.GetClaimsFromUserInfoEndpoint = true;
+
+                    //options.Scope.Add("group1");
+                    //options.Scope.Add("offline_access");
+                    //options.ClaimActions.MapJsonKey("website", "website");
+                    #endregion
                 });
             // 配置cookie策略
             //services.AddNonBreakingSameSiteCookies();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
+            // Configure the HTTP request pipeline.     
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();

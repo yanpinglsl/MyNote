@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>echarts_curve</title>
+</head>
+<body style="margin:0px;-ms-user-select: none;user-select: none;overflow:hidden;">
+    <div id="main" style="margin: 0px;width: 400px;height:600px"></div>
+	<script src="echarts.js"></script>
+	<script src="json2.js"></script>
+	<script src="jquery.min.js"></script>
+    <script type="text/javascript">
+	
+		Date.prototype.Format = function (fmt, language) {
+            var ChinaWeek = ['日', '一', '二', '三', '四', '五', '六'],
+                OtherCountryWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                o = {
+                    "M+": this.getMonth() + 1, //月份
+                    "d+": this.getDate(), //日
+                    "H+": this.getHours(), //小时，区分12小时制还是24小时制，单独放后面处理
+                    "m+": this.getMinutes(), //分
+                    "s+": this.getSeconds(), //秒
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+					"f+"  : this.getMilliseconds()             //毫秒   
+                };
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (RegExp.$1.length==3)?(("000"+ o[k]).substr((""+ o[k]).length)):(("00"+ o[k]).substr((""+ o[k]).length)));
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));//年份
+            if (language) {
+                if (/(d+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 3) ? (('0' + '周' + ChinaWeek[this.getDay()]).substr(("" + ChinaWeek[this.getDay()]).length)) : (("0" + '星期' + ChinaWeek[this.getDay()]).substr(("" + ChinaWeek[this.getDay()]).length)));//星期
+            } else {
+                if (/(d+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 3) ? OtherCountryWeek[this.getDay()].substr(0, 3) : OtherCountryWeek[this.getDay()]);//星期
+            }
+            if (/(t+)/.test(fmt)) {//时间格式“hhmmss tt”--> hh:mm:ss AM?PM
+                var meridiem = language ? ["上午", "下午"] : ["AM", "PM"];
+                fmt = fmt.replace(RegExp.$1, this.getHours() < 12 ? meridiem[0] : meridiem[1]);  
+        //12小时制
+        var timeArr = ['12','01','02','03','04','05','06','07','08','09','10','11','12','01','02','03','04','05','06','07','08','09','10','11'];
+                if (/(h+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, timeArr[this.getHours()] );//12小时制，并且添加英文冒号      
+                if (/(m+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, this.getMinutes());//12小时制，并且添加英文冒号          
+            }
+			else{
+					if (/(h+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, this.getHours());
+					if (/(m+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, this.getMinutes());
+			}
+
+            return fmt;
+        }
+		
+		document.onselectstart=new Function("return false");
+		document.oncontextmenu = function () { return false; }; 
+        var myChart = echarts.init(document.getElementById('main'));
+		var myAxisFormat = 'yyyy-MM-dd\nHH:mm:ss';
+		var toolTipDateTimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
+		var tmpOp = {grid:{top:"50px"}};
+		var cnLang = "cn";
+		var brushStart = false;
+						 
+		function calcLegend(){
+			var height =0;
+			var charDOM = document;
+			var chart = myChart;
+			var option = chart.getOption();
+			var legends = option.legend;
+			if(!legends||legends.length<=0) 
+				return 0;
+			var legend = legends[0];
+			if(!legend||!legend.show||!legend.data||legend.data.length<=0) 
+				return 0;
+			var icongap = 5;
+			var left = legend.left,right = legend.right;
+			var chartWidth = document.getElementById("main").offsetWidth-left-right;
+			var padding = legend.padding || 0;
+			if($.isArray(padding)) 
+				padding = padding.join('px ')+'px';
+			else 
+				padding+='px';
+			var itemGap = legend.itemGap;
+			var $legendbox = $('<div class="legend-simulate-box" ></div>').css({
+				width: (chartWidth+itemGap) +'px',
+				padding: padding,
+				'line-height': '0',
+				'box-sizing': 'border-box',
+				'margin-bottom': icongap+'px',
+				overflow: 'hidden',
+				'position': 'absolute',
+				'z-index': '1',
+				'opacity': '0',
+				'filter': 'alpha(opacity=0)',
+				'-ms-filter': 'alpha(opacity=0)'
+			}).appendTo('body');
+			var itemHeight = legend.itemHeight,itemWidth = legend.itemWidth;
+			if(itemHeight%2!=0) 
+				itemHeight++;
+			if(itemWidth%2!=0) 
+				itemWidth++;
+			var fontSize = legend.textStyle.fontSize || 12;
+			var fontWeight = legend.textStyle.fontWeight || 'normal';
+			$.each(legend.data,function(i,name){
+				var $icon = $('<span></span>').css({
+					display: 'inline-block',
+					padding: '0 '+icongap+'px',
+					'box-sizing': 'content-box',
+					'width': itemWidth+'px',
+					'height': itemHeight+'px'
+				});
+				var $item = $('<div></div>').css({
+					'display': 'inline-block',
+					'float': 'left',
+					'white-space':'nowrap',
+					'margin-right': itemGap+'px',
+					'margin-bottom': itemGap+'px',
+					'font-size': fontSize+'px',
+					'font-weight': fontWeight,
+					'font-family':'sans-serif',
+				}).append($icon).append(name).appendTo($legendbox);
+			});
+			height = $legendbox.innerHeight()-itemGap;
+			$legendbox.remove();
+			return height;
+		};
+		
+		function setGridTop(topHeight)
+		{
+			if(topHeight == 0) return;
+			//window.alert(topHeight);
+			var len1 = topHeight + 'px';
+			tmpOp.grid.top = len1;
+			if(myChart.getOption().grid.top != len1)
+			{
+				myChart.setOption(tmpOp);
+			}
+		};
+		
+		function setAxisFormat(axFormat){
+			//window.alert(JSON.stringify(axFormat));
+			myAxisFormat = axFormat;
+		};
+		
+		function setToolTipDataTimeFormat(tFormat)
+		{
+			toolTipDateTimeFormat = tFormat;
+		}
+		
+		function setLanguage(bChnLang)
+		{
+			cnLang = bChnLang
+		};
+		
+		function setChart(option) {
+			//window.alert(JSON.stringify(option));
+			myChart.clear();
+			var op = option;
+			var op = JSON.parse(option);
+			if (typeof(op.xAxis) != "undefined")
+			{
+				op.xAxis.axisLabel.formatter = function(value,index)
+				 {
+					 var date = new Date();
+					 date.setTime(value);
+					 return date.Format(myAxisFormat, cnLang == "cn");
+				 }
+			}
+			
+			if (typeof(op.tooltip) != "undefined")
+			{
+				op.tooltip.formatter = function(value,index)
+				{
+					var res = "";
+					//if (typeof(value.data[1]) == "undefined") 
+					//{
+					//	res += value.name + " : " + value.value;
+					//	return res;
+					//}
+					//var date = new Date();
+					//date.setTime(value.data[0]);
+					//res += cnLang=="cn"?"时间:":"Time :" ;
+					//res += date.Format('yyyy-MM-dd hh:mm:ss.fff') + "<br>";
+					//res += cnLang=="cn"?"数值:":"Value:" ;
+					//res += value.data[1];
+
+					//window.alert(JSON.stringify(value));
+					if (value.length > 0)
+						res += "<div style=\"background: #FFFFFF;border:2px solid " + value[0].color + ";float:left;\">"
+					
+					for(var i = 0; i < value.length; i++)
+					{
+						var date = new Date();
+						date.setTime(value[i].data[0]);
+						res += "<p style=\"margin:2px;\">"
+						res += "<span style=\"display:inline-block;margin-right:5px;";
+						res += "border-radius:10px;width:10px;height:10px;background-color:"+value[i].color+";\"></span>"
+						res += "<span style=\"display:inline-block;margin-right:5px;\">";
+						res += cnLang == "cn" ? "时间: " : "Time: ";
+						res += date.Format(toolTipDateTimeFormat,cnLang == "cn") + "</span></p>";
+						res += "<p style=\"margin:2px;\">"
+						res += "<span style=\"display:inline-block;margin-right:5px;\">";
+						res += "<span style=\"display:inline-block;margin-right:5px;";
+						res += "border-radius:10px;width:10px;height:10px;background-color:"+value[i].color+";\"></span>"
+						res += cnLang == "cn" ? "数值: " : "Value: ";
+						res += value[i].data[1].toFixed(2) + "</span></p>";
+					}
+					
+					if (value.length > 0)
+						res += "</div>";
+						
+					//window.alert(res);
+					return res;
+				}
+            }
+
+            if (typeof (op.series) != "undefined") {
+                for (var i = 0; i < op.series.length; i++) {
+                    if (typeof (op.series[i].markPoint) == "undefined")
+                        break;
+                    if (typeof (op.series[i].markPoint.label) == "undefined")
+                        break;
+                    if (typeof (op.series[i].markPoint.label.formatter) == "undefined")
+                        break;
+					op.series[i].markPoint.label.distance=-1;
+					op.series[i].markPoint.label.overflow="break";
+                    op.series[i].markPoint.label.formatter = function (value, index) {
+						var date = new Date();
+						date.setTime(value.data.coord[0]);
+                        return value.name + value.value.toFixed(2) + "\n[" + date.Format(toolTipDateTimeFormat,cnLang == "cn")+"]";
+                    }
+                }
+            }
+			
+			if (typeof(op.toolbox.feature.myPrint) != "undefined")
+			{
+				op.toolbox.feature.myPrint.onclick = function()
+				{
+					window.print();
+				};
+				
+			}
+			
+			myChart.setOption(op);
+			
+			setGridTop(calcLegend()+12);
+		};
+
+		function setSize(width, height) {
+			var divMain = document.getElementById("main");
+			divMain.style.width = width + "px";
+			divMain.style.height = height + "px";
+			myChart.resize();
+			window.onresize = myChart.resize;
+			//window.alert(width);
+			setGridTop(calcLegend()+12);
+		};
+		
+		
+        function base64ToBlob(code) {
+            var parts = code.split(';base64,');
+            var contentType = parts[0].split(':')[1];
+            var raw = window.atob(parts[1]);
+            var rawLength = raw.length;
+
+            var uInt8Array = new Uint8Array(rawLength);
+
+            for (var i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+            return new Blob([uInt8Array], { type: contentType });
+        }
+		
+        function saveAsImage() {
+            var content = myChart.getDataURL();
+
+            var aLink = document.createElement('a');
+            var blob = this.base64ToBlob(content);
+
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("click", true, true);
+            aLink.download = "line.png";
+            aLink.href = URL.createObjectURL(blob);
+            aLink.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+        }
+		
+		//myChart.on('datazoom', function(params){myChart.resize();});
+		
+		//myChart.on('brushSelected', renderBrushed);
+		function renderBrushed(params) {
+			var brushed = [];
+			var brushComponent = params.batch[0];
+			window.alert(JSON.stringify(params));
+
+			for (var sIdx = 0; sIdx < brushComponent.selected.length; sIdx++) {
+				var rawIndices = brushComponent.selected[sIdx].dataIndex;
+				brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
+			}
+		}
+		
+		
+		//myChart.on('brush', startBrushed);
+		function startBrushed(params) {
+			window.alert(JSON.stringify(params));
+		}
+		
+		myChart.on('brushEnd', endBrushed);
+		function endBrushed(params) {
+			//window.alert(JSON.stringify(params));
+			myChart.dispatchAction({type:"dataZoom", 
+			startValue:params.areas[0].coordRange[0], 
+			endValue:params.areas[0].coordRange[1]});
+			
+			myChart.dispatchAction({
+				type: 'brush',
+				areas: [
+				]
+			});
+			
+			
+			brushStart = false;
+		}
+		
+		//myChart.on('brushselected', brushSelect);
+		function brushSelect(params) {
+			if (!brushStart)
+			{
+				brushStart = true;
+			}
+		}
+		
+		//myChart.on('globalcursortaken', globalToken);
+		function globalToken(params) {
+			window.alert(JSON.stringify(params));
+		}
+		
+		myChart.on('legendselectchanged', legendUnSelected1);
+		function legendUnSelected1(params) {
+			//window.alert(JSON.stringify(params.selected));
+			window.external.LegendSelectChanged(params.name);
+		}
+		
+		
+    </script>
+</body>
+</html>

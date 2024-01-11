@@ -16,27 +16,29 @@ namespace Client
                 return;
             }
             #region 客户端模式授权
-            //// request token
-            //var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-            //{
-            //    Address = disco.TokenEndpoint,
-            //    ClientId = "client",
-            //    ClientSecret = "secret",
-            //    Scope = "group1"
-            //});
+            Console.WriteLine("=============================客户端模式授权=============================");
+            // request token
+            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+                ClientId = "client",
+                ClientSecret = "secret",
+                Scope = "group1"
+            });
 
-            //if (tokenResponse.IsError)
-            //{
-            //    Console.WriteLine(tokenResponse.Error);
-            //    return;
-            //}
+            if (tokenResponse.IsError)
+            {
+                Console.WriteLine(tokenResponse.Error);
+                return;
+            }
 
-            //Console.WriteLine(tokenResponse.Json);
+            Console.WriteLine(tokenResponse.Json);
             #endregion
 
             #region 资源所有者密码授权模式
+            Console.WriteLine("=============================资源所有者密码授权模式=============================");
             // request token
-            var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
+            tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
             {
                 Address = disco.TokenEndpoint,
                 ClientId = "ro.client",
@@ -55,11 +57,10 @@ namespace Client
             Console.WriteLine(tokenResponse.Json);
             #endregion
 
-
             // call api
             client.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:6000/identity");
+            var response = await client.GetAsync("http://localhost:7000/identity");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
@@ -70,6 +71,7 @@ namespace Client
                 Console.WriteLine(JsonArray.Parse(content));
             }
             Console.ReadLine();
+
         }
     }
 }

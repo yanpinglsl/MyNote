@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * @author fuzhihui
+ * @version 3.6.0.0
+ * @description
+-->
+<config>
+  <dataTypes>
+    <dataType>
+      <id>1</id>
+      <name>实时值</name>
+    </dataType>
+    <dataType>
+      <id>2</id>
+      <name>最大值</name>
+    </dataType>
+    <dataType>
+      <id>4</id>
+      <name>平均值</name>
+    </dataType>
+  </dataTypes>
+  <recommendTip>推荐使用环境：IE11，1440*900及以上分辨率。</recommendTip>
+  <ENTitle>PecExplorer</ENTitle>
+  <CNTitle></CNTitle>
+  <featureSize>14px</featureSize>
+  <semiCfg>
+    <xmax>100000</xmax>
+    <ymax>100</ymax>
+  </semiCfg>
+  <phaseColorCfg>
+    <phaseA>#eeb212</phaseA>
+    <phaseB>#76c54c</phaseB>
+    <phaseC>#dd4e4e</phaseC>
+  </phaseColorCfg>
+  <timeOverCfg>525600</timeOverCfg>
+  <autoQuery>false</autoQuery>
+
+  <PQEventGroupCfg>
+    <enableGroup>true</enableGroup>
+    <eventInterval>1</eventInterval>
+    <groupInterval>3</groupInterval>
+  </PQEventGroupCfg>
+
+  <WpAppNames>
+    <WpAppName>
+      <name>智慧安全用电运行评估报告App</name>
+    </WpAppName>
+  </WpAppNames>
+  
+  <targetColors>
+    <targetColor>
+      <color>#AA1717</color>
+      <minValue>150</minValue>
+      <maxValue>99999999</maxValue>
+      <enabled>1</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#C67600</color>
+      <minValue>120</minValue>
+      <maxValue>150</maxValue>
+      <enabled>1</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#FFBB00</color>
+      <minValue>100</minValue>
+      <maxValue>120</maxValue>
+      <enabled>1</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#91CA32</color>
+      <minValue>0</minValue>
+      <maxValue>100</maxValue>
+      <enabled>1</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#54CEC0</color>
+      <minValue>0</minValue>
+      <maxValue>0</maxValue>
+      <enabled>0</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#036CF9</color>
+      <minValue>0</minValue>
+      <maxValue>0</maxValue>
+      <enabled>0</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#7B03F9</color>
+      <minValue>0</minValue>
+      <maxValue>0</maxValue>
+      <enabled>0</enabled>
+    </targetColor>
+    <targetColor>
+      <color>#F703F9</color>
+      <minValue>0</minValue>
+      <maxValue>0</maxValue>
+      <enabled>0</enabled>
+    </targetColor>
+  </targetColors>
+
+  <AlarmRefreshInterval>10</AlarmRefreshInterval>
+  <DefaultStationIndex>0</DefaultStationIndex>
+  <displayDipSwellEventEndTime>false</displayDipSwellEventEndTime>
+
+  <checkConfigChangeInterval>60</checkConfigChangeInterval>
+  <checkConfigChangeNodeToDetect>270532608;269484032;271581184;272629760;268697600;274726912;273678336;276824064;277872640;279969792;1073807360;1073872896</checkConfigChangeNodeToDetect>
+
+  <MarkerClustererRange>0</MarkerClustererRange>
+
+  <useCanvasInIE>true</useCanvasInIE>
+  <comparativaAnalysisShowType>curve</comparativaAnalysisShowType>
+
+  <DeviceAccountCfg>
+    <meterVender>CET深圳中电技术</meterVender>
+    <IPAddress>172.18.11.202</IPAddress>
+    <RemotePort>8000</RemotePort>
+  </DeviceAccountCfg>
+</config>
+

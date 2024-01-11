@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeReportInterface", "OfficeReportInterface\OfficeReportInterface.csproj", "{2894E035-B80E-4C92-BB11-B0689B140EE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2894E035-B80E-4C92-BB11-B0689B140EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2894E035-B80E-4C92-BB11-B0689B140EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2894E035-B80E-4C92-BB11-B0689B140EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2894E035-B80E-4C92-BB11-B0689B140EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAFA0F70-89D5-42E5-A59F-9398B1BDD7F3}
+	EndGlobalSection
+EndGlobal

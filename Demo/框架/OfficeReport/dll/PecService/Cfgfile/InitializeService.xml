@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<funconfig>
+  <label uid="dashboard" text="Dashboard" iconCls="cd-label-icon3" funcClass="">
+    <model uid="energydatastat" text="Dashboard" iconCls="" funcClass="dashboard.EnergyDataStatView">
+    </model>
+  </label>
+  <label uid="power-monitor" text="电力监控" iconCls="cd-label-icon1" funcClass="">
+    <model uid="snapshot-curves" text="趋势曲线" iconCls="" funcClass="">
+      <item uid="monthly-curve" text="日历趋势曲线" iconCls="cd-label-icon3" funcClass="powermonitor.snapshotcurves.monthlycurve.MonthlyCurveView"></item>
+      <item uid="comparative-analysis" text="趋势曲线对比" iconCls="cd-label-icon3" funcClass="powermonitor.snapshotcurves.comparativeanalysis.ComparativeAnalysisView"></item>
+    </model>
+    <model uid="realtimemonitoring" text="实时监控画面" iconCls="" funcClass="powermonitor.realtimemonitoring.RealtimeMonitoringView">
+    </model>
+    <model uid="event-logs" text="事件记录" iconCls="" funcClass="">
+      <item uid="event-query" text="事件查询" iconCls="" funcClass="powermonitor.eventlogs.eventquery.EventQueryView"></item>
+    </model>
+    <model uid="waveform-logs" text="波形记录" iconCls="" funcClass="powermonitor.waveformlogs.WaveformLogsView">
+    </model>
+    <model uid="realtime-communication" text="通信和数据采集" iconCls="" funcClass="powermonitor.realtimecommunication.RealtimeCommunicationView">
+    </model>
+    <model uid="reports" text="运行报表" iconCls="" funcClass="">
+       <item uid="report-query" text="标准报表" iconCls="" funcClass="powermonitor.reportquery.ReportQueryView"></item>
+       <item uid="office-report" text="Excel报表" iconCls="" funcClass="powermonitor.officereport.OfficeReportView"></item>
+    </model>
+  </label>
+  <label uid="power-quality" text="电能质量" iconCls="cd-label-icon3" funcClass="">
+    <model uid="events-waveforms" text="事件和波形分析" iconCls="" funcClass="">
+      <item uid="sag-swell-event" text="电能质量事件" iconCls="" funcClass="powerquality.SagSwellEventView"></item>
+      <item uid="setpoint-event" text="电量越限事件" iconCls="" funcClass="powerquality.SetpointEventView"></item>
+    </model>
+    <model uid="tolerance-analysis" text="容忍度分析" iconCls="" funcClass="">
+      <item uid="itic-curve" text="ITIC统计" iconCls="" funcClass="powerquality.IticCurveView"></item>
+      <item uid="semi-curve" text="SEMI统计" iconCls="" funcClass="powerquality.SemiCurveView"></item>
+    </model>
+    <model uid="harmonics-analysis" text="谐波分析" iconCls="" funcClass="">
+      <item uid="realtime-hd" text="实时数据" iconCls="" funcClass="powerquality.RealtimeHDView"></item>
+      <item uid="harmonic-offlimits-report" text="越限统计" iconCls="" funcClass="powerquality.HarmonicsOffLimitsReportView"></item>
+      <item uid="harmonics-logs" text="历史谐波" iconCls="" funcClass="powerquality.HarmonicsLogsView"></item>
+      <item uid="harm-spectrum" text="频谱分析" iconCls="" funcClass="powerquality.HarmSpectrumView"></item>
+    </model>
+    <model uid="pq-evaluation" text="评估报表" iconCls="" funcClass="">
+      <item uid="gb-standard-report" text="故障统计报告" iconCls="" funcClass="powerquality.GBStandardReportView"></item>
+      <item uid="en50160-report" text="EN50160报表" iconCls="" funcClass="powerquality.EN50160ReportView"></item>
+    </model>
+    <model uid="device-pq-report" text="单点分析" iconCls="" funcClass="powerquality.DevicePQReportView">
+    </model>
+  </label>
+  <label uid="power-energy" text="电能量管理" iconCls="cd-label-icon2" funcClass="">
+    <model uid="energy-measurement" text="计量管理" iconCls="" funcClass="">
+      <item uid="daily-report" text="日统计" iconCls="" funcClass="powerenergy.DailyReportView"></item>
+      <item uid="monthly-report" text="月统计" iconCls="" funcClass="powerenergy.MonthlyReportView"></item>
+      <item uid="yearly-report" text="年统计" iconCls="" funcClass="powerenergy.YearlyReportView"></item>
+      <item uid="energy-comparison" text="计量对比" iconCls="" funcClass="powerenergy.EnergyComparisonView"></item>
+    </model>
+    <model uid="energy-tou" text="分时计费" iconCls="" funcClass="">
+      <item uid="monthly-tou-report" text="月分时计费" iconCls="" funcClass="powerenergy.MonthlyTOUReportView"></item>
+      <item uid="user-defined-query" text="自定义分时计费" iconCls="" funcClass="powerenergy.UserDefinedQueryView"></item>
+    </model>
+    <model uid="demand-measurement" text="需量管理" iconCls="" funcClass="">
+      <item uid="15min-demand-column" text="日需量" iconCls="" funcClass="powerenergy.15minDemandColumnView"></item>
+      <item uid="max-demand" text="最大需量管理" iconCls="" funcClass="powerenergy.MaxDemandView"></item>
+      <item uid="demand-report" text="需量报表" iconCls="" funcClass="powerenergy.DemandReportView"></item>
+    </model>
+  </label>
+  <label uid="system-maintanence" text="系统维护" iconCls="cd-label-icon4" funcClass="">
+    <model uid="user-role-management" text="用户和角色管理" iconCls="" funcClass="">
+      <item uid="my-profile" text="我的账户" iconCls="" funcClass="systemmaintanence.MyProfileView"></item>
+      <item uid="customize-modules" text="我的模板" iconCls="" funcClass="systemmaintanence.CustomizeModulesView"></item>
+      <item uid="user-group" text="用户管理" iconCls="" funcClass="systemmaintanence.UserGroupView"></item>
+      <item uid="roles" text="角色" iconCls="" funcClass="systemmaintanence.RolesView"></item>
+      <item uid="preview" text="预览视图" iconCls="" funcClass="systemmaintanence.PreviewView"></item>
+    </model>
+    <model uid="device-maintenance" text="监测点维护" iconCls="" funcClass="">
+      <item uid="device-account" text="设备台帐" iconCls="" funcClass="systemmaintanence.devicemaintenance.deviceaccount.DeviceAccountView"></item>      
+    </model>
+    <model uid="system-diagnosis" text="系统诊断" iconCls="" funcClass="systemmaintanence.systemdiagnosis.SystemDiagnosisView">
+    </model>
+    <model uid="database-status" text="数据库维护" iconCls="" funcClass="systemmaintanence.databasestatus.DatabaseStatusView">
+    </model>
+    <model uid="dateandtime-formats" text="日期和时间格式化" iconCls="" funcClass="systemmaintanence.dateandtimeformats.DateAndTimeFormatsView">
+    </model>
+    <model uid="units-setting" text="单位设置" iconCls="" funcClass="systemmaintanence.unitssetting.UnitsSettingView">
+    </model>
+    <model uid="sound-setting" text="报警声音设置" iconCls="" funcClass="systemmaintanence.soundsetting.SoundSettingView">
+    </model>
+    <model uid="system-configuration" text="系统设置" iconCls="" funcClass="systemmaintanence.systemconfiguration.SystemConfigurationView">
+    </model>
+  </label>
+</funconfig>
+
+

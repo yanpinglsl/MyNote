@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2894E035-B80E-4C92-BB11-B0689B140EE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OfficeReportInterface</RootNamespace>
+    <AssemblyName>OfficeReportInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BasicDataInterface">
+      <HintPath>..\dll\BasicDataInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharpDBPlugin">
+      <HintPath>..\dll\CSharpDBPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="DBInterfaceCommonLib">
+      <HintPath>..\dll\DBInterfaceCommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DBInterfaceModels">
+      <HintPath>..\dll\DBInterfaceModels.dll</HintPath>
+    </Reference>
+    <Reference Include="EMSCommonLib">
+      <HintPath>..\dll\EMSCommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EMSDBInterface">
+      <HintPath>..\dll\EMSDBInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Enums.NET, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ea1c1650d506225, processorArchitecture=MSIL">
+      <HintPath>..\packages\Enums.NET.4.0.0\lib\net45\Enums.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="HttpInterfaceCommLib">
+      <HintPath>..\dll\HttpInterfaceCommLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.Signed.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.2.2.0\lib\net462\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.6.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.6.0\lib\net472\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PecReportCacheManager">
+      <HintPath>..\dll\PecReportCacheManager.dll</HintPath>
+    </Reference>
+    <Reference Include="PecsNodeManager">
+      <HintPath>..\dll\PecsNodeManager.dll</HintPath>
+    </Reference>
+    <Reference Include="PecsReportPluginInterface">
+      <HintPath>..\dll\PecsReportPluginInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="PecsReportQueryManager">
+      <HintPath>..\dll\PecsReportQueryManager.dll</HintPath>
+    </Reference>
+    <Reference Include="PostgreSQLDBConnectionManagerPlugin">
+      <HintPath>..\dll\PostgreSQLDBConnectionManagerPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.8.0.0\lib\net472\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.8.0.0\lib\net472\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.8.0.0\lib\net472\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=6.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.8.0.0\lib\net472\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="SixLabors.ImageSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
+      <HintPath>..\packages\SixLabors.ImageSharp.2.1.3\lib\net472\SixLabors.ImageSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLDBConnectionManagerPlugin">
+      <HintPath>..\dll\SQLDBConnectionManagerPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllDataTypeNameManager.cs" />
+    <Compile Include="CommandInteraction.cs" />
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="DatabaseStatus.cs" />
+    <Compile Include="DataFormatManage.cs" />
+    <Compile Include="DataIDNameTypeDef.cs" />
+    <Compile Include="DataSourceLabelForQueryConditionChecker.cs" />
+    <Compile Include="DataTypeNameDef.cs" />
+    <Compile Include="DbgTrace.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsedForReport.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\DataManager.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\DateTimeFormatManager.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\DayOfWeekManager.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\SeriesNameManager.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\WarningInforManager.cs" />
+    <Compile Include="DefaultReportInterface\CommonluUsed\WarningKind.cs" />
+    <Compile Include="DefaultReportInterface\CommonlyUsedForQueryCondition.cs" />
+    <Compile Include="DefaultReportInterface\CommonlyUsedFunctions.cs" />
+    <Compile Include="DefaultReportInterface\CommonlyUsedString.cs" />
+    <Compile Include="DefaultReportInterface\DateTimeListForEnergyPeriod.cs" />
+    <Compile Include="DefaultReportInterface\DefaultReportParameter.cs" />
+    <Compile Include="DefaultReportInterface\DefaultReportStartTimeAndEndTime.cs" />
+    <Compile Include="DefaultReportInterface\DefaultTemplatePublicMethod.cs" />
+    <Compile Include="DefaultReportInterface\DeviceWithLogicalDeviceIndex.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\DataAcquisitionDatalog.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\DataIdChooser.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\DateTimePair.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\DayProfileStruct.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\DeviceWithLoop.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnergyCalenderView.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnergyCostChartDataManager.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnergyKindWithTariff.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumKvaDemand.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumKvah.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumKvarDemand.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumKvarh.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumKwDemand.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\EnumkWh.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\NewTOUCompute.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\NewTOUProfile.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\ParaNameManager.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\ParaTypes.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\SourceIDAndParaIndex.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TariffPeriodTime.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TimePair.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TOUComputer.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TOURateParser.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TOUTariffNode.cs" />
+    <Compile Include="DefaultReportInterface\EnergyCost\TOUTariffNodeType.cs" />
+    <Compile Include="DefaultReportInterface\EnergyPeriodDataManager.cs" />
+    <Compile Include="DefaultReportInterface\Event\EventDataQueryManager.cs.cs" />
+    <Compile Include="DefaultReportInterface\HistoryDataQueryManager.cs" />
+    <Compile Include="DefaultReportInterface\HourlyUsage\HourlyUsageChartDataManager.cs" />
+    <Compile Include="DefaultReportInterface\IDataSheet.cs" />
+    <Compile Include="DefaultReportInterface\IntelligentSafety\SafetyDataManager.cs" />
+    <Compile Include="DefaultReportInterface\LoadProfileManager.cs" />
+    <Compile Include="DefaultReportInterface\Measurement.cs" />
+    <Compile Include="DefaultReportInterface\MultiDeviceUsageDataManager.cs" />
+    <Compile Include="DefaultReportInterface\NamesManager.cs" />
+    <Compile Include="DefaultReportInterface\PointsNode.cs" />
+    <Compile Include="DefaultReportInterface\PointsNodeManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityDataManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\ConfigFileManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\EMSWebServiceManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\EMSWebServiceProvider.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\EMSWebStructDefine.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\EndTimeManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\EventLogManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\HistoryDataLogBasic.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\HistoryDataLogManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\OriginalDataManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\PowerQualityEventsOnlyManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\PowerQualityInterfaceManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\RMSAnalysisManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\SystemNodeManager.cs" />
+    <Compile Include="DefaultReportInterface\PowerQualityEventsOnly\UnitConfigManager.cs" />
+    <Compile Include="DefaultReportInterface\SingleDeviceUsageDataManager.cs" />
+    <Compile Include="DefaultReportInterface\TabularData.cs" />
+    <Compile Include="DefaultReportInterface\Tabular\TabularChartDataManager.cs" />
+    <Compile Include="DefaultReportInterface\TOUReportDataManager.cs" />
+    <Compile Include="DefaultReportInterface\TrendChartDataManager.cs" />
+    <Compile Include="DefaultReportInterface\WaveDataDecodeManager.cs" />
+    <Compile Include="DefineOfLabelAndResult.cs" />
+    <Compile Include="DownloadManager.cs" />
+    <Compile Include="DynamicFormula.cs" />
+    <Compile Include="ErrorInfoManager.cs" />
+    <Compile Include="ExcelFileOperate.cs" />
+    <Compile Include="FlexibleReportPro.cs" />
+    <Compile Include="InitalQueryManange.cs" />
+    <Compile Include="LabelExamine.cs" />
+    <Compile Include="LocalResourceManager.cs" />
+    <Compile Include="PeriodReportPro.cs" />
+    <Compile Include="PlanManager\SaveStyleForPlan.cs" />
+    <Compile Include="ProcessExcelTempFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicFunction.cs" />
+    <Compile Include="QueryCondition\IConditionInformation.cs" />
+    <Compile Include="QueryCondition\IsQueryConditionType.cs" />
+    <Compile Include="QueryCondition\PreProcessExcelTempFile.cs" />
+    <Compile Include="QueryCondition\SingleDeviceTimePeriodManager.cs" />
+    <Compile Include="QueryFileType.cs" />
+    <Compile Include="ReadingIniFile\ElementManager.cs" />
+    <Compile Include="ReadingIniFile\INIFile.cs" />
+    <Compile Include="RedisWrap.cs" />
+    <Compile Include="ReportFile.cs" />
+    <Compile Include="ReportFileManager.cs" />
+    <Compile Include="ReportWebServiceManager.cs" />
+    <Compile Include="ReportWebStoreDefinition.cs" />
+    <Compile Include="RepSerDataOperation.cs" />
+    <Compile Include="Synchronic.cs" />
+    <Compile Include="SysConstDef.cs" />
+    <Compile Include="SysConstDefinition.cs" />
+    <Compile Include="TagForTreeGirdViewNodes.cs" />
+    <Compile Include="TotalCacheInformation.cs" />
+    <Compile Include="UpdateManager.cs" />
+    <Compile Include="VersionsManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="QueryingPoints\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
