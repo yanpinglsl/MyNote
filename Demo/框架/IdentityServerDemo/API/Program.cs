@@ -20,8 +20,8 @@ namespace API
             builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "http://localhost:5000";//配置IdentityServer的授权地址
-                    options.RequireHttpsMetadata = false;//不需要https
+                    options.Authority = "https://localhost:5001";//配置IdentityServer的授权地址
+                    options.RequireHttpsMetadata = true;//不需要https
                     options.Audience = "group1";//api的name,需要与config的名称相同
                 });
             //需引入Swashbuckle.AspNetCore包

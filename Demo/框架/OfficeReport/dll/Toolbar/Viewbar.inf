@@ -1,9 +1,0 @@
-[ToolBar]
-Number=6
-1=PecReport/报表制作与查看
-2=PecDraw/图形编辑
-3=PecEvent/历史事件分析
-4=PecWave/瞬时波形分析
-5=PecTrend/趋势曲线分析
-6=DatabaseManager/数据库维护
-

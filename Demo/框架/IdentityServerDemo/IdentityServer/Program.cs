@@ -63,7 +63,7 @@ namespace IdentityServer
 
             app.UseRouting();
             app.UseCookiePolicy();
-            app.UseAuthentication();
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

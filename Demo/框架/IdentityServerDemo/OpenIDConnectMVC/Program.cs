@@ -32,34 +32,34 @@ namespace OpenIDConnectMVC
                     #region OpenIdConnect简化流程
                     //远程认证地址
                     //与 RequireHttpsMetadata属性要同步
-                    options.Authority = "http://localhost:5000";
+                    options.Authority = "https://localhost:5001";
                     //Https强制要求标识
-                    options.RequireHttpsMetadata = false;
+                    options.RequireHttpsMetadata = true;
 
                     //客户端ID
                     options.ClientId = "mvc";    //客户端ID
                     options.ClientSecret = "secret"; //客户端秘钥                                                 
-                    options.ResponseType = OpenIdConnectResponseType.Code;    //授权码模式
+                    options.ResponseType = OpenIdConnectResponseType.IdTokenToken;
                     //options.ResponseMode = OpenIdConnectResponseMode.Query;
                     options.SaveTokens = true;
                     #endregion
 
                     #region 混合模式
-                    //options.SignInScheme = "Cookies";
+                    options.SignInScheme = "Cookies";
 
-                    //options.Authority = "http://localhost:5000";
-                    //options.RequireHttpsMetadata = false;
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = true;
 
-                    //options.ClientId = "hybrid";
-                    //options.ClientSecret = "secret";
-                    //options.ResponseType = "code";
+                    options.ClientId = "hybrid";
+                    options.ClientSecret = "secret";
+                    options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
 
-                    //options.SaveTokens = true;
-                    //options.GetClaimsFromUserInfoEndpoint = true;
+                    options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
 
-                    //options.Scope.Add("group1");
-                    //options.Scope.Add("offline_access");
-                    //options.ClaimActions.MapJsonKey("website", "website");
+                    options.Scope.Add("group1");
+                    options.Scope.Add("offline_access");
+                    options.ClaimActions.MapJsonKey("website", "website");
                     #endregion
                 });
             // 配置cookie策略
@@ -79,7 +79,7 @@ namespace OpenIDConnectMVC
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseAuthentication();

@@ -16,29 +16,29 @@ namespace Client
                 return;
             }
             #region 客户端模式授权
-            Console.WriteLine("=============================客户端模式授权=============================");
-            // request token
-            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-                ClientId = "client",
-                ClientSecret = "secret",
-                Scope = "group1"
-            });
+            //Console.WriteLine("=============================客户端模式授权=============================");
+            //// request token
+            //var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            //{
+            //    Address = disco.TokenEndpoint,
+            //    ClientId = "client",
+            //    ClientSecret = "secret",
+            //    Scope = "group1"
+            //});
 
-            if (tokenResponse.IsError)
-            {
-                Console.WriteLine(tokenResponse.Error);
-                return;
-            }
+            //if (tokenResponse.IsError)
+            //{
+            //    Console.WriteLine(tokenResponse.Error);
+            //    return;
+            //}
 
-            Console.WriteLine(tokenResponse.Json);
+            //Console.WriteLine(tokenResponse.Json);
             #endregion
 
             #region 资源所有者密码授权模式
             Console.WriteLine("=============================资源所有者密码授权模式=============================");
             // request token
-            tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
+           var tokenResponse = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
             {
                 Address = disco.TokenEndpoint,
                 ClientId = "ro.client",
@@ -56,6 +56,9 @@ namespace Client
             }
             Console.WriteLine(tokenResponse.Json);
             #endregion
+
+
+
 
             // call api
             client.SetBearerToken(tokenResponse.AccessToken);

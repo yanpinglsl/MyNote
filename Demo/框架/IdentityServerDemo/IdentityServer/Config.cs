@@ -93,25 +93,27 @@ namespace IdentityServer
                 #endregion
                 
                 #region OpenID Connect
-                new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                //new Client
+                //{
+                //    ClientId = "mvc",
+                //    ClientName = "MVC Client",
+                //    AllowedGrantTypes = GrantTypes.Implicit,
 
-                    // 登录后跳转的页面
-                    RedirectUris = { "http://localhost:9000/signin-oidc" },
+                //    // 登录后跳转的页面
+                //    RedirectUris = { "https://localhost:4001/signin-oidc" },
                     
-                    // 登出后跳转的页面
-                    PostLogoutRedirectUris = { "http://localhost:9000/signout-callback-oidc" },
+                //    // 登出后跳转的页面
+                //    PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
 
-                    AllowedScopes = new List<string>
-                        {
-                            IdentityServerConstants.StandardScopes.OpenId,
-                            IdentityServerConstants.StandardScopes.Profile
-                        },
-                    RequireConsent = false//禁用 consent 页面确认
-                },
+                //    AllowedScopes = new List<string>
+                //        {
+                //            IdentityServerConstants.StandardScopes.OpenId,
+                //            IdentityServerConstants.StandardScopes.Profile
+                //        },
+                //    AllowAccessTokensViaBrowser = true,
+                //    // 是否需要同意授权 （默认是false）
+                //    RequireConsent = true
+                //},
                 #endregion
 
                 #region 混合模式
@@ -125,8 +127,8 @@ namespace IdentityServer
                         new Secret("secret".Sha256())
                     },
 
-                    RedirectUris           = { "http://localhost:9000/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:9000/signout-callback-oidc" },
+                    RedirectUris           = { "https://localhost:4001/signin-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
 
                     AllowedScopes =
                     {
@@ -135,12 +137,14 @@ namespace IdentityServer
                         "group1"
                     },
                     //AllowOfflineAccess = true 
-                    RequireConsent = false//禁用 consent 页面确认
+                    //允许将token通过浏览器传递
+                    AllowAccessTokensViaBrowser=true,
+                    // 是否需要同意授权 （默认是false）
+                    RequireConsent = true
                 }
             #endregion
         };
         }
-        #region 资源所有者密码授权模式
         public static List<TestUser> GetUsers()
         {
             return new List<TestUser>
@@ -171,7 +175,6 @@ namespace IdentityServer
                     }
                 };
         }
-        #endregion
     }
 
 }
