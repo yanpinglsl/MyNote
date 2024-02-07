@@ -15,7 +15,7 @@ LinearGradientBrush其实很简单，我们只需要关注5个属性，使用这
 
 渐变画刷的终点，默认规定终点坐标是(1,1)。
 
-注：这个1是指整个长度的100%的位置，而不是坐标为1。即0.5指的是影响一半的长度。![image-20240205100539433](images/LinearGradientBrush/image-20240205100539433.png)
+注：这个1是指整个长度的100%的位置，而不是坐标为1。即0.5指的是影响一半的长度。![image-20240205100539433](images/image-20240205100539433.png)
 
 #### MappingMode
 
@@ -62,7 +62,7 @@ Color ：颜色，该坐标的颜色。
 
 
 
-![image-20240205101453858](images/LinearGradientBrush/image-20240205101453858.png)
+![image-20240205101453858](images/image-20240205101453858.png)
 
 2、设置SpreadMethod属性为Reflect或者Repeat时，可以实现重复填充。
 
@@ -78,7 +78,7 @@ Color ：颜色，该坐标的颜色。
     </Grid>
 ```
 
-![image-20240205102117031](images/LinearGradientBrush/image-20240205102117031.png)
+![image-20240205102117031](images/image-20240205102117031.png)
 
 3、如果两个GradientStop之间颜色相同，那就不会发生渐变，这样就可以做出多条重复实线的画刷。
 
@@ -98,4 +98,4 @@ Color ：颜色，该坐标的颜色。
     </Grid>
 ```
 
-![image-20240205102608659](images/LinearGradientBrush/image-20240205102608659.png)
+![image-20240205102608659](images/image-20240205102608659.png)

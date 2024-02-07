@@ -6,7 +6,7 @@
 
 Sharp是一种UIElement，你可以在屏幕上绘制形状
 
-![image-20240205091439761](images/Shape与Geometry详解/image-20240205091439761.png)
+![image-20240205091439761](images/image-20240205091439761.png)
 
 由上可知：可用的形状对象包括 Ellipse、Line、Path、Polygon、Polyline 和 Rectangle 都是派生自Shape，另外Shape 对象共享以下公共的属性：
 
@@ -20,7 +20,7 @@ Sharp是一种UIElement，你可以在屏幕上绘制形状
 
 下面案例则是通过Canvas 和Shape创建的复杂图形：
 
-![image-20240205093350995](images/Shape与Geometry详解/image-20240205093350995.png)
+![image-20240205093350995](images/image-20240205093350995.png)
 
 ```xaml
     <Canvas Height="30" Width="200"  Margin="0,10,0,0">
@@ -66,11 +66,11 @@ Sharp是一种UIElement，你可以在屏幕上绘制形状
     </StackPanel>
 ```
 
-![image-20240205095400170](images/Shape与Geometry详解/image-20240205095400170.png)
+![image-20240205095400170](images/image-20240205095400170.png)
 
 > 关于图片
 >
-> 图片必须设置为资源：![image-20240205095936080](images/Shape与Geometry详解/image-20240205095936080.png)
+> 图片必须设置为资源：![image-20240205095936080](images/image-20240205095936080.png)
 >
 > 设置文件路径的方式：
 >
@@ -110,7 +110,7 @@ Sharp是一种UIElement，你可以在屏幕上绘制形状
     </StackPanel>
 ```
 
-![image-20240205133913682](images/Shape与Geometry详解/image-20240205133913682.png)
+![image-20240205133913682](images/image-20240205133913682.png)
 
 ## Line
 
@@ -141,7 +141,7 @@ Sharp是一种UIElement，你可以在屏幕上绘制形状
     </StackPanel>
 ```
 
-![image-20240205135048793](images/Shape与Geometry详解/image-20240205135048793.png)
+![image-20240205135048793](images/image-20240205135048793.png)
 
 ## 
 
@@ -185,7 +185,7 @@ Polygon 元素用于绘制闭合形状，同样和Polyline一样使用其 Points
     </Grid>
 ```
 
-![image-20240205140503273](images/Shape与Geometry详解/image-20240205140503273.png)
+![image-20240205140503273](images/image-20240205140503273.png)
 
 # Geometry（几何图形）
 
@@ -255,6 +255,6 @@ Geometry 类继承自 Freezable 类，而 Shape 类继承自 FrameworkElement。
     </Grid>
 ```
 
-![image-20240205143308904](images/Shape与Geometry详解/image-20240205143308904.png)
+![image-20240205143308904](images/image-20240205143308904.png)
 
 > 补充：可以通过设置 RadiusX 和 RadiusY 属性来调整EllipseGeometry 矩形的圆角大小，设置为大于零的值。 值越大，EllipseGeometry 矩形的角越圆。

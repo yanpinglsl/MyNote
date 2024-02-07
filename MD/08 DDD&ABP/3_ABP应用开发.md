@@ -19,7 +19,7 @@ abp new ProductManagement -t app
 # 1 定义领域对象
 
 该应用的领域很简单，有**Product**和**Category**两个实体以及一个**ProductStockState**枚举，如图所示：
-![image-20231220101754771](image/image-20231220101754771.png)
+![image-20231220101754771](images/image-20231220101754771.png)
 实体在解决方案的领域层中定义，它分为两个项目：
 
 - **.Domain**用于定义您的实体、值对象、领域服务、存储库接口和其他与领域相关的核心类。
@@ -106,7 +106,7 @@ namespace ProductManagement.Products
 
 解决方案中的新文件如图所示：
 
-![image-20231220102030235](image/image-20231220102030235.png)
+![image-20231220102030235](images/image-20231220102030235.png)
 
  
 
@@ -145,7 +145,7 @@ namespace ProductManagement.Products
 
 该`MaxNameLength`值将用于约束`Product`的`Name`属性。
 
-![image-20231220102044241](image/image-20231220102044241.png)
+![image-20231220102044241](images/image-20231220102044241.png)
 现在，领域层已经完成定义，接下来将为 EF Core 配置数据库映射。
 
 # 2 EF Core和数据库映射
@@ -236,7 +236,7 @@ b.HasIndex(x => x.Name).IsUnique();
 1 ）使用 Visual Studio
 
 如果你正在使用Visual Studio，请打开视图|包管理器控制台菜单：
-![image-20231220102102992](image/image-20231220102102992.png)
+![image-20231220102102992](images/image-20231220102102992.png)
 
 > 选择.EntityFrameworkCore项目作为默认项目，并右键设置.Web项目作为启动项目
 
@@ -594,7 +594,7 @@ public async Task Should_Get_Product_List()
 
 该方法调用该`GetListAsync`方法并检查结果是否正确。如果您打开**测试资源管理器**窗口（在 Visual Studio 中的**查看**|**测试资源管理器**菜单下），您可以看到我们添加的测试方法。**测试资源管理器**用于显示和运行解决方案中的测试：
 
-![image-20231220103956437](image/image-20231220103956437.png)
+![image-20231220103956437](images/image-20231220103956437.png)
 运行测试到检查它是否按预期工作。如果方法正常工作，将在测试方法名称的左侧看到一个绿色图标。
 
 # 5 自动 API 控制器和 Swagger UI
@@ -602,10 +602,10 @@ public async Task Should_Get_Product_List()
 **Swagger**一款服务于开发和测试HTTP API 的的流行工具。它启动模板中已经预先装了。
 
 设置.Web项目为启动项目，然后*按 Ctrl*+*F5*运行该项目，启动后，输入`/swagger` URL，如图所示：
-![image-20231220104016985](image/image-20231220104016985.png)
+![image-20231220104016985](images/image-20231220104016985.png)
 
 你会看到内置的很多 API。如果向下滚动，也会看到一个**Product**接口。您可以对其进行测试以获取产品列表：
-![image-20231220104035436](image/image-20231220104035436.png)
+![image-20231220104035436](images/image-20231220104035436.png)
 
 > 我们没有创建*ProductController*接口。这个接口是如何出现的？
 
@@ -629,7 +629,7 @@ productManagement.products.product.getList({}).then(function(result) {
 
 执行此代码后，将向服务器发出请求，并将返回结果记录在**Console**选项卡中，如图所示：
 
-![image-20231220104050947](image/image-20231220104050947.png)
+![image-20231220104050947](images/image-20231220104050947.png)
 
 我们可以看到返回的产品列表数据显示在**控制台**选项卡中。这意味着我们可以轻松地运用 JavaScript 调用服务器端 API，而无需处理低级细节。
 
@@ -642,7 +642,7 @@ productManagement.products.product.getList({}).then(function(result) {
 推荐使用 Razor Pages在 ASP.NET Core MVC 框架中创建 UI。
 
 首先，在ProductManagement.Web项目的*Pages*文件夹下创建一个*Products文件夹。然后，右键单击Products*文件夹，然后选择**Add**|**Razor Page**。选择**Razor 页面 - 空**选项，命名为`Index.cshtml`。下图显示了我们添加的页面的位置：
-![image-20231220104107095](image/image-20231220104107095.png)
+![image-20231220104107095](images/image-20231220104107095.png)
 
 编辑内容，`Index.cshtml`如下代码块所示：
 
@@ -688,7 +688,7 @@ context.Menu.AddItem(
 
 我们可以使用任意字符串值作为本地化键。在本例中，我们使用`Menu:`作为菜单的本地化键的前缀，例如`Menu:Products` 。我们将在[*第 8 章*] *使用 ABP 的功能和服务*中探讨本地化主题。
 
-现在，重新运行，使用新的*产品管理*菜单打开*产品*页面，如图所示：![img](image/image-20231220104129992.png)
+现在，重新运行，使用新的*产品管理*菜单打开*产品*页面，如图所示：![img](images/image-20231220104129992.png)
 
 **2）创建产品数据表**
 
@@ -798,7 +798,7 @@ ABP 简化了数据表配置并提供了内置集成：
 "CreationTime": "Creation time"
 ```
 
-看一下实际的产品数据表：![image-20231220104223781](image/image-20231220104223781.png)
+看一下实际的产品数据表：![image-20231220104223781](images/image-20231220104223781.png)
 
 至此，我们创建了一个完整的工作页面，列出了支持分页和排序的产品。在接下来的部分中，我们将添加创建、编辑和删除产品的功能。
 
@@ -1072,7 +1072,7 @@ $('#NewProductButton').click(function (e) {
 "ReleaseDate": "Release Date"
 ```
 
-再次运行 Web 尝试创建新产品![image-20231220104322235](image/image-20231220104322235.png)
+再次运行 Web 尝试创建新产品![image-20231220104322235](images/image-20231220104322235.png)
 
 ABP基于 C# 类模型自动创建表单字段。本地化和验证也可以通过读取属性和使用约定来自动工作。我们将在[*第 12 章*] *使用 MVC/Razor 页面* 中更详细地介绍验证和本地化主题。
 
@@ -1263,7 +1263,7 @@ editModal.onResult(function () {
 });
 ```
 
-在保存产品编辑对话框后刷新数据表，确保我们可以看到表上的最新数据。最终的 UI 类似于下图：![image-20231220104337668](image/image-20231220104337668.png)
+在保存产品编辑对话框后刷新数据表，确保我们可以看到表上的最新数据。最终的 UI 类似于下图：![image-20231220104337668](images/image-20231220104337668.png)
 
 我们现在可以查看、创建和编辑产品了。最后一部分将实现删除产品。
 
@@ -1316,9 +1316,9 @@ public async Task DeleteAsync(Guid id)
 
 
 
-再次访问 web 查看结果：![image-20231220104410150](image/image-20231220104410150.png)
+再次访问 web 查看结果：![image-20231220104410150](images/image-20231220104410150.png)
 
-因为现在有两个操作按钮，所以**编辑**按钮会自动变成一个下拉选项。当您单击**删除**操作时，您会收到一条确认消息：![image-20231220104434142](image/image-20231220104434142.png)
+因为现在有两个操作按钮，所以**编辑**按钮会自动变成一个下拉选项。当您单击**删除**操作时，您会收到一条确认消息：![image-20231220104434142](images/image-20231220104434142.png)
 
 如果你点击在**是**按钮上，您将在页面上看到一条通知，并且数据表将被刷新。
 
