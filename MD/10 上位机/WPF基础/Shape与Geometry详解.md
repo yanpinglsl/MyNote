@@ -72,12 +72,25 @@ Sharp是一种UIElement，你可以在屏幕上绘制形状
 >
 > 图片必须设置为资源：![image-20240205095936080](images/Shape与Geometry详解/image-20240205095936080.png)
 >
-> 以下是三种设置文件路径的方式
+> 设置文件路径的方式：
+>
+> 相对路径或者统一资源标识Uri
+>
+> 统一资源标识Uri
+>
+> WPF引入了统一资源标识Uri(Unified Resource Identifier)来标识和访问资源。其中较为常见的情况是用Uri加载图像。Uri表达式的一般形式为：协议+授权+路径，协议：pack://，授权：有两种。
+> 一种用于访问编译时已经知道的文件，用application:///
+> 一种用于访问编译时不知道、运行时才知道的文件，用siteoforigin:///
+> 一般用逗号代替斜杠，也就是改写作application:,和pack:,
+> 路径：分为绝对路径和相对路径。一般选用相对路径，普适性更强
+>
+> 以下是三种设置文件路径的方式：
 >
 > ```xaml
->             <!--<ImageBrush ImageSource="pack://application:,,,/QQ.jpg" Stretch="Fill"/>-->
->             <!--<ImageBrush ImageSource="/WpfApp2;component/QQ.jpg" Stretch="Fill"/>-->
->             <ImageBrush ImageSource="QQ.jpg" Stretch="Fill"/>
+> 
+> 		<!--<ImageBrush ImageSource="pack://application:,,,/QQ.jpg" Stretch="Fill"/>-->
+>          <!--<ImageBrush ImageSource="/WpfApp2;component/QQ.jpg" Stretch="Fill"/>-->
+>          <ImageBrush ImageSource="QQ.jpg" Stretch="Fill"/>
 > ```
 >
 > 

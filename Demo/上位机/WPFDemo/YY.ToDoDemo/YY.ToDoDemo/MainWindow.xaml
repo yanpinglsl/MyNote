@@ -1,0 +1,28 @@
+﻿<Window x:Class="YY.ToDoDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YY.ToDoDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600" 
+        Width="900"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White">
+            <UniformGrid>
+                <TextBlock Text="ToDo"/>
+                <Image Source="Assets/images/QQ.jpg" Width="50" Height="50"/>
+            </UniformGrid>
+        </Border>
+        <Border Grid.Column="1" Background="#218868">            
+        </Border>
+    </Grid>
+</Window>
