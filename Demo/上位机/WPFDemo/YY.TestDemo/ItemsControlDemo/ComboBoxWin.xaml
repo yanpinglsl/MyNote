@@ -1,0 +1,43 @@
+﻿<Window x:Class="ItemsControlDemo.ComboBoxWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemsControlDemo"
+        mc:Ignorable="d"
+        Title="ComboBoxWin" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <ComboBox x:Name="cbxTel" IsEditable="True"  Height="30" Margin="20,10" 
+                      TextBoxBase.TextChanged="cbxTel_TextChanged"/>
+            <ComboBox x:Name="cbxStu" StaysOpenOnEdit="True" VerticalAlignment="Top" 
+                      SelectionChanged="cbxStu_SelectionChanged"
+                      Height="30" Margin="20,10" DisplayMemberPath="Name">
+            </ComboBox>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="电话:"/>
+                <TextBlock x:Name="txtTel"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="姓名:"/>
+                <TextBlock x:Name="txtName"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="年龄:"/>
+                <TextBlock x:Name="txtAge"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="地址:"/>
+                <TextBlock x:Name="txtAddr"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

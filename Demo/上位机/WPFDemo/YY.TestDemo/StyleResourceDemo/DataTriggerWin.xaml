@@ -1,0 +1,54 @@
+﻿<Window x:Class="StyleResourceDemo.DataTriggerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StyleResourceDemo"
+        mc:Ignorable="d"
+        Title="DataTriggerWin" Height="450" Width="800">
+
+    <StackPanel>
+        <CheckBox x:Name="chkRedFont" Content="红色字体"  FontSize="16" />
+        <!--AutoGenerateColumns：是否自动创建列；-->
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding Persons}" SelectionMode="Single" AutoGenerateColumns="True"  FontSize="16" >
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Name}"/>
+                <DataGridTextColumn  Binding="{Binding Age}"/>
+                <DataGridTextColumn  Binding="{Binding Money}"/>
+                <DataGridTextColumn  Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Age}" Value="19">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Age}" Value="20">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Age}" Value="21">
+                            <Setter Property="Background" Value="LightCoral"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=chkRedFont,Path=IsChecked}" Value="True">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Age}" Value="20"/>
+                                <Condition Binding="{Binding Path=Name}" Value="张三3"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Foreground" Value="Green"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+
+    </StackPanel>
+</Window>

@@ -1,0 +1,39 @@
+﻿<Window x:Class="ItemsControlDemo.ListBoxWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemsControlDemo"
+        mc:Ignorable="d"
+        Title="ListBoxWin" Height="450" Width="800">
+    <!--<StackPanel>
+        <ListBox x:Name="listPerson" SelectionMode ="Single" DisplayMemberPath="Name" SelectedValuePath="Age"/>
+        <Button x:Name="btnShow" Content="查看结果" Click="btnShow_Click"/>
+        <TextBox x:Name="txtContent" Background="LightBlue"/>
+    </StackPanel>-->
+    <StackPanel>
+        <ListBox  x:Name="lisBox">
+            <ListBoxItem>
+                <Button Content="这是一个按钮"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Border Height="20" Background="Red"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <Label Content="这是一个字符串"/>
+            </ListBoxItem>
+            <ListBoxItem>
+                <ProgressBar Maximum="100" Width="400" Value="50" Height="20"/>
+            </ListBoxItem>
+            <ListBoxItem>这里直接写字符串</ListBoxItem>
+            <ListBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="复选框"/>
+                    <RadioButton Content="单选框"/>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+        <Button x:Name="btnShowAll" Content="查看结果" Click="btnShowAll_Click"/>
+        <TextBox x:Name="txtContent" Background="LightBlue"/>
+    </StackPanel>
+</Window>

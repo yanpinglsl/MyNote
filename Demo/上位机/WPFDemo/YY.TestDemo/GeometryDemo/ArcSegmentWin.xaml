@@ -1,0 +1,113 @@
+﻿<Window x:Class="GeometryDemo.ArcSegmentWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeometryDemo"
+        mc:Ignorable="d"
+        Title="ArcSegmentWin" Height="450" Width="800">
+    <!--绘制椭圆-->
+    <!--<StackPanel>
+        <Path Stroke="Green" StrokeThickness="5">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="100,200">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="200,200" Size="30,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                            <ArcSegment Point="100,200" Size="30,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+    </StackPanel>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Path Stroke="Green" StrokeThickness="5">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="150,20" Size="30,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Column="1">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="150,20" Size="30,60" IsLargeArc="True" RotationAngle="30"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Column="2">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="150,20" Size="30,60" IsLargeArc="True" RotationAngle="60"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Row="1">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="100,10" Size="50,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Row="1" Grid.Column="1">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="100,10" Size="50,60" IsLargeArc="False" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Row="2">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,20">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="100,10" Size="50,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Counterclockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" StrokeThickness="5" Grid.Row="2" Grid.Column="1">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="40,120">
+                        <PathFigure.Segments>
+                            <ArcSegment Point="100,110" Size="50,60" IsLargeArc="True" RotationAngle="0"  SweepDirection="Clockwise"/>
+                        </PathFigure.Segments>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+    </Grid>
+</Window>

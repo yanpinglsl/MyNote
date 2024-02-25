@@ -1,0 +1,41 @@
+﻿<Window x:Class="DataBindingWin.BindingTypeWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBindingWin"
+        mc:Ignorable="d"
+        Title="BindingTypeWin" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="solidColorBrush" Color="Red"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="第一种数据源，也就是ViewModel中的Model"/>
+            <TextBlock Text="{Binding Person.Name}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="第二种数据源，指明某个具体的数据源对象及对象的属性"/>
+            <TextBlock Text="{Binding Source={StaticResource solidColorBrush}, Path=Color}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="第三种数据源，利用ElementName属性指明另一个控件作为数据源"/>
+            <Slider x:Name="scrollBar" Orientation="Horizontal" Minimum="0" Maximum="100" Value="22" />
+            <TextBlock Text="{Binding ElementName=scrollBar,Path=Value}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="第四种数据源，利用RelativeSource属性绑定一个相对的数据源"/>
+            <Button x:Name="btnClick" Content="我是按钮"/>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=Self},Path=Background}" Background="Yellow"/>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=StackPanel},Path=VerticalAlignment}"/>
+        </StackPanel>
+    </Grid>
+</Window>

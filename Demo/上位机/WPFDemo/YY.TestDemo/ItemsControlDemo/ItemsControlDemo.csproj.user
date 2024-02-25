@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="ComboBoxWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ContentMenuWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DataGridWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ItemsControlWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ListBoxWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ListViewWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MenuWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MenuWin2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StatusBarWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TabControlWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TreeViewWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ComboBoxWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ContentMenuWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DataGridWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ItemsControlWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ListBoxWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ListViewWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MenuWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MenuWin2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StatusBarWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TabControlWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TreeViewWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

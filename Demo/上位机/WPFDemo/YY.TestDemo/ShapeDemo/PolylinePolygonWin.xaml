@@ -1,0 +1,31 @@
+﻿<Window x:Class="ShapeDemo.PolylinePolygonWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShapeDemo"
+        mc:Ignorable="d"
+        Title="PolylinePolygonWin" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label FontSize="20" Content="PolyLine"/>
+            <Polyline Margin="10" Points="0,0 50,50 200,100" Fill="Red" Stroke="Green" StrokeThickness="5"/>
+            <Polyline Margin="10" Points="0,0 50,50 200,100 0,0" Fill="Red" Stroke="Green" StrokeThickness="5"/>
+            <Polyline Margin="10" Points="0,0 50,50 150,50 200,0 0,0" Fill="Red" Stroke="Green" StrokeThickness="5"/>
+            <Polyline Margin="10" Points="0,0 150,0 150,80 0,80 0,0" Fill="LightBlue" Stroke="Yellow" StrokeThickness="5"
+                  StrokeDashCap="Round" StrokeDashArray="5"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label FontSize="20" Content="Polygon"/>
+            <Polygon Margin="10" Points="0,0 50,50 200,100" Fill="Purple" Stroke="Blue" StrokeThickness="5"/>
+            <Polygon Margin="10" Points="0,0 50,50 200,100" Fill="Purple" Stroke="Blue" StrokeThickness="5"/>
+            <Polygon Margin="10" Points="0,0 50,50 150,50 200,0" Fill="Purple" Stroke="Blue" StrokeThickness="5"/>
+            <Polygon Margin="10" Points="0,0 150,0 150,80 0,80" Fill="LightBlue" Stroke="Yellow" StrokeThickness="5"
+                  StrokeDashCap="Round" StrokeDashArray="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

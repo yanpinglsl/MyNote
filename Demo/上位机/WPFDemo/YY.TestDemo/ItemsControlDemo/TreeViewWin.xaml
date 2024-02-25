@@ -1,0 +1,21 @@
+﻿<Window x:Class="ItemsControlDemo.TreeViewWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemsControlDemo"
+        mc:Ignorable="d"
+        Title="TreeViewWin" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <Label Content="根目录"/>
+            <Button x:Name="btnSelect" Content="选择..." DockPanel.Dock="Right" Click="btnSelect_Click"  Margin="0,0,5,0"/>
+            <TextBlock x:Name="txtFilePath" VerticalAlignment="Center" Background="CadetBlue" Margin="0,0,5,0"/>
+        </DockPanel>
+        <TreeView x:Name="treeView" Grid.Row="1"/>
+    </Grid>
+</Window>
