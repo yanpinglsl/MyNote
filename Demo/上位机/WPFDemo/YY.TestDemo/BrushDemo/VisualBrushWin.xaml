@@ -1,0 +1,52 @@
+﻿<Window x:Class="BrushDemo.VisualBrushWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BrushDemo"
+        mc:Ignorable="d"
+        Title="VisualBrushWin" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image x:Name="image" Source="QQ.jpg" Stretch="Fill" MouseMove="image_MouseMove" MouseLeave="image_MouseLeave" MouseEnter="image_MouseEnter"/>
+            <Canvas x:Name="canvas" IsHitTestVisible="False">
+                <Ellipse x:Name="ellipse" Width="100" Height="100" StrokeThickness="2" Stroke="Red">
+                    <Ellipse.Fill>
+                        <VisualBrush x:Name="visualBrush" Visual="{Binding ElementName=image}" ViewboxUnits="Absolute"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Canvas>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBox Width="390" Height="25" Margin="5">
+                <TextBox.Resources>
+                    <VisualBrush x:Key="WaterText"
+                                 Opacity="0.7"
+                                 Stretch="None"
+                                 AlignmentX="Left">
+                        <VisualBrush.Visual>
+                            <TextBlock Text="请输入"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </TextBox.Resources>
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource WaterText}"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource WaterText}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Content="搜索世界名画"  Height="25"  Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RedisStackExchange")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b606c4b409bd41497e4434f9bf3301a2fa051b83")]
 [assembly: System.Reflection.AssemblyProductAttribute("RedisStackExchange")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RedisStackExchange")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

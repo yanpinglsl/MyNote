@@ -31,10 +31,11 @@ namespace RabbitMQ_Provider.Noraml
                     * 5.其他参数
                     */
                     channel.QueueDeclare(queue:queueName,durable: false, false, false, null);
+                    int index = 1;
                     // 没有绑定交换机，怎么找到路由队列的呢？
                     while (true)
                     {
-                        string message = "Hello RabbitMQ Message";
+                        string message = $"{index++}:Hello RabbitMQ Message";
                         var body = Encoding.UTF8.GetBytes(message);
                         // 发送消息到rabbitmq,使用rabbitmq中默认提供交换机路由,默认的路由Key和队列名称完全一致
                         /**
@@ -46,7 +47,7 @@ namespace RabbitMQ_Provider.Noraml
                         */
                         channel.BasicPublish(exchange: "", routingKey: queueName, null, body);
                         Thread.Sleep(1000);
-                        Console.WriteLine("Send Normal message");
+                        Console.WriteLine($"Send Normal message:{message}");
                     }
                    
                 }

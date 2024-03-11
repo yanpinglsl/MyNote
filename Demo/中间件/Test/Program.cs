@@ -1,18 +1,25 @@
 ﻿namespace Test
 {
-    public record class Student(string FirstName,string LastName); 
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Student s1 = new Student("si", "li");
-            Student s2 = new Student("san", "zhang");
-            Student s11 = new Student("si", "li");
-            Student s22 = s1 with { FirstName = "Wang" };
-            Console.WriteLine(s1 == s11);
-            Console.WriteLine(s1 == s2);
-            Console.WriteLine(s2 == s22);
-            Console.ReadLine();
+            Console.WriteLine("Hello, World!");
+            await AAA();
+        }
+        public static async Task AAA()
+        {
+          await  TestAsyncNoRecall();
+        }
+        public static async Task TestAsyncNoRecall()
+        {
+            Console.WriteLine("异步方法开始");
+            await Task.Run(() =>
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("异步线程执行");
+            });
+            Console.WriteLine("异步方法结束");
         }
     }
 }

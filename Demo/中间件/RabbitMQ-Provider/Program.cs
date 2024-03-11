@@ -32,7 +32,7 @@ namespace RabbitMQ_Provider
             #endregion
 
             #region 测试匹配直接队列模式
-            //DirectSend.SendMessage();
+            // DirectSend.SendMessage();
             #endregion
 
             #region 测试模糊匹配队列模式
@@ -59,7 +59,7 @@ namespace RabbitMQ_Provider
             #endregion
 
             #region 测试延迟队列
-            DelayProvider.SendMessage();
+            //DelayProvider.SendMessage();
             //DelayPluginProvider.SendMessage();
             #endregion
 

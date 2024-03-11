@@ -15,7 +15,7 @@ namespace RabbitMQ_Consumer.Exchange.Direct
             var connection = RabbitMQHelper.GetConnection();
             var channel = connection.CreateModel();
             channel.ExchangeDeclare(exchange: "direct_exchange", type: "direct");
-            var queueName = "direct_queue3";
+            var queueName = "direct_queue1";
             channel.QueueDeclare(queueName, false, false, false, null);
             channel.QueueBind(queue: queueName,
                                       exchange: "direct_exchange",

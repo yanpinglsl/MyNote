@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NkFF+88CO6n8a6QGYcQh0rgVzhhntkdCEgiQITvChknfd8TMAoq5lyCfwAu3ReYwvkx4f074FkuUaVwZ68LR3w==",
+  "dgSpecHash": "+im4YOlAQiHj3ILT+w9RmhVMnP7YVtkStn6oBmPftiWWHRGiJ6i561HSqcjzQgIAlbuk5UUrjPH/HYTHleGhyQ==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\Test\\Test.csproj",
+  "projectFilePath": "G:\\架构学习\\Demo\\中间件\\Test\\Test.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

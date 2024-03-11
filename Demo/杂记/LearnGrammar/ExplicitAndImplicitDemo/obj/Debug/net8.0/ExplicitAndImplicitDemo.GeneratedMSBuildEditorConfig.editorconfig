@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ExplicitAndImplicitDemo
-build_property.ProjectDir = G:\架构学习\Code\LearnGrammar\ExplicitAndImplicitDemo\
+build_property.ProjectDir = G:\架构学习\Demo\杂记\LearnGrammar\ExplicitAndImplicitDemo\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

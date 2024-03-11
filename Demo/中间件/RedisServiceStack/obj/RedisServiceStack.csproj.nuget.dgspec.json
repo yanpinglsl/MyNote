@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {}
+    "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {
+    "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
+        "projectUniqueName": "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
         "projectName": "RedisServiceStack",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
-        "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\obj\\",
+        "projectPath": "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

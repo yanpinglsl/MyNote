@@ -1,0 +1,55 @@
+﻿<Window x:Class="CommandBindingDemo.CommandBindingWin2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommandBindingDemo"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="CommandBindingWin2" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--WPF事件转Command命令-->
+        <!--安装Microsoft.Xaml.Behaviors.Wpf。
+        然后，我们在window窗体中引入它的命名空间。
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"-->
+        <TextBox x:Name="textBox" Margin="5" TextWrapping="Wrap">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseDown">
+                    <i:InvokeCommandAction  Command="{Binding MouseDownCommand}"
+                                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=TextBox}}">
+
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <!--Mvvmlight之RelayCommand-->
+        <Button Grid.Column ="1" Margin="5" Content="MvvmLightCommand" Command="{Binding MvvmLightCommand}" CommandParameter="Hello,MvvMLight"/>
+
+        <!--Prism之DelegateCommand-->
+        <StackPanel Grid.Row="1">
+            <Button Content="Prism无参命令" Margin="5" Command="{Binding DelegateCommand}" CommandParameter="Hello,Prism"/>
+            <Button Content="Prism有参命令" Margin="5" Command="{Binding ParamCommand}" CommandParameter="Hello,Prism"/>
+            <Button Content="Prism合并命令" Margin="5" Command="{Binding CompositeCommand}" CommandParameter="Hello,Prism"/>
+        </StackPanel>
+        <!--ReactiveUI之ReactiveCommand-->
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="ReactiveUI之ReactiveCommand课程" FontSize="28" Margin="5"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="5" Content="普通命令" Command="{Binding GeneralCommand}"/>
+                <Button Margin="5" Content="参数命令" Command="{Binding ParamterCommand}" 
+                    CommandParameter="Hello,Parameter"/>
+                <Button Margin="5" Content="子线程命令" Command="{Binding TaskCommand}"/>
+                <Button Margin="5" Content="合并命令" Command="{Binding CombineCommand}"/>
+                <Button Margin="5" Content="Observable命令" Command="{Binding ObservableCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

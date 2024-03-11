@@ -1,0 +1,28 @@
+﻿<Window x:Class="CommandDemo.CommandBindingWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommandDemo"
+        mc:Ignorable="d"
+        Title="CommandBindingWin" Height="450" Width="800">
+    <!--实例化一个RoutedUICommand 命令-->
+    <Window.Resources>
+        <RoutedUICommand x:Key="PlayCommand" Text="打开"/>
+    </Window.Resources>
+    <!--调用PlayCommand命令-->
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource PlayCommand}"
+                        CanExecute="CommandBinding_CanExecute" 
+                        Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <!--鼠标+ctrl键触发command-->
+        <MouseBinding Gesture="Control+WheelClick" Command="{StaticResource PlayCommand}"/>
+        <!--快捷键触发command-->
+        <KeyBinding Gesture="Alt+S" Command="{StaticResource PlayCommand}"/>
+    </Window.InputBindings>
+    <StackPanel>
+        <Button Content="播放" Width="100" Height="30" Margin="5" Command="{StaticResource PlayCommand}"/>
+    </StackPanel>
+</Window>

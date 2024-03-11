@@ -14,7 +14,7 @@ namespace RabbitMQ_Provider.Normal
             // 创建工厂对象
             var connectionFactory = new ConnectionFactory()
             {
-                HostName = "172.17.6.21",
+                HostName = "192.168.1.102",
                 Port = 5672,
                 UserName = "gerry",
                 Password = "gerry",

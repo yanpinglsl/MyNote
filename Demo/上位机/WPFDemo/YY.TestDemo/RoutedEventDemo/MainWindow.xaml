@@ -1,0 +1,39 @@
+﻿<Window x:Class="RoutedEventDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoutedEventDemo"
+        mc:Ignorable="d"
+        MouseUp="Window_MouseUp"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--<Border PreviewMouseUp="Border_PreviewMouseUp">
+            <Canvas PreviewMouseUp="Canvas_PreviewMouseUp">
+                <Button PreviewMouseUp="Button_PreviewMouseUp"
+                    Content="确定" Width="80" Height="30" 
+                    Canvas.Left="150" Canvas.Top="100"/>
+                <Button PreviewMouseUp="Button_PreviewMouseUp_1" 
+                    Content="取消" Width="80" Height="30" 
+                    Canvas.Left="280" Canvas.Top="100"/>
+            </Canvas>
+        </Border>-->
+        <!--Canvas、Border的背景颜色必须赋值（哪怕是透明色）才能响应鼠标的单击事件。-->
+        <!--然后F5运行单击确定按钮，此时我们会发现并未有任何输出，这是因为Button的MouseUp事件已经在内部被处理掉了，
+        由Click事件代替了，所以中断事件的广播方式是：e.Handled = true;-->
+        <Border MouseUp="Border_MouseUp" Grid.Row="1"  Background="Pink">
+            <Canvas MouseUp="Canvas_MouseUp"  Background="LightBlue">
+                <Button MouseUp="Button_MouseUp"
+                    Content="确定" Width="80" Height="30" 
+                    Canvas.Left="150" Canvas.Top="100"/>
+                <Button MouseUp="Button_MouseUp_1" 
+                    Content="取消" Width="80" Height="30" 
+                    Canvas.Left="280" Canvas.Top="100"/>
+            </Canvas>
+        </Border>
+    </Grid>
+</Window>

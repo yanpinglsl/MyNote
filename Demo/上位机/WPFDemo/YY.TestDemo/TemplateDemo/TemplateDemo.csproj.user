@@ -10,6 +10,12 @@
     <Compile Update="ControlTemplateWin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="DataTemplateWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ListItemContainerStyleWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="LogicTreeWin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +28,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="ControlTemplateWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DataTemplateWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ListItemContainerStyleWin.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LogicTreeWin.xaml">

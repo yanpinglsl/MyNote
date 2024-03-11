@@ -17,7 +17,6 @@ namespace RabbitMQ_Consumer.Exchange.Topic
             var queueName = "topic_queue1";
             channel.ExchangeDeclare(exchange: "topic_exchange", type: "topic");
             channel.QueueDeclare(queueName, false, false, false, null);
-            // 有个bug
             channel.QueueBind(queue: queueName,
                                       exchange: "topic_exchange",
                                       routingKey: "user.data.insert");

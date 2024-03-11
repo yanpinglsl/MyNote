@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {}
+    "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {}
   },
   "projects": {
-    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
+    "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
+        "projectUniqueName": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
         "projectName": "RabbitMQ-Common",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
-        "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\obj\\",
+        "projectPath": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,22 +66,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {
+    "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
+        "projectUniqueName": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
         "projectName": "RabbitMQ-Provider",
-        "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
-        "packagesPath": "D:\\packages",
-        "outputPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Provider\\obj\\",
+        "projectPath": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Provider\\RabbitMQ-Provider.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Provider\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -93,14 +92,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
-                "projectPath": "D:\\架构学习\\总结\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
+              "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj": {
+                "projectPath": "G:\\架构学习\\Demo\\中间件\\RabbitMQ-Common\\RabbitMQ-Common.csproj"
               }
             }
           }
@@ -130,7 +130,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

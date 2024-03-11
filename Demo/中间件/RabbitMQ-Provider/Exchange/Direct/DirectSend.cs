@@ -37,7 +37,7 @@ namespace RabbitMQ_Provider.Exchange.Direct
                         string message = $"RabbitMQ Direct {i + 1} Message =>yellow";
                         var body = Encoding.UTF8.GetBytes(message);
                         // 发送消息的时候需要指定routingKey发送
-                        channel.BasicPublish(exchange: "direct_exchange", routingKey: "yellow", null, body);
+                        channel.BasicPublish(exchange: "direct_exchange", routingKey: "green", null, body);
                         Console.WriteLine("Send Direct {0} message",i + 1);
                     }
                 }

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\架构学习\\Code\\LearnGrammar\\ExplicitAndImplicitDemo\\ExplicitAndImplicitDemo.csproj",
+      "projectUniqueName": "G:\\架构学习\\Demo\\杂记\\LearnGrammar\\ExplicitAndImplicitDemo\\ExplicitAndImplicitDemo.csproj",
       "projectName": "ExplicitAndImplicitDemo",
-      "projectPath": "G:\\架构学习\\Code\\LearnGrammar\\ExplicitAndImplicitDemo\\ExplicitAndImplicitDemo.csproj",
+      "projectPath": "G:\\架构学习\\Demo\\杂记\\LearnGrammar\\ExplicitAndImplicitDemo\\ExplicitAndImplicitDemo.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "G:\\架构学习\\Code\\LearnGrammar\\ExplicitAndImplicitDemo\\obj\\",
+      "outputPath": "G:\\架构学习\\Demo\\杂记\\LearnGrammar\\ExplicitAndImplicitDemo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\software\\vs\\2022\\Shared\\NuGetPackages"
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

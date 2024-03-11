@@ -1,0 +1,36 @@
+﻿<Window x:Class="DependencyPropertyDemo.PropertyChangedCallbackWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DependencyPropertyDemo"
+        mc:Ignorable="d"
+        Title="PropertyChangedCallbackWin" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <local:TrayControl x:Name="trayCtrl" Margin="5" Background="White" 
+                           Size="{Binding ElementName=sliderSize,Path=Value}"
+                           Count="{Binding ElementName=sliderCount,Path=Value}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="托盘尺寸" Margin="5"/>
+                    <Slider x:Name="sliderSize" Minimum="30" Maximum="100" Width="200" Value="20"  Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="托盘数量" Margin="5"/>
+                    <Slider x:Name="sliderCount" Minimum="0" Maximum="100" Width="200" Value="5" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="当前装配数量：" Margin="5" VerticalAlignment="Center">
+                <Run Text="{Binding ElementName=tray,Path=SelectedCount}"/>
+                <Run Text="总数量："/>
+                <Run Text="{Binding ElementName=tray,Path=Count}"/>
+            </TextBlock>
+            <Button x:Name="btnSubmit" Content="提交" Width="50" Height="30" Click="btnSubmit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

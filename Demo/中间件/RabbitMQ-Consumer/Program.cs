@@ -50,8 +50,8 @@ namespace RabbitMQ_Consumer
             #endregion
 
             #region 测试延迟队列
-            DelayConsumer.ReceiveMessage();
-            //DelayPluginConsumer.ReceiveMessage();
+            //DelayConsumer.ReceiveMessage();
+            //DelayPluginConsumer.ReceiveMessage();//需要安装延迟插件
             #endregion
 
             #region 测试持久化消息消费

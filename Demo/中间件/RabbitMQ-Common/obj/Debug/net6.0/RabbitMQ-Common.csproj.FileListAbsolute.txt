@@ -33,3 +33,16 @@ D:\架构学习\总结\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-
 D:\架构学习\总结\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.csproj.CoreCompileInputs.cache
 D:\架构学习\总结\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\refint\RabbitMQ-Common.dll
 D:\架构学习\总结\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\ref\RabbitMQ-Common.dll
+G:\架构学习\Demo\中间件\RabbitMQ-Common\bin\Debug\net6.0\RabbitMQ-Common.deps.json
+G:\架构学习\Demo\中间件\RabbitMQ-Common\bin\Debug\net6.0\RabbitMQ-Common.dll
+G:\架构学习\Demo\中间件\RabbitMQ-Common\bin\Debug\net6.0\RabbitMQ-Common.pdb
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.csproj.AssemblyReference.cache
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.GeneratedMSBuildEditorConfig.editorconfig
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.AssemblyInfoInputs.cache
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.AssemblyInfo.cs
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.csproj.CoreCompileInputs.cache
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.sourcelink.json
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.dll
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\refint\RabbitMQ-Common.dll
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\RabbitMQ-Common.pdb
+G:\架构学习\Demo\中间件\RabbitMQ-Common\obj\Debug\net6.0\ref\RabbitMQ-Common.dll

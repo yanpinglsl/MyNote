@@ -1,18 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "WQb/0mdPajmEDBnWkGTi1DfFyDNn3P3ec44wYK5QzvEOu862rBDOSPSF8rHjDXJfvGzbtGEdDZf7VGA5SYhfMQ==",
+  "dgSpecHash": "Y47tJuhcxchxv3OWFZeJNAdiWIscw++pgCQRb26zzxu+cpT8McN8f4CpqYXnW9xKw2j7agFMjjgeeCFAz5qW7Q==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
+  "projectFilePath": "G:\\架构学习\\Demo\\中间件\\RedisServiceStack\\RedisServiceStack.csproj",
   "expectedPackageFiles": [
-    "D:\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "D:\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
-    "D:\\packages\\servicestack.common\\6.5.0\\servicestack.common.6.5.0.nupkg.sha512",
-    "D:\\packages\\servicestack.interfaces\\6.5.0\\servicestack.interfaces.6.5.0.nupkg.sha512",
-    "D:\\packages\\servicestack.redis\\6.5.0\\servicestack.redis.6.5.0.nupkg.sha512",
-    "D:\\packages\\servicestack.text\\6.5.0\\servicestack.text.6.5.0.nupkg.sha512",
-    "D:\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "D:\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
-    "D:\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\servicestack.common\\6.5.0\\servicestack.common.6.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\servicestack.interfaces\\6.5.0\\servicestack.interfaces.6.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\servicestack.redis\\6.5.0\\servicestack.redis.6.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\servicestack.text\\6.5.0\\servicestack.text.6.5.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -15,7 +15,7 @@ namespace RabbitMQ_Consumer.Noraml
         {
             // 消费者消费是队列中消息
             string queueName = "normal";
-            var connection = RabbitMQHelper.GetConnection("172.17.6.21", 5672);
+            var connection = RabbitMQHelper.GetConnection("192.168.1.102", 5672);
             {
                 var channel = connection.CreateModel();
                 {

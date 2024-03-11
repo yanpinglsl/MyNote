@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AttachPropertyWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DependencyPropertyWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PropertyChangedCallbackWin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TrayControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Widget.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AttachPropertyWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CheckBoxDishStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DependencyPropertyWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PropertyChangedCallbackWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TrayControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Widget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
