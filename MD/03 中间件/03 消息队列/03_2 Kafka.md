@@ -487,11 +487,40 @@ Offset 可以被设置为 Beginning、End、Stored 和 Unset。这些值的含�
 - MaxPartitionFetchBytes：指定每个分区在单个拉取请求中返回的最大字节数。较大的值可以提高单个分区的吞吐量，但也会增加消费者的内存使用。
 - IsolationLevel：指定消费者所使用的隔离级别。可选的值包括ReadUncommitted（允许读取未提交的消息）和ReadCommitted（只读取已提交的消息）。默认值为ReadUncommitted。
 
-## 消息分区机制
-
 ## 消息丢失问题
 
-[Kafka 消息交付可靠性保障_kafka send操作先写入本地buffer如何保证可靠交付呢-CSDN博客](https://blog.csdn.net/qq_41049126/article/details/111291040?ops_request_misc=%7B%22request%5Fid%22%3A%22170960862116800225552648%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&request_id=170960862116800225552648&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-8-111291040-null-null.nonecase&utm_term=Kafka&spm=1018.2226.3001.4450)
+### Producer端
+
+- 丢失原因：Kafka在Producer端的消息发送采用的是异步发送的方式(还有同步发送，但是同步发送会导致消息阻塞、需要等待)，丢失数据是因为消息没有到达Broker端，原因可能是网络波动导致没有回调和数据消息太大超出Broker承受范围，导致Broker拒收消息。
+
+  解决方法：更换调用方式，不使用异步发送，使用带回调通知函数的方法进行发送消息，网络波动和消息过大，可以调整Producer端重试次数和消息大小。
+
+- 丢失原因：Kafka默认ack设置为，会存在数据丢失问题。(ack为0也会存在丢数据问题)
+
+  解决方法：修改ack设置为-1。(可以结合幂等性做到Exactly Once)
+
+  解决方法（.Net）：可通知设置Acks来避免消息丢失
+
+  - None:生产者发送消息之后不需要等待任何服务端的响应
+  - Leader:产者发送消息之后，只要分区的 leader 副本成功写入消息，那么它就会收到来自服务端的成功响应  
+  - All:生产者在消息发送之后，需要等待 ISR 中的所有副本都成功写入消息之后才能够收到来自服务端的成功响应 
+
+### Broker端
+
+丢失原因：数据从Producer端push过来后，Broker端需要将数据持久化存储到磁盘中，消息存储是异步存储的，即按照一定的消息数量和间隔时间进行存储，数据会先放在 PageCache 中，如果在存储的时候Broker宕机，此时选举了一个落后Leader Partition 很多的 Follower Partition 成为新的Lerder Partition，那么落后的消息就会丢失。
+
+解决方法：修改参数，设置有资格成为Leader的Follower(落后太久的不要)，设置分区数≥3(Leader宕机后可以有Follower补上)，设置消息至少要被写入成功到ISR多少个副本才算“已提交”。
+
+### Consumer端
+
+丢失原因：Consumer拉取消息后最终处理完需要提交 Offset，提交Offset有以下三种方式：
+
+- 自动提交Offset。
+
+- 拉取消息后，先提交offset、再处理消息，如果此时处理消息的时候宕机，由于Offset已提交，Consumer重启后会从之前已提交的offset 下一个位置开始消费，之前未处理的消息不会被再次处理，对于Consumer来说消息已经丢失。
+- 拉取消息后，先处理消息、再提交Offset，如果此时在提交之前宕机，由于Offset没有提交，Consumer重启后会从上次的Offset重新拉取消息，不会丢失数据，但会出现重复消费的情况，这里只能业务自己保证幂等性。
+
+解决方法：使用先拉取消息、再处理消息、再提交offset的方法，并且设置参数 enable.auto.commit = false 使用手动提交位移的方式。
 
 ## 消息的同步发送和异步发送
 

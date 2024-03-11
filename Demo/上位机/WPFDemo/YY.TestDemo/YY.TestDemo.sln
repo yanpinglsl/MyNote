@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoutedEventDemo", "RoutedEv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrushDemo", "BrushDemo\BrushDemo.csproj", "{9F468F4D-68E1-4244-8069-C2BBE77D1C14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanelDemo", "PanelDemo\PanelDemo.csproj", "{B1A6EAE7-AB4E-492B-8355-CD339E5039D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanelDemo", "PanelDemo\PanelDemo.csproj", "{B1A6EAE7-AB4E-492B-8355-CD339E5039D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF编程宝典", "WPF编程宝典", "{477A754B-4AC7-4EE8-AB9D-5DED506B84AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +86,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1A6EAE7-AB4E-492B-8355-CD339E5039D7} = {477A754B-4AC7-4EE8-AB9D-5DED506B84AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9616D6B0-1137-4891-B3D4-2507EF1022A5}

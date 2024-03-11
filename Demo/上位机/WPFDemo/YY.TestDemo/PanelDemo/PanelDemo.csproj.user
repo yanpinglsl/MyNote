@@ -7,7 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CanvasDemo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="DockPanelDemo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GridDemo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NestPanelDemo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StackPanelDemo.xaml.cs">
@@ -15,10 +24,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CanvasDemo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="DockPanelDemo.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="GridDemo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NestPanelDemo.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StackPanelDemo.xaml">

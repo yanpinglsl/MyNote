@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="QQ.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="QQ.jpg" />
+  </ItemGroup>
+
 </Project>
