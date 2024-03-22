@@ -56,3 +56,23 @@ await followUpTask;
 ```
 
 详细说明参考：https://devblogs.microsoft.com/dotnet/migrating-delegate-begininvoke-calls-for-net-core/
+
+# 将WebAPI部署为Windows服务
+
+将NetCore框架WebAPI程序部署为Windows服务
+
+- 引入Microsoft.Extensions.Hosting.WindowsServices包
+
+- 追加UseWindowsService，如下所示
+
+  ```C#
+          public static IHostBuilder CreateHostBuilder(string[] args) =>
+              Host.CreateDefaultBuilder(args)
+                  .UseWindowsService()  //引入Windows服务中间件
+                  .ConfigureWebHostDefaults(webBuilder =>
+                  {
+                      webBuilder.UseStartup<Startup>();
+                  });
+  ```
+
+  

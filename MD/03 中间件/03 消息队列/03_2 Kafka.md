@@ -4,27 +4,29 @@
 
 Kafka 是一个分布式的消息引擎系统，它的主要功能是提供一套完备的消息发布与订阅解决方案。
 
-### Topic
+### 术语
+
+#### Topic
 
 在 Kafka 中，发布订阅的对象是主题（Topic），你可以为每个业务、每个应用甚至每类数据都创建专属的主题。是承载消息的逻辑容器，在实际使用中多用来区分具体的业务。
 
-### Producer
+#### Producer
 
 向主题发布消息的客户端应用程序称为生产者（Producer），生产者程序通常持续不断地向一个或者多个主题发送消息
 
-3Consumer
+#### Consumer
 
 订阅主题消息的客户端应用程序被称为消费者（Consumer）。和生产者类似，消费者也能同时订阅多个主题的消息
 
-### Client
+#### Client
 
 生产者和消费者统称为客户端（Clients），你可以同时运行多个生产者和消费者实例，这些实例会不断地向 Kafka 集群中的多个主题生产和消费消息。
 
-### Broker
+#### Broker
 
 Kafka 的服务器端由被称为 Broker 的服务进程构成，即一个 Kafka 集群由多个 Broker 组成。Broker 负责接收和处理客户端发送过来的请求，以及对消息进行持久化。虽然多个 Broker 进程能够运行在同一台机器上，但更常见的做法是将不同的 Broker 分散在不同的机器上，这样如果集群中某一台机器宕机，即使在它上面运行的所有 Broker 进程都挂掉了，其他机器上的 Broker 也依然能够对外提供服务。这其实就是 Kafka 提供高可用的手段之一。
 
-### Replica
+#### Replica
 
 实现高可用的另一个手段就是备份机制（Replication）。备份的思想很简单，就是把相同的数据拷贝到多台机器上，而这些相同的数据拷贝在 Kafka 中被称为副本（Replica）。副本的数量是可以配置的，这些副本保存着相同的数据，却有不同的角色和作用。
 
@@ -37,7 +39,7 @@ Kafka 定义了两类副本：领导者副本（Leader Replica）和追随者副
 Kafka 的分区（Partition）已经让读请求是从多个 Broker 读从而实现负载均衡
 如果允许追随者对外提供服务，会存在数据一致性的问题，因为消息从主节点同步到从节点需要时间。
 
-### Partition
+#### Partition
 
 Kafka 中的分区机制指的是将每个主题划分成多个分区（Partition），每个分区是一组有序的消息日志。生产者生产的每条消息只会发送到一个分区中。
 
@@ -50,13 +52,14 @@ Kafka 中的分区机制指的是将每个主题划分成多个分区（Partitio
 - 第一层是主题层，每个主题可以配置 M 个分区，而每个分区又可以配置 N 个副本。
 - 第二层是分区层，每个分区的 N 个副本中只能有一个充当领导者角色，对外提供服务； 其他 N-1 个副本是追随者副本，只是提供数据冗余之用。
 - 第三层是消息层，分区中包含若干条消息，每条消息的位移从 0 开始，依次递增。最后，客户端程序只能与分区的领导者副本进行交互。
-  持久化
+
+#### 持久化
 
 Kafka 使用消息日志来保持数据，一个日志就是磁盘上一个只能追加写（Appen-only）消息的物理文件。因为只能追加写入，避免了缓慢的随机 I/O 操作，改为性能较好的顺序 I/O 写操作，这也是 Kafka 实现高吞吐量特性的一个重要手段。
 
 不过如果不停地追加写日志，最终也会耗尽所有的磁盘空间，因此 Kafka 会定期地删除消息以回收磁盘。简单来说就是通过日志段（Log Segment）机制。在 Kafka 底层，一个日志又进一步细分为多个日志段，消息被追加写到当前日志段中，当写满了一个日志段后，Kafka 会自动切分出一个新的日志段，并将老的日志段封存起来。Kafka 在后台还有定时任务会定期地检查老的日志段是否能够删除，从而回收磁盘空间。
 
-### 消费者组
+#### 消费者组
 
 Kafka 支持两种消息模型：点对点模型（Peer to Peer，P2P）和发布订阅模型。
 
@@ -72,12 +75,86 @@ Kafka 支持两种消息模型：点对点模型（Peer to Peer，P2P）和发�
 
 ![image-20240301133406158](images/image-20240301133406158.png)
 
+## 基本原理
+
+### 工作流程
+
+![image-20240312141644662](images/image-20240312141644662.png)
+
+### 文件存储
+
+![image-20240312141709422](images/image-20240312141709422.png)
+
+由于生产者生产的消息会不断追加到 log 文件末尾，为防止 log 文件过大导致数据定位 效率低下，Kafka 采取了分片和索引机制，将每个 partition 分为多个 segment。每个 segment 对应两个文件——“.index”文件和“.log”文件。这些文件位于一个文件夹下，该文件夹的命名 规则为：topic 名称+分区序号。例如，first 这个 topic 有三个分区，则其对应的文件夹为 first-0，first-1,first-2
+
+![image-20240312141800895](images/image-20240312141800895.png)
+
+index 和 log 文件以当前 segment 的第一条消息的 offset 命名。下图为 index 文件和 log 文件的结构示意图。
+
+![image-20240312141811732](images/image-20240312141811732.png)
+
+“.index”文件存储大量的索引信息，“.log”文件存储大量的数据，索引文件中的元 数据指向对应数据文件中 message 的物理偏移地址。
+
+### 分区策略（生产者）
+
+####   分区原因
+
+- 方便在集群中扩展，提高负载能力。因为一个topic可以有多个partition，所以我们可以通过扩展机器去轻松的应对日益增长的数据量。
+- 可以提高并发，以partition为读写单位，可以多个消费者同时消费数据，提高了消息的处理效率。
+
+#### 分区的原则
+
+  ​ 我们向某个服务器发送请求的时候，服务端可能会对请求做一个负载，将流量分发到不同的服务器，那在kafka中，如果某个topic有多个partition，producer又怎么知道该将数据发往哪个partition呢？有以下原则：
+
+- partition在写入的时候可以指定需要写入的partition，如果有指定，则写入对应的partition。
+- 如果没有指定partition，但是设置了数据的key，则会根据key的值将其hash到同一个partition。
+-  如果既没指定partition，又没有设置key，..Net中默认将消息发送到partition0，如果想要以轮询的方式将消息发送的指定分区，则需要客户端自行编码实现，java则可通过某些参数实现。
+
+### 消费方式（消费者）
+
+  Consumer是采用pull（拉）模式从broker中读取数据
+
+  - push（推）模式很难适应消费速率不同的消费者，因为消息发送速率是由broker决定的。
+
+    目标是尽可能以最夸速度传递消息，但是这样很容易造成consumer来不及处理消息。
+
+    典型表现就是拒绝服务以及网络拥塞。而pull模式则可以根据consumer的消费能力以适当的速率消费消息
+
+  - pull（拉）模式不足之处是，如果kafka没有数据，消费者可能会陷入循环中，一直返回空数据。
+
+    针对这一点，Kafka的消费者在消费数据时会传入一个时长参数timeout，如果当前没有数据可供消费，consumer会等待一段时间之后再返回，这段时长即为timeout
+
 ## 部署Kafka单机伪集群
 
 创建docker-compose.yml文件
 
 ```yml
+version: '2'
 
+services:
+  zoo1:
+    image: wurstmeister/zookeeper
+    restart: unless-stopped
+    hostname: zoo1
+    ports:
+      - "6181:2181"
+    container_name: zookeeper_kafka
+
+  # kafka version: 1.1.0
+  # scala version: 2.12
+  kafka1:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 120.78.170.106
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CREATE_TOPICS: "stream-in:1:1,stream-out:1:1"
+    depends_on:
+      - zoo1
+    container_name: kafka
 ```
 
 ```shell
@@ -944,15 +1021,20 @@ Seek（消费者的seek方法）和Assign（分区分配）是Kafka消费者的�
 
 ## 分区分配策略
 
-> 此处分区分配是指消费者组中的消费者消费哪个分区
+消费者以消费者组的名义订阅主题，主题有多个分区，消费者组中有多个消费者实例，同一时刻，一条消息只能被消费者组中的某一个一个消费者实例消费。
+
+  1）如果分区数大于或者等于组中的消费者实例数，一个消费者会负责多个分区。
+
+  2）如果分区数小于组中的消费者实例数，有些消费者将处于空闲状态并且无法接收消息。
 
 ![image-20240306152442501](images/image-20240306152442501.png)
 
 分区分配策略：Range 、 RoundRobin、CooperativeSticky。当以下事件发生时，Kafka 将会进行一次分区分配：
 
-- 同一个 Consumer Group 内新增消费者
-- 消费者离开当前所属的Consumer Group，包括shuts down 或 crashes
-- 订阅的主题新增分区
+- 同一个 consumer 消费者组 group.id 中，新增了消费者进来，会执行 Rebalance 操作
+- 消费者离开当期所属的 consumer group组。比如 主动停机  或者  宕机
+- 分区数量发生变化时(即 topic 的分区数量发生变化时)
+- 消费者主动取消订阅
 
 将分区的所有权从一个消费者移到另一个消费者称为重新平衡（rebalance），如何rebalance就涉及到本文提到的分区分配策略。
 
@@ -1262,20 +1344,55 @@ Kafka有两种部署模式：Zookeeper模式集群、KRaft模式集群。
 
 在Zookeeper模式集群中，Zookeeper节点（或者集群）就充当了Controller的角色，而所有的Kafka节点就充当着Broker的角色。
 
-下面就来介绍一下搭建过程，这里在1台主机上分别运行Zookeeper和Kafka来模拟一个集群，一共一个Zookeeper节点和三个Kafka节点构成，如下：
+下面就来介绍一下搭建过程，这里在1台主机上分别运行Zookeeper和Kafka来模拟一个集群，一共三个个Zookeeper节点和三个Kafka节点构成，如下：
 
 docker-compose.yml
 
-```xml
+```yml
 version: "3"
 
 services:
-  zookeeper:
-      image: bitnami/zookeeper:3.9
-      ports:
-        - "2181:2181"
-      environment:
-        - ALLOW_ANONYMOUS_LOGIN=yes
+  zoo1:
+    image: zookeeper:3.9
+    restart: always
+    hostname: zoo1
+    container_name: zoo1
+    ports:
+    - 12181:2181
+    volumes:
+    - "/clay/volume/zkcluster/zoo1/data:/data"
+    - "/clay/volume/zkcluster/zoo1/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+      
+  zoo2:
+    image: zookeeper:3.9
+    restart: always
+    hostname: zoo2
+    container_name: zoo2
+    ports:
+    - 22181:2181
+    volumes:
+    - "/clay/volume/zkcluster/zoo2/data:/data"
+    - "/clay/volume/zkcluster/zoo2/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+      
+  zoo3:
+    image: zookeeper:3.9
+    restart: always
+    hostname: zoo3
+    container_name: zoo3
+    ports:
+    - 32181:2181
+    volumes:
+    - "/clay/volume/zkcluster/zoo3/data:/data"
+    - "/clay/volume/zkcluster/zoo3/datalog:/datalog"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
 
   kafka1:
     image: bitnami/kafka:3.6
@@ -1283,13 +1400,16 @@ services:
     ports:
       - "19092:9092"
     environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.2.13:19092
+     
     restart: always
     depends_on:
-      - zookeeper
+      - zoo1
+      - zoo2
+      - zoo3
           
   kafka2:
     image: bitnami/kafka:3.6
@@ -1297,13 +1417,15 @@ services:
     ports:
       - "29092:9092"
     environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.2.13:29092
     restart: always
     depends_on:
-      - zookeeper
+      - zoo1
+      - zoo2
+      - zoo3
 
   kafka3:
     image: bitnami/kafka:3.6
@@ -1311,13 +1433,15 @@ services:
     ports:
       - "39092:9092"
     environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zoo1:2181,zoo2:2181,zoo3:2181
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://192.168.2.13:39092
     restart: always
     depends_on:
-      - zookeeper
+      - zoo1
+      - zoo2
+      - zoo3
 
   kafka-ui:
     image: provectuslabs/kafka-ui:master
@@ -1327,7 +1451,8 @@ services:
     restart: always
     environment:
       - KAFKA_CLUSTERS_0_NAME=local  # kafka 集群名称
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:9092  # kafka集群地址
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:9092,kafka2:9092,kafka3:9092  # kafka集群地址
+      - KAFKA_MANAGER_ZK_HOSTS=zoo1:2181,zoo2:2181,zoo3:2181  # zookeeper集群地址
       - DYNAMIC_CONFIG_ENABLED= 'true'  # 启动动态配置 kafka
       - AUTH_TYPE=LOGIN_FORM   # 启用登录授权
       - SPRING_SECURITY_USER_NAME=admin   # 账号
@@ -1373,7 +1498,7 @@ KRaft模式是新版本Kafka中推出的集群模式，这种模式下就完全�
 
 docker-compose.yml
 
-```json
+```yml
 version: "3"
 
 services:
@@ -1512,6 +1637,159 @@ services:
 networks:
   kafka-controller:
 ```
+
+## 面试题
+
+1、**Kafka 中的 ISR(InSyncRepli)、OSR(OutSyncRepli)、AR(AllRepli)代表什么？**
+
+```shell
+ISR(InSyncRepli)：内部副本同步队列
+OSR(OutSyncRepli)：外部副本同步队列
+AR(AllRepli)：所有副本
+AR = ISR + OSR
+```
+
+**2、Kafka 中的 HW、LEO 等分别代表什么？** 
+
+```shell
+HW：所有副本的最小的LEO
+LEO：每个副本的最后一个offset
+```
+
+**3、Kafka 中是怎么体现消息顺序性的？**
+
+```shell
+Kafka中的broker中的每个topic的partition的消息在写入时都是有序的。消费时，每个partition只能被每一个消费者组的一个消费者消费，保证了消费时也是有序的。但一个Topic的多个partition不能保证有序。
+```
+
+**4、Kafka 中的分区器、序列化器、拦截器是否了解？它们之间的处理顺序是什么？** 
+
+```shell
+分区器->序列化器->拦截器
+```
+
+**5、“消费组中的消费者个数如果超过 topic 的分区，那么就会有消费者消费不到数据”这句 话是否正确？**
+
+```shell
+正确。
+为了保证数据消费的有序性，一个消费者实例只能消费一个Partition，所以如果消费者实例多了，那么会出现消费者空闲的情况。如果是自定义分区，可以继承AbstractPartitionAssignor实现自定义消费策略，从而实现同一消费组内的任意消费者都可以消费订阅主题的所有分区
+```
+
+**7、消费者提交消费位移时提交的是当前消费到的最新消息的 offset 还是 offset+1？**  
+
+```shell
+offset+1
+```
+
+**8、有哪些情形会造成重复消费** 
+
+```shell
+消费者消费后没有提交offset(程序崩溃/强行kill/消费耗时/自动提交偏移情况下）
+```
+
+**9、哪些情景会造成消息漏消费？** 
+
+```shell
+消费者没有处理完消息就提交offset(自动提交偏移 未处理情况下程序异常结束)
+```
+
+**10、当你使用 kafka-topics.sh 创建（删除）了一个 topic 之后，Kafka 背后会执行什么逻辑？**
+
+```shell
+	1）会在 zookeeper 中的/brokers/topics 节点下创建一个新的 topic 节点，如： /brokers/topics/first
+	2）触发 Controller 的监听程序 
+	3）kafka Controller 负责 topic 的创建工作，并更新 metadata cache 
+```
+
+**11、topic 的分区数可不可以增加？如果可以怎么增加？如果不可以，那又是为什么？** 
+
+```shell
+可以
+```
+
+**12、topic 的分区数可不可以减少？如果可以怎么减少？如果不可以，那又是为什么？** 
+
+```shell
+不可以
+```
+
+**13、Kafka 有内部的 topic 吗？如果有是什么？有什么所用？** 
+
+```shell
+有，__consumer_offsets，保存消费者offset
+```
+
+**14、Kafka 分区分配的概念？** 
+
+```shell
+一个topic由多个分区组成，一个消费者组有多个消费者，故需要将分区分配给消费者，即确定哪个partition由哪个consumer来消费
+roundrobin、range两种分配方式。
+```
+
+**15、聊一聊 Kafka Controller 的作用？** 
+
+```shell
+负责管理集群broker的上下线，所有topic的分区副本分配和leader选举等工作
+```
+
+**16、Kafka 中有那些地方需要选举？这些地方的选举策略又有哪些？** 
+
+```shell
+partition leader（ISR），controller（先到先得）
+```
+
+**17、失效副本是指什么？有那些应对措施？** 
+
+```shell
+不能及时与leader同步，暂时踢出ISR，等其追上leader之后再重新加入
+```
+
+**18、Kafka 的哪些设计让它有如此高的性能？** 
+
+```shell
+(1)分区
+(2)Cache Filesystem Cache PageCache缓存
+(3)顺序写磁盘，由于现代的操作系统提供了预读和写技术，磁盘的顺序写大多数情况下比随机写内存还要快。
+(4)Batching of Messages 批量量处理。合并小的请求，然后以流的方式进行交互，直顶网络上限
+(5)Pull 拉模式 使用拉模式进行消息的获取消费，与消费端处理能力相符。
+(6)0-copy 零拷技术减少拷贝次数
+
+```
+
+**19、 kafka的数据写入是有顺序的吗？**
+
+```shell
+1）如果默认一个分区，则是有顺序 
+2）如果是多个分区，则不能保证数据的顺序，
+```
+
+**20、通过什么来维护ISR: 是根据心跳，还是我们备份数据量？**
+
+```shell
+可根据条数和时间
+
+1）条数，leader和副本数据差，超过这个配置差，则就认为副本节点不行，然后从isr移除，当数据备份跟的上来，然后又纳入到我们ISR集合
+2）多久的时间没有进行心跳。 超过配置时间，则认为不行，移除，当心跳跟的上，再重新进入集合。
+由于 kafka是个高吞吐的消息队列， 发送数据的时候，有批量发送的功能，每次发数据的可以发送大量的数据（发送的数据量是可配的） 所以如果根据条数，则副本节点，会经常性的从ISR移除和增加。 因为这种考虑，kafka的开发者，选择使用了第二种，根据时间来判断。
+```
+
+**21、副本和leader就是两份一模一样的数据，消费后，两份数据都清空嘛，什么时候清空**
+
+```shell
+保留7天，kafka可以配置。默认7天，消息积压有处理。
+```
+
+**22、kafka与RabbitMQ的比较**
+
+![image-20210712180618564](images/image-20210712180618564.png)
+
+```shell
+RabbitMQ：1s中的吞吐量约是36M，轻量级
+Kafka：1s中的吞吐量约是610M，重量级
+kafka适合数据量大的场景，rabbitmq适合可靠，对速度要求不高的场景
+```
+
+
 
 ## 参考资料
 
