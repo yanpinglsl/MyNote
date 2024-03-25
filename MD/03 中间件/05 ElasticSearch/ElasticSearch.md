@@ -74,49 +74,72 @@ Elasticsearch 和 Solr 都是开源搜索引擎，那么我们在使用时该如
 
 Elasticsearch 的官方地址：https://www.elastic.co/cn/
 
-Elasticsearch 最新的版本是 8.12.2 版本，此处使用7.8.0版本，下载地址：https://www.elastic.co/cn/downloads/past-releases#elasticsearch
+Elasticsearch 最新的版本是 8.12.2 版本，下载地址：https://www.elastic.co/cn/downloads/past-releases#elasticsearch
+
+Kibana 最新的版本是 8.12.2 版本，下载地址：[Download Kibana Free | Get Started Now | Elastic](https://link.zhihu.com/?target=https%3A//www.elastic.co/cn/downloads/kibana)
 
 Elasticsearch 分为 Linux 和 Windows 版本，基于我们主要学习的是 Elasticsearch 的 Java客户端的使用，所以课程中使用的是安装较为简便的 Windows 版本。
 
 ### 安装软件
 
+##### Elasticsearch
+
 Windows 版的 Elasticsearch 的安装很简单，解压即安装完毕，解压后的 Elasticsearch 的目录结构如下：![image-20240318134118314](images/image-20240318134118314.png)
 
 ![image-20240318134150744](images/image-20240318134150744.png)
 
-解压后，进入 bin 文件目录，点击 elasticsearch.bat 文件启动 ES 服务
+解压后，修改config/elasticsearch.yml配置，然后点击 bin/elasticsearch.bat 文件启动 ES 服务。
 
-![image-20240318134344103](images/image-20240318134344103.png)
+```yml
+cluster.name: es-8.4.2
+node.name: es-9201
+path.data: D:\es-cluster\8.4.2\data\9201
+path.logs: D:\es-cluster\8.4.2\logs\9201
+network.host: 127.0.0.1
+http.port: 9201
+transport.port: 9301
+```
+
+
+
+控制台中会输出一段信息：
+
+![image-20240325173647664](images/image-20240325173647664.png)
+
+这是 es 自动为环境生产的账号和证书等信息，把它复制保存下来，稍后会用到：
+
+```shell
+✅ Elasticsearch security features have been automatically configured!
+✅ Authentication is enabled and cluster connections are encrypted.
+
+ℹ️  Password for the elastic user (reset with `bin/elasticsearch-reset-password -u elastic`):
+  vrXJc_VGzwpW6WVr5vWR
+
+ℹ️  HTTP CA certificate SHA-256 fingerprint:
+  92c7c1a08f7b52346695d62ee736dff741ffc58369416384fc016367a88012b4
+
+ℹ️  Configure Kibana to use this cluster:
+• Run Kibana and click the configuration link in the terminal when Kibana starts.
+• Copy the following enrollment token and paste it into Kibana in your browser (valid for the next 30 minutes):
+  eyJ2ZXIiOiI4LjEyLjIiLCJhZHIiOlsiMTI3LjAuMC4xOjkyMDEiXSwiZmdyIjoiOTJjN2MxYTA4ZjdiNTIzNDY2OTVkNjJlZTczNmRmZjc0MWZmYzU4MzY5NDE2Mzg0ZmMwMTYzNjdhODgwMTJiNCIsImtleSI6IkxaZnVkSTRCYzk2Tk9mb0RQelVBOjF2SThGVVhCUmNLcjN3cWEyNXhheGcifQ==
+```
 
 **注意：**9300 端口为 Elasticsearch 集群间组件的通信端口，9200 端口为浏览器访问的 http协议 RESTful 端口。
-打开浏览器（推荐使用谷歌浏览器)，输入地址：http://localhost:9200，测试结果
+打开浏览器（推荐使用谷歌浏览器)，输入地址：http://localhost:9201，输入控制台显示的用户名及密码，测试结果如下：
 
 ![image-20240318134407764](images/image-20240318134407764.png)
 
-### 问题解决
+##### Kibana
 
-- Elasticsearch 是使用 java 开发的，且 8.12 版本的 ES 需要 JDK 版本 1.8 以上，默认安装包带有 jdk 环境，如果系统配置 JAVA_HOME，那么使用系统默认的 JDK，如果没有配置使用自带的 JDK，一般建议使用系统配置的 JDK。
+解压下载的kibana 8.12.2 压缩包，先不用修改配置文件，重写开启一个命令窗口，执行命令：
 
--  双击启动窗口闪退，通过路径访问追踪错误，如果是“空间不足”，请修改config/jvm.options 配置文件
+使用控制台中给出的http://localhost:5601/?code=829265的地址访问 kibana：
 
-  ```xml
-  #设置 JVM 初始内存为 1G。此值可以设置与-Xmx 相同，以避免每次垃圾回收完成后 JVM 重新分配内存
-  # Xms represents the initial size of total heap space
-  # 设置 JVM 最大可用内存为 1G
-  # Xmx represents the maximum size of total heap space
-  -Xms1g
-  -Xmx1g
-  ```
+输入token（在我们保存的信息中），*注意：token只在生成的30分钟内有效：Copy the following enrollment token and paste it into Kibana in your browser (valid for the next 30 minutes)*
 
-- HTTP请求ES报错
+![image-20240325174735687](images/image-20240325174735687.png)
 
-  错误：当启动Elasticsearch后，在浏览器输入地址 http://localhost:9200/后，报错 received plaintext http traffic on an https channel, closing connection ...
-
-  原因：Elasticsearch在Windows下开启了安全认证，虽然started成功，但访问http://localhost:9200/失败
-
-  解决方法：找到config/目录下面的elasticsearch.yml配置文件，把安全认证开关从原先的true都改成false，实现免密登录访问即可：
-
-  ![image-20240312175400225](images/image-20240312175400225.png)
+点击 Configure Elastic ，kibana 配置完成后，弹窗登录页，和上面一样，输入用户名和密码。
 
 ## Elasticsearch 基本操作
 
@@ -1133,90 +1156,83 @@ size：每页显示多少条
 
 ### 部署集群
 
-- node-1001节点
+- es-001节点
 
   ```yml
-  #节点 1 的配置信息：
-  #集群名称，节点之间要保持一致
-  cluster.name: my-elasticsearch
-  #节点名称，集群内要唯一
-  node.name: node-1001
-  node.master: true
-  node.data: true
+  cluster.name: myelastic
+  node.name: es-001
+  #path.data: D:\es-cluster\8.4.2\data\9201
+  #path.logs: D:\es-cluster\8.4.2\logs\9201
   #ip 地址
-  network.host: localhost
+  network.host: 127.0.0.1
   #http 端口
-  http.port: 1001
+  http.port: 9201
   #tcp 监听端口
-  transport.tcp.port: 9301
-  #discovery.seed_hosts: ["localhost:9301", "localhost:9302","localhost:9303"]
-  #discovery.zen.fd.ping_timeout: 1m
-  #discovery.zen.fd.ping_retries: 5
+  transport.port: 9301
+  #候选主节点的地址，在开启服务后可以被选为主节点
+  discovery.seed_hosts: ["127.0.0.1:9301","127.0.0.1:9302","127.0.0.1:9303"]
   #集群内的可以被选为主节点的节点列表
-  #cluster.initial_master_nodes: ["node-1", "node-2","node-3"]
+  cluster.initial_master_nodes: ["es-001", "es-002", "es-003"]
   #跨域配置
-  #action.destructive_requires_name: true
   http.cors.enabled: true
   http.cors.allow-origin: "*"
+  #禁用XPACK安全认证
+  xpack.security.enabled: false
+  xpack.security.enrollment.enabled: false
   ```
-
+  
   
 
-- node-1002节点
+- es-002节点
 
   ```yml
-  #节点 2 的配置信息：
-  #集群名称，节点之间要保持一致
-  cluster.name: my-elasticsearch
-  #节点名称，集群内要唯一
-  node.name: node-1002
-  node.master: true
-  node.data: true
+  cluster.name: myelastic
+  node.name: es-002
+  #path.data: D:\es-cluster\8.4.2\data\9201
+  #path.logs: D:\es-cluster\8.4.2\logs\9201
   #ip 地址
-  network.host: localhost
+  network.host: 127.0.0.1
   #http 端口
-  http.port: 1002
+  http.port: 9202
   #tcp 监听端口
-  transport.tcp.port: 9302
-  discovery.seed_hosts: ["localhost:9301"]
-  discovery.zen.fd.ping_timeout: 1m
-  discovery.zen.fd.ping_retries: 5
+  transport.port: 9302
+  #候选主节点的地址，在开启服务后可以被选为主节点
+  discovery.seed_hosts: ["127.0.0.1:9301","127.0.0.1:9302","127.0.0.1:9303"]
   #集群内的可以被选为主节点的节点列表
-  #cluster.initial_master_nodes: ["node-1", "node-2","node-3"]
+  cluster.initial_master_nodes: ["es-001", "es-002", "es-003"]
   #跨域配置
-  #action.destructive_requires_name: true
   http.cors.enabled: true
   http.cors.allow-origin: "*"
+  #禁用XPACK安全认证
+  xpack.security.enabled: false
+  xpack.security.enrollment.enabled: false
   ```
-
+  
   
 
 - node-1003节点
 
   ```yml
-  #节点 3 的配置信息：
-  #集群名称，节点之间要保持一致
-  cluster.name: my-elasticsearch
-  #节点名称，集群内要唯一
-  node.name: node-1003
-  node.master: true
-  node.data: true
+  cluster.name: myelastic
+  node.name: es-003
+  #path.data: D:\es-cluster\8.4.2\data\9201
+  #path.logs: D:\es-cluster\8.4.2\logs\9201
   #ip 地址
-  network.host: localhost
+  network.host: 127.0.0.1
   #http 端口
-  http.port: 1003
+  http.port: 9203
   #tcp 监听端口
-  transport.tcp.port: 9303
+  transport.port: 9303
   #候选主节点的地址，在开启服务后可以被选为主节点
-  discovery.seed_hosts: ["localhost:9301", "localhost:9302"]
-  discovery.zen.fd.ping_timeout: 1m
-  discovery.zen.fd.ping_retries: 5
+  discovery.seed_hosts: ["127.0.0.1:9301","127.0.0.1:9302","127.0.0.1:9303"]
   #集群内的可以被选为主节点的节点列表
-  #cluster.initial_master_nodes: ["node-1", "node-2","node-3"]
+  cluster.initial_master_nodes: ["es-001", "es-002", "es-003"]
   #跨域配置
-  #action.destructive_requires_name: true
   http.cors.enabled: true
   http.cors.allow-origin: "*"
+  #禁用XPACK安全认证
+  xpack.security.enabled: false
+  xpack.security.enrollment.enabled: false
   ```
 
 ### 启动集群
@@ -1228,12 +1244,16 @@ size：每页显示多少条
 
 - 查看集群状态
 
-  http://127.0.0.1:1001/_cluster/health
+  http://127.0.0.1:9201/_cluster/health
 
-  ![image-20240322144251716](images/image-20240322144251716.png)
+  http://127.0.0.1:9202/_cluster/health
 
+  http://127.0.0.1:9203/_cluster/health
+
+  ![image-20240325190910045](images/image-20240325190910045.png)
+  
   status字段指示当前集群在总体上是否工作正常。它的三种颜色含义如下：
-
+  
   - green：所有的主分片和副本分片都正常运行
   - yellow：所有的主分片都正常运行，但不是所有的副本分片都正常运行
   - red：有主分片没能正常运行
@@ -1256,3 +1276,6 @@ docker run -p 5601:5601 -d -e ELASTICSEARCH_URL=http://192.168.1.102:9200   -e E
 访问http://192.168.1.102:9200/
 
 ![image-20240322150953053](images/image-20240322150953053.png)
+
+## Elasticsearch进阶
+
