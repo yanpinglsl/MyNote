@@ -1,0 +1,4 @@
+- pipeline.id: sample_products
+  path.config: "/usr/share/logstash/pipeline/sample_products.conf"
+  #可以添加多个管道
+  #path.config: "/usr/share/logstash/pipeline/sample_products1.conf"

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>G:\架构学习\Demo\上位机\WPFDemo\WebApplication1\WebApplication1\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-04-03T06:06:03.6330428Z;True|2024-04-03T14:04:05.8336576+08:00;True|2024-04-02T18:04:13.5840127+08:00;True|2024-04-02T18:03:16.6400687+08:00;True|2024-04-02T17:38:13.2188418+08:00;True|2024-04-02T16:55:42.5028046+08:00;True|2024-04-02T16:42:59.1144127+08:00;True|2024-04-02T16:37:14.9377716+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
