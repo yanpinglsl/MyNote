@@ -1,0 +1,6 @@
+@YY.DistributedTransaction.OrderService_HostAddress = http://localhost:5039
+
+GET {{YY.DistributedTransaction.OrderService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

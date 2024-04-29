@@ -1,0 +1,6 @@
+@YY.DistributedTransaction.LogisticsService_HostAddress = http://localhost:5284
+
+GET {{YY.DistributedTransaction.LogisticsService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

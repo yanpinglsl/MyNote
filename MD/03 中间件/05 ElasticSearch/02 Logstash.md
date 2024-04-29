@@ -341,7 +341,3 @@ docker run -d --name logstash --net elastic -v D:\logstash\jdbc\:/opt/jdbc/ -v D
 ![image-20240410141757328](images/image-20240410141757328.png)
 
 ②stdout：logstash的log日志
-
-## NFS
-
-[【运维知识进阶篇】集群架构-NFS网络文件系统_nfs取消挂载-CSDN博客](https://blog.csdn.net/qq_37510195/article/details/130001332)

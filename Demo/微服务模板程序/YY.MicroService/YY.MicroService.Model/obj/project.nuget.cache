@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5wwduY9O4D7CbWPpTsgWeQPOyavYuNXnuvbJIif5Sv4biPTKefx+3oSfcbC4EwEdDYlRY/0gzGa7spHyTd6h3A==",
+  "dgSpecHash": "FApEUKWxWxD862DJuJ7mFIpB47m6OqWOl8ljG9RavmUp0CMEi1lrMjo5rzgiDxZdDfsK/Kw4UkpRDf5l1j8d0A==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
+  "projectFilePath": "G:\\架构学习\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Model\\YY.MicroService.Model.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

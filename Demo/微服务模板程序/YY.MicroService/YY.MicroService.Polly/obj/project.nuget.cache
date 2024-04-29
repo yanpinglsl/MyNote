@@ -1,11 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "d/WSeDEwhmyfsRc3uK4HwnO2fTKtcRtIy5CTZCxgLyeheS2dbZF6SZv5ZlFuOI/ToaFliRLHg8bC7n9oXakbxw==",
+  "dgSpecHash": "ll/V6bA4bnf9V4KMoi/hOcgSRs9VyE+pZHHPW6MP7NFxRih3shkIHrsFWh58ebT3JMaaK+eiIGWes8eQh0yz2g==",
   "success": true,
-  "projectFilePath": "D:\\架构学习\\总结\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
+  "projectFilePath": "G:\\架构学习\\Demo\\微服务模板程序\\YY.MicroService\\YY.MicroService.Polly\\YY.MicroService.Polly.csproj",
   "expectedPackageFiles": [
-    "D:\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "D:\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512"
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\polly\\7.2.3\\polly.7.2.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "包 \"Newtonsoft.Json\" 12.0.3 具有已知的 高 严重性漏洞，https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }
