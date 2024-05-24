@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  zhaoxi.sample.httpapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - MySQLConnstr_DefaultConnection=server=mysql-db;uid=root;pwd=123456;database=YY.Sample.Db;SslMode=none;AllowPublicKeyRetrieval=True;
+    ports:
+      - "8080"

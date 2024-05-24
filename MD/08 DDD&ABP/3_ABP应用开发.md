@@ -243,7 +243,7 @@ b.HasIndex(x => x.Name).IsUnique();
 现在，您可以在 控制台中键入以下命令：
 
 ```C#
-Add-Migration ``"Added_Categories_And_Products"
+Add-Migration `"Added_Categories_And_Products"`
 ```
 
 如果你得到一个诸如*No DbContext was found in assembly...* 之类的错误，请确保您已将*.EntityFrameworkCore*项目设置为默认项目。

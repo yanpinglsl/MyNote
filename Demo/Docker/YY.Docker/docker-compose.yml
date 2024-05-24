@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  zhaoxi.sample.httpapi:
+    image: ${DOCKER_REGISTRY-}yydockerhttpapi
+    build:
+      context: .
+      dockerfile: YY.Docker.Http.API/Dockerfile
+    depends_on:
+      - mysql-db
+  
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
