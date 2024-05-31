@@ -1,0 +1,6 @@
+@YY.Zhihu.Application_HostAddress = http://localhost:5192
+
+GET {{YY.Zhihu.Application_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

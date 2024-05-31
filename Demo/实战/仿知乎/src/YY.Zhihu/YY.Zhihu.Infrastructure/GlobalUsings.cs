@@ -1,0 +1,1 @@
+﻿global using IdentityUser = YY.Zhihu.Infrastructure.Identity.IdentityUser;

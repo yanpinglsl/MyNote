@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YY.Zhihu.Domain\YY.Zhihu.Domain.csproj" />
+    <ProjectReference Include="..\YY.Zhihu.SharedLibraries\YY.Zhihu.SharedLibraries.csproj" />
+  </ItemGroup>
+
+</Project>
