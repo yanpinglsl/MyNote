@@ -23,7 +23,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .WithMany(a => a.AnswerLikes)
                 .HasForeignKey(a => a.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }

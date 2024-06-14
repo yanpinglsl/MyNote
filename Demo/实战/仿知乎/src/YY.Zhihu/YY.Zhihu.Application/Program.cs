@@ -1,6 +1,5 @@
-using YY.Zhihu.Domain.Data;
+using YY.Zhihu.Domain;
 using YY.Zhihu.Infrastructure;
-using YY.Zhihu.Infrastructure.Data.Repository;
 using YY.Zhihu.UseCases;
 
 namespace YY.Zhihu.Application
@@ -19,6 +18,7 @@ namespace YY.Zhihu.Application
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCoreServices();
 
             var app = builder.Build();
 
@@ -33,7 +33,10 @@ namespace YY.Zhihu.Application
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
+            //配置异常处理中间件
+            app.UseExceptionHandler(_ => { });
 
             app.MapControllers();
 

@@ -13,8 +13,7 @@ namespace YY.Zhihu.Domain.QuestionAggerate.Entites
         public int AnswerId { get; set; }
         public Answer Answer { get; set; } = null!;
 
-        public bool isLike { get; set; }
-        public bool isDisLike { get; set; }
+        public bool IsLike { get; set; }
 
     }
 }

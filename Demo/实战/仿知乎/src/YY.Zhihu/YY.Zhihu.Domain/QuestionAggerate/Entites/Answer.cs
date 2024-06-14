@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YY.Zhihu.Domain.AppUserAggerate.Entites;
 using YY.Zhihu.Domain.Common;
+using YY.Zhihu.SharedLibraries.Result;
 
 namespace YY.Zhihu.Domain.QuestionAggerate.Entites
 {
@@ -27,13 +29,37 @@ namespace YY.Zhihu.Domain.QuestionAggerate.Entites
         /// 点赞数
         /// </summary>
         public int LikeCount { get; set; }
-        public ICollection<AnswerLike> AnswerLikes { get; set; } = new List<AnswerLike>();
-
         /// <summary>
         /// 点踩数
         /// </summary>
-        public int DisLikeCount { get; set; }
-        public ICollection<AnswerLike> AnswerDisLikes { get; set; } = new List<AnswerLike>();
+        public int DislikeCount { get; private set; }
+
+        public List<AnswerLike> _answerLikes  = new List<AnswerLike>();
+        public IReadOnlyCollection<AnswerLike> AnswerLikes  => _answerLikes.AsReadOnly();
+
+        public IResult AddLike(int userId,bool isLike)
+        {
+            if (_answerLikes.Any(l => l.UserId == userId))
+            {
+                return Result.Failure("已赞或已踩");
+            }
+            if (isLike)
+            {
+                LikeCount++;
+            }
+            else
+            {
+                DislikeCount++;
+
+            }
+            _answerLikes.Add(new AnswerLike()
+            {
+                AnswerId = Id,
+                UserId = userId,
+                IsLike = isLike
+            });
+            return Result.Success();
+        }
 
         /// <summary>
         /// 更新点赞
@@ -43,37 +69,44 @@ namespace YY.Zhihu.Domain.QuestionAggerate.Entites
         /// 点赞/点踩数会频繁使用，当频繁获取列表的元素数量时，直接调用List的Count属性可能会导致性能下降，特别是当列表包含大量元素时
         /// </summary>
         /// <param name="answerLike"></param>
-        public void UpdateLikeList(AnswerLike answerLike)
+        public IResult UpdateLike(int userId, bool isLike)
         {
-            bool isExist = AnswerDisLikes.Contains(answerLike);
-            if (answerLike.isLike && !isExist)
+            var answerLike = _answerLikes.FirstOrDefault(like => like.UserId == userId);
+            if (answerLike == null) 
+                return Result.NotFound("未找到点赞记录");
+
+            if (answerLike.IsLike == isLike) 
+                return Result.Failure("已赞或已踩");
+
+            answerLike.IsLike = isLike;
+
+            if (isLike)
             {
                 LikeCount++;
-                AnswerLikes.Add(answerLike);
+                DislikeCount--;
             }
-            else if (!answerLike.isLike && isExist)
+            else
             {
                 LikeCount--;
-                AnswerLikes.Remove(answerLike);
+                DislikeCount++;
             }
+            return Result.Success();
         }
+
         /// <summary>
-        /// 更新点踩
+        ///     移除点赞/点踩记录
         /// </summary>
-        /// <param name="answerLike"></param>
-        public void UpdateDisLikeList(AnswerLike answerLike)
+        /// <param name="userId"></param>
+        public void RemoveLike(int userId)
         {
-            bool isExist = AnswerDisLikes.Contains(answerLike);
-            if (answerLike.isLike && !isExist)
-            {
-                LikeCount++;
-                AnswerDisLikes.Add(answerLike);
-            }
-            else if (!answerLike.isLike && isExist)
-            {
-                LikeCount--;
-                AnswerDisLikes.Remove(answerLike);
-            }
+            var answerLike = _answerLikes.FirstOrDefault(like => like.UserId == userId);
+
+            if (answerLike == null) return;
+
+            _answerLikes.Remove(answerLike);
+
+            if (answerLike.IsLike) LikeCount -= 1;
+            else DislikeCount -= 1;
         }
     }
 }

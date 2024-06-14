@@ -1,18 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using YY.Zhihu.Domain.Data;
 using YY.Zhihu.SharedLibraries.Domain;
+using YY.Zhihu.SharedLibraries.Repositoy;
+using YY.Zhihu.SharedLibraries.Specification;
 
 namespace YY.Zhihu.Infrastructure.Data.Repository
 {
-    public class EFReadRepository<T>(AppDbContext dbContext) : IReadRepository<T>
-    where T : class, IAggregateRoot
+    public class EFReadRepository<T>(AppDbContext dbContext) : IReadRepository<T> where T : class, IEntity
     {
+        protected readonly DbSet<T> DbSet = dbContext.Set<T>();
         public IQueryable<T> GetQueryable()
         {
             return dbContext.Set<T>().AsQueryable();
@@ -24,16 +20,24 @@ namespace YY.Zhihu.Infrastructure.Data.Repository
             return await dbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
         }
 
-        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> expression,
-            CancellationToken cancellationToken = default)
+        public async Task<List<T>> GetListAsync(ISpecification<T>? specification = null, CancellationToken cancellationToken = default)
         {
-            return await dbContext.Set<T>().Where(expression).ToListAsync(cancellationToken);
+            return await SpecificationEvaluator.GetQuery(DbSet, specification).ToListAsync(cancellationToken);
         }
 
-        public async Task<int> GetCountAsync(Expression<Func<T, bool>> expression,
-            CancellationToken cancellationToken = default)
+        public async Task<T?> GetSingleOrDefaultAsync(ISpecification<T>? specification = null, CancellationToken cancellationToken = default)
         {
-            return await dbContext.Set<T>().Where(expression).CountAsync(cancellationToken);
+            return await SpecificationEvaluator.GetQuery(DbSet, specification).FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task<int> CountAsync(ISpecification<T>? specification = null, CancellationToken cancellationToken = default)
+        {
+            return await SpecificationEvaluator.GetQuery(DbSet, specification).CountAsync(cancellationToken);
+        }
+
+        public async Task<bool> AnyAsync(ISpecification<T>? specification = null, CancellationToken cancellationToken = default)
+        {
+            return await SpecificationEvaluator.GetQuery(DbSet, specification).AnyAsync(cancellationToken);
         }
     }
 }

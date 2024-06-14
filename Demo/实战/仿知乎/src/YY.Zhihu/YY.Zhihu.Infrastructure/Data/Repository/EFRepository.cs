@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YY.Zhihu.Domain.Data;
 using YY.Zhihu.SharedLibraries.Domain;
+using YY.Zhihu.SharedLibraries.Repositoy;
 namespace YY.Zhihu.Infrastructure.Data.Repository
 {
     public class EFRepository<T>(AppDbContext dbContext) : EFReadRepository<T>(dbContext), IRepository<T>
-        where T : class, IAggregateRoot
+        where T : class, IEntity, IAggregateRoot
     {
         public T Add(T entity)
         {

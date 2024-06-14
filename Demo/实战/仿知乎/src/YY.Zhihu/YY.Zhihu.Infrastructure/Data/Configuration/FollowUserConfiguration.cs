@@ -24,7 +24,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .WithMany(u => u.Followees)
                 .HasForeignKey(fu => fu.FollowerId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.ClientCascade);
 
             // 设置被关注者与粉丝列表之间的一对多关系
             builder
@@ -32,7 +32,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .WithMany(u => u.Followers)
                 .HasForeignKey(fu => fu.FolloweeId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }

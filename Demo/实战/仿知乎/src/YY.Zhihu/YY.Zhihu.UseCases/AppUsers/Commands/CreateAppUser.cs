@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using YY.Zhihu.Domain.AppUserAggerate.Entites;
-using YY.Zhihu.Domain.Data;
 using YY.Zhihu.SharedLibraries.Message;
+using YY.Zhihu.SharedLibraries.Repositoy;
 using YY.Zhihu.SharedLibraries.Result;
 
 namespace YY.Zhihu.UseCases.AppUsers.Commands

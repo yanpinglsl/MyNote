@@ -1,4 +1,4 @@
-﻿namespace YY.Zhihu.Application
+﻿namespace YY.Zhihu.Application.Models
 {
     public record UserRegisterRequest(string Username, string Password);
 

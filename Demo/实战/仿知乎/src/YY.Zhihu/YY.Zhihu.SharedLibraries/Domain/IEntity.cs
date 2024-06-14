@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace YY.Zhihu.SharedLibraries.Domain
 {
-    public class IEntity<TId>
+    public interface IEntity;
+    public class IEntity<TId>: IEntity
     {
         TId Id { get; set; }
     }

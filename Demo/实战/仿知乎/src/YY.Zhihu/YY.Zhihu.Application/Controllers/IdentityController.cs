@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using YY.Zhihu.Application.Infrastructure;
+using YY.Zhihu.Application.Models;
 using YY.Zhihu.Infrastructure.Identity;
 using YY.Zhihu.UseCases.AppUsers.Commands;
 
@@ -33,10 +35,13 @@ namespace YY.Zhihu.Application.Controllers
             });
         }
 
-        //[HttpPost("Test")]
-        //public async Task<IActionResult> Test()
-        //{
-        //    return NoContent();
-        //}
+        [HttpPost("Test")]
+        public async Task<IActionResult> Test()
+        {
+            return Ok(new
+            {
+                UserName = User.FindFirstValue(ClaimTypes.Name)
+            }); 
+        }
     }
 }

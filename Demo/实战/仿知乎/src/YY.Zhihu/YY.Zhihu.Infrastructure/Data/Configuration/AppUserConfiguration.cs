@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using YY.Zhihu.Domain;
 using YY.Zhihu.Domain.AppUserAggerate.Entites;
 
 namespace YY.Zhihu.Infrastructure.Configuration

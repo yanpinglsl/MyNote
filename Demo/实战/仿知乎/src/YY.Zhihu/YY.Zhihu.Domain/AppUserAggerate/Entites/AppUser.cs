@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YY.Zhihu.Domain.AppUserAggerate.Events;
 using YY.Zhihu.Domain.Common;
 using YY.Zhihu.SharedLibraries.Domain;
+using YY.Zhihu.SharedLibraries.Result;
 
 namespace YY.Zhihu.Domain.AppUserAggerate.Entites
 {
@@ -34,16 +36,73 @@ namespace YY.Zhihu.Domain.AppUserAggerate.Entites
         /// <summary>
         /// 关注列表
         /// </summary>
-        public ICollection<FollowUser> Followees { get; set; } = new List<FollowUser>();
+        public List<FollowUser> _followees = new List<FollowUser>();
+        public IReadOnlyCollection<FollowUser> Followees  => _followees.AsReadOnly();
 
         /// <summary>
         /// 粉丝列表
         /// </summary>
-        public ICollection<FollowUser> Followers { get; set; } = new List<FollowUser>();
+        private List<FollowUser> _followers= new List<FollowUser>();
+        public IReadOnlyCollection<FollowUser> Followers => _followers.AsReadOnly();
 
         /// <summary>
         /// 关注问题列表
         /// </summary>
-        public ICollection<FollowQuestion> FollowQuestions { get; set; } = new List<FollowQuestion>();
+        private List<FollowQuestion> _followQuestions = new List<FollowQuestion>();
+        public IReadOnlyCollection<FollowQuestion> FollowQuestions => _followQuestions.AsReadOnly();
+
+        public IResult AddFollowQuestion(int questionId)
+        {
+            if(_followQuestions.Any(l=>l.QuestionId == questionId))
+            {
+                return Result.Invalid("问题已关注");
+            }
+            FollowQuestion question = new FollowQuestion()
+            {
+                QuestionId = questionId,
+                FollowDate = DateTime.Now
+            };
+
+            _followQuestions.Add(question);
+            AddDomainEvent(new FollowQuestionAddedEvent(question));
+            return Result.Success();
+        }
+        public void RemoveFollowQuestion(int questionId)
+        {
+           var question = _followQuestions.FirstOrDefault(l=>l.QuestionId == questionId);
+            if(question != null)
+            {
+                _followQuestions.Remove(question);
+                AddDomainEvent(new FollowQuestionRemovedEvent(question));
+            }
+        }
+        public IResult AddFolloweeUser(int followeeId)
+        {
+            if(followeeId == Id)
+            {
+                return Result.Invalid("不能关注自己");
+            }
+            var followee = _followees.FirstOrDefault(l => l.FolloweeId == followeeId);
+            if (followee != null)
+            {
+                return Result.Invalid("该用户已关注");
+            }
+
+            _followees.Add(new FollowUser()
+            {
+                FollowerId = Id,
+                FolloweeId = followeeId,
+                FollowDate = DateTime.Now
+            });
+            return Result.Success();
+        }
+        public void RemoveFolloweeUser(int followeeId)
+        {
+            var followee = _followees.FirstOrDefault(l => l.FolloweeId == followeeId);
+            if (followee != null)
+            {
+                _followees.Remove(followee);
+            }
+        }
     }
 }

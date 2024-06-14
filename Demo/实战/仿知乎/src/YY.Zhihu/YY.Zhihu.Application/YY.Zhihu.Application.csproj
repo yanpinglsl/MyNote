@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YY.Zhihu.Domain\YY.Zhihu.Domain.csproj" />
     <ProjectReference Include="..\YY.Zhihu.Infrastructure\YY.Zhihu.Infrastructure.csproj" />
     <ProjectReference Include="..\YY.Zhihu.UseCases\YY.Zhihu.UseCases.csproj" />
   </ItemGroup>

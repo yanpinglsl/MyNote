@@ -76,10 +76,24 @@
                 Errors = errors
             };
         }
-
+        public static Result Failure(params string[] errors)
+        {
+            return new Result(ResultStatus.Error)
+            {
+                Errors = errors.AsEnumerable()
+            };
+        }
         public static Result NotFound()
         {
             return new Result(ResultStatus.NotFound);
+        }
+
+        public static Result NotFound(params string[] error)
+        {
+            return new Result(ResultStatus.NotFound)
+            {
+                Errors = error.AsEnumerable()
+            };
         }
 
         public static Result Forbidden()
@@ -97,11 +111,11 @@
             return new Result(ResultStatus.Invalid);
         }
 
-        public static Result Invalid(IEnumerable<string>? errors)
+        public static Result Invalid(params string[] errors)
         {
             return new Result(ResultStatus.Invalid)
             {
-                Errors = errors
+                Errors = errors.AsEnumerable()
             };
         }
     }

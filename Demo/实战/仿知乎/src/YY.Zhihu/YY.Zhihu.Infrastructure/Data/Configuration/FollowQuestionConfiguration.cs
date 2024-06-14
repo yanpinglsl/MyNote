@@ -24,7 +24,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .WithMany(u => u.FollowQuestions)
                 .HasForeignKey(fq => fq.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.ClientCascade);
         }
     }
 }

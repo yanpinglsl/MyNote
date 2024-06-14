@@ -12,9 +12,14 @@ namespace YY.Zhihu.Application.Services
             get
             {
                 if (User == null)
+                {
                     return null;
+                }
                 else
-                    return Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));  
+                {
+                    string? userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    return userid == null ? null : Convert.ToInt32(userid);
+                }
             }
         }
     }

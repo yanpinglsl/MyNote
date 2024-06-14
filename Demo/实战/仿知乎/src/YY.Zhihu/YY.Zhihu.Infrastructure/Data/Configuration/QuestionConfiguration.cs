@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YY.Zhihu.Domain;
 using YY.Zhihu.Domain.QuestionAggerate.Entites;
 
 namespace YY.Zhihu.Infrastructure.Configuration
@@ -18,6 +19,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .IsRequired();
 
             builder.Property(p => p.Description)
+                .HasMaxLength(DataSchemaConstants.DefaultDescriptionTitleLength)
                 .HasColumnType("text");
         }
     }

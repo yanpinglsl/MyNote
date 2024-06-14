@@ -1,11 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using YY.Zhihu.Domain.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using YY.Zhihu.Domain.Interfaces;
+using YY.Zhihu.Infrastructure.Data;
+using YY.Zhihu.Infrastructure.Data.Interceptors;
 using YY.Zhihu.Infrastructure.Data.Repository;
 using YY.Zhihu.Infrastructure.Identity;
 using YY.Zhihu.Infrastructure.Interceptors;
+using YY.Zhihu.SharedLibraries.Repositoy;
+using YY.Zhihu.UseCases.Interfaces;
 
 namespace YY.Zhihu.Infrastructure
 {
@@ -25,6 +32,7 @@ namespace YY.Zhihu.Infrastructure
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddScoped<ISaveChangesInterceptor, AuditEntityInterceptor>();
+            services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
             services.AddDbContext<AppDbContext>((sp, options) =>
             {
@@ -36,6 +44,9 @@ namespace YY.Zhihu.Infrastructure
 
             services.AddScoped(typeof(IReadRepository<>), typeof(EFReadRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+
+            services.AddScoped<IDataQueryService, DataQueryService>();
             return services;
         }
 
@@ -58,7 +69,33 @@ namespace YY.Zhihu.Infrastructure
                 .AddEntityFrameworkStores<AppDbContext>();
 
             // 从配置文件中读取JwtSettings，并注入到容器中
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+            var configurationSection = configuration.GetSection("JwtSettings");
+            var jwtSettings = configurationSection.Get<JwtSettings>();
+            if (jwtSettings is null) 
+                throw new NullReferenceException(nameof(jwtSettings));
+            services.Configure<JwtSettings>(configurationSection);
+            ConfigureAddAuthentication(services, jwtSettings);
+        }
+        public static void ConfigureAddAuthentication(this IServiceCollection services,
+            JwtSettings jwtSettings)
+        {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                 .AddJwtBearer(options =>
+                 {
+                     options.TokenValidationParameters = new TokenValidationParameters
+                     {
+                         ClockSkew = TimeSpan.Zero,
+                         ValidateIssuer = true,
+                         ValidateAudience = true,
+                         ValidateLifetime = true,
+                         ValidateIssuerSigningKey = true,
+                         ValidIssuer = jwtSettings.Issuer,
+                         ValidAudience = jwtSettings.Audience,
+                         IssuerSigningKey = new SymmetricSecurityKey(
+                             Encoding.UTF8.GetBytes(jwtSettings.Secret)
+                         )
+                     };
+                 });
         }
     }
 }
