@@ -14,8 +14,8 @@ namespace YY.Zhihu.Domain.QuestionAggerate.Handlers
     {
         public async Task Handle(FollowQuestionAddedEvent notification, CancellationToken cancellationToken)
         {
-           var question = await questions.GetByIdAsync(notification.FollowQuestion.Id);
-            if(question == null)
+            var question = await questions.GetByIdAsync(notification.FollowQuestion.QuestionId, cancellationToken);
+            if (question == null)
                 return;
             question.FollowerCount += 1;
             await questions.SaveChangesAsync(cancellationToken);

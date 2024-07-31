@@ -8,7 +8,7 @@
 //using YY.Zhihu.Domain.Data;
 //using YY.Zhihu.SharedLibraries.Message;
 //using YY.Zhihu.SharedLibraries.Result;
-//using YY.Zhihu.UseCases.Common.Interfaces;
+//using YY.Zhihu.UseCases.Contracts.Interfaces;
 //using YY.Zhihu.UseCases.Interfaces;
 
 //namespace YY.Zhihu.UseCases.AppUsers.Commands

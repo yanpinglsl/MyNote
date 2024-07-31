@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YY.Zhihu.Domain.AppUserAggerate.Entites;
 using YY.Zhihu.Domain.QuestionAggerate.Entites;
 using YY.Zhihu.SharedLibraries.Paging;
-using YY.Zhihu.UseCases.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.Infrastructure.Data
 {

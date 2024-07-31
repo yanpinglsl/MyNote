@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using YY.Zhihu.Infrastructure;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.Tests
 {

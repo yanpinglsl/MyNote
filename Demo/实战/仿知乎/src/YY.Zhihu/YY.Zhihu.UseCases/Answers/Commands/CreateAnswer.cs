@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using MediatR;
 using YY.Zhihu.Domain.QuestionAggerate.Entites;
+using YY.Zhihu.Domain.QuestionAggerate.Event;
 using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Repositoy;
 using YY.Zhihu.SharedLibraries.Result;
 using YY.Zhihu.UseCases.Answers.Dto;
+using YY.Zhihu.UseCases.Common.Attributes;
 
 namespace YY.Zhihu.UseCases.Answers.Commands
 {
+    [Authorize]
     public record CreateAnswerCommand(int QuestionId,string? Content) : ICommand<Result<CreatedAnswerDto>>;
 
     public class CreateAnswerCommandValidator : AbstractValidator<CreateAnswerCommand>
@@ -32,8 +36,10 @@ namespace YY.Zhihu.UseCases.Answers.Commands
 
             var answer = mapper.Map<Answer>(command);
             question.Answers.Add(answer);
-            var answerId = await questions.SaveChangesAsync();
-            return Result.Success(new CreatedAnswerDto(command.QuestionId, answerId));
+            question.AddDomainEvent(new AnswerCreatedEvent(command.QuestionId));
+            await questions.SaveChangesAsync();
+
+            return Result.Success(new CreatedAnswerDto(command.QuestionId, answer.Id));
         }
     }
 }

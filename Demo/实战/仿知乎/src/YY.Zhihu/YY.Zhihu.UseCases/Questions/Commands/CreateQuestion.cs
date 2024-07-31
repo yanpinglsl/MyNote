@@ -5,10 +5,12 @@ using YY.Zhihu.Domain.QuestionAggerate.Entites;
 using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Repositoy;
 using YY.Zhihu.SharedLibraries.Result;
+using YY.Zhihu.UseCases.Common.Attributes;
 using YY.Zhihu.UseCases.Questions.Dto;
 
 namespace YY.Zhihu.UseCases.AppUsers.Commands
 {
+    [Authorize]
     public record CreateQuestionCommand(string Title, string? Description) : ICommand<Result<CreatedQuestionDto>>;
 
     public class CreateQuestionCommandValidator : AbstractValidator<CreateQuestionCommand>

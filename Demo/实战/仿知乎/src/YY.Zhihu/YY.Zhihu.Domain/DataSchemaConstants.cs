@@ -15,5 +15,7 @@ namespace YY.Zhihu.Domain
         public const int DefaultAppUserNickNameLength = 20;
 
         public const int DefaultAppUserBioLength = 200;
+
+        public const int DefaultQuestionSummaryLength = 50;
     }
 }

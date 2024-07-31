@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using YY.Zhihu.Domain.AppUserAggerate.Entites;
 using YY.Zhihu.Domain.QuestionAggerate.Entites;
 using YY.Zhihu.Infrastructure;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.Tests
 {

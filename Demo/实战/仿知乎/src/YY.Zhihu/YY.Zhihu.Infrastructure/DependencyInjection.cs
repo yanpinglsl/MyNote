@@ -4,15 +4,25 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Quartz;
+using StackExchange.Redis;
 using System.Text;
 using YY.Zhihu.Domain.Interfaces;
+using YY.Zhihu.HotService.Jobs;
+using YY.Zhihu.Infrastructure.Cache;
 using YY.Zhihu.Infrastructure.Data;
 using YY.Zhihu.Infrastructure.Data.Interceptors;
 using YY.Zhihu.Infrastructure.Data.Repository;
 using YY.Zhihu.Infrastructure.Identity;
 using YY.Zhihu.Infrastructure.Interceptors;
+using YY.Zhihu.Infrastructure.Quartz;
 using YY.Zhihu.SharedLibraries.Repositoy;
-using YY.Zhihu.UseCases.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
+using YY.Zhihu.UseCases.Questions.Jobs;
+using ZiggyCreatures.Caching.Fusion.Backplane.StackExchangeRedis;
+using ZiggyCreatures.Caching.Fusion;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace YY.Zhihu.Infrastructure
 {
@@ -24,6 +34,11 @@ namespace YY.Zhihu.Infrastructure
             ConfigureEfCore(services, configuration);
 
             ConfigureIdentity(services, configuration);
+
+            ConfigureQuartz(services, configuration);
+
+            //ConfigureRedis(services, configuration);
+            ConfigureCache(services, configuration);
 
             return services;
         }
@@ -96,6 +111,61 @@ namespace YY.Zhihu.Infrastructure
                          )
                      };
                  });
+        }
+        //private static void ConfigureQuartz(IServiceCollection services, IConfiguration configuration)
+        //{
+        //    services.Configure<QuartzOptions>(configuration.GetSection("Quartz"));
+
+        //    services.AddTransient<UpdateQuestionViewCountJob>();
+        //    services.AddTransient<RefreshHotRankJob>();
+        //    services.AddTransient<UpdateHotRankJob>();
+
+        //    services.AddQuartz(configurator =>
+        //    {
+        //        configurator.CreateUpdateQuestionViewCountJobSchedule();
+        //        configurator.CreateRefreshHotRankJobSchedule();
+        //        configurator.CreateUpdateHotRankJobSchedule();
+        //    });
+
+        //    services.AddQuartzHostedService(opt =>
+        //    {
+        //        opt.WaitForJobsToComplete = true;
+        //        opt.StartDelay = TimeSpan.FromSeconds(5);
+        //    });
+        //}
+
+        private static void ConfigureQuartz(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddQuartzService(configuration);
+        }
+
+        //private static void ConfigureRedis(IServiceCollection services, IConfiguration configuration)
+        //{
+        //    var redisConn = configuration.GetConnectionString("RedisConnection");
+        //    if (redisConn != null)
+        //        services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConn));
+        //}
+
+        private static void ConfigureCache(IServiceCollection services, IConfiguration configuration)
+        {
+            var redisConn = configuration.GetConnectionString("RedisConnection");
+            if (redisConn != null)
+                services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConn));
+
+            services.AddStackExchangeRedisCache(options => options.Configuration = redisConn);
+            services.AddFusionCache()
+                .WithOptions(options =>
+                {
+                    options.DefaultEntryOptions = new FusionCacheEntryOptions { Duration = TimeSpan.FromMinutes(1) };
+                })
+                .WithSystemTextJsonSerializer()
+                .WithDistributedCache(provider => provider.GetRequiredService<IDistributedCache>())
+                .WithBackplane(new RedisBackplane(new RedisBackplaneOptions
+                {
+                    Configuration = redisConn
+                }));
+
+            services.AddSingleton(typeof(ICacheService<>), typeof(CacheService<>));
         }
     }
 }

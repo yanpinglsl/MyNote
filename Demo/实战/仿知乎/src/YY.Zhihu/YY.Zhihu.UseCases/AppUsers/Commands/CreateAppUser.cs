@@ -3,9 +3,11 @@ using YY.Zhihu.Domain.AppUserAggerate.Entites;
 using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Repositoy;
 using YY.Zhihu.SharedLibraries.Result;
+using YY.Zhihu.UseCases.Common.Attributes;
 
 namespace YY.Zhihu.UseCases.AppUsers.Commands
 {
+    [Authorize]
     public record CreateAppUserCommand(int UserID) : ICommand<Result<AppUserDto>>;
     public class CreateAppUserHandler(
         IRepository<AppUser> userRepo,

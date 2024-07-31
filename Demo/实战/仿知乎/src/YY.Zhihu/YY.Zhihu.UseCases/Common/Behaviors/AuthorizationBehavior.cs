@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YY.Zhihu.UseCases.Common.Attributes;
 using YY.Zhihu.UseCases.Common.Exceptions;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.Common.Behaviors
 {

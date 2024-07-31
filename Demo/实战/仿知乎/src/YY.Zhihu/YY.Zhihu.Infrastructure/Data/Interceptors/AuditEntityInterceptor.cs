@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YY.Zhihu.Domain.Common;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.Infrastructure.Interceptors
 {

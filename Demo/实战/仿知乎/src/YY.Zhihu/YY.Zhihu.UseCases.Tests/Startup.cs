@@ -1,18 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using YY.Zhihu.Domain;
+using YY.Zhihu.Domain.Interfaces;
 using YY.Zhihu.Infrastructure;
 using YY.Zhihu.Infrastructure.Data;
+using YY.Zhihu.Infrastructure.Data.Interceptors;
 using YY.Zhihu.Infrastructure.Data.Repository;
 using YY.Zhihu.Infrastructure.Interceptors;
 using YY.Zhihu.SharedLibraries.Repositoy;
-using YY.Zhihu.UseCases;
-using YY.Zhihu.UseCases.Common.Interfaces;
-using YY.Zhihu.UseCases.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using YY.Zhihu.Infrastructure.Data.Interceptors;
-using YY.Zhihu.Domain.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.Tests
 {

@@ -9,15 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using YY.Zhihu.Domain.Interfaces;
 using YY.Zhihu.Domain.QuestionAggerate.Entites;
+using YY.Zhihu.Domain.QuestionAggerate.Event;
 using YY.Zhihu.Domain.QuestionAggerate.Specifications;
 using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Result;
 using YY.Zhihu.UseCases.Answers.Dto;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Common.Attributes;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.Answers.Commands
 {
 
+    [Authorize]
     public record CreateAnswerLikeCommand(int AnswerId, bool IsLike) : ICommand<IResult>;
 
     public class CreateAnswerLikeCommandValidator : AbstractValidator<CreateAnswerLikeCommand>
@@ -30,8 +34,7 @@ namespace YY.Zhihu.UseCases.Answers.Commands
     }
     public class CreateAnswerLikeHandler(
         IAnswerRepository answers,
-        IUser user,
-        IMapper mapper) : ICommandHandler<CreateAnswerLikeCommand, IResult>
+        IUser user) : ICommandHandler<CreateAnswerLikeCommand, IResult>
     {
         public async Task<IResult> Handle(CreateAnswerLikeCommand command, CancellationToken cancellationToken)
         {
@@ -42,6 +45,7 @@ namespace YY.Zhihu.UseCases.Answers.Commands
             var result = answer.AddLike(user.Id!.Value, command.IsLike);
             if (!result.IsSuccess)
                 return result;
+            answer.AddDomainEvent(new AnswerLikeEvent(answer.QuestionId));
             await answers.SaveChangesAsync(cancellationToken);
             return Result.Success();
         }

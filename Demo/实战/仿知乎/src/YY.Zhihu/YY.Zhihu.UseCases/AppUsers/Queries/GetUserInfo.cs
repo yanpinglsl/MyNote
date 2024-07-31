@@ -1,7 +1,7 @@
 ﻿using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Result;
 using YY.Zhihu.UseCases.Common.Attributes;
-using YY.Zhihu.UseCases.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.AppUsers.Queries
 {

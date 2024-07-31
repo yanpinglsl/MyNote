@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YY.Zhihu.Application.Infrastructure;
 using YY.Zhihu.Application.Services;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.Application
 {

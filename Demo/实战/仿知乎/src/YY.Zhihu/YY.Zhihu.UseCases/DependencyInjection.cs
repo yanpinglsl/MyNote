@@ -2,7 +2,9 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using YY.Zhihu.HotService;
 using YY.Zhihu.UseCases.Common.Behaviors;
+using YY.Zhihu.UseCases.Questions.Jobs;
 
 namespace YY.Zhihu.UseCases
 {
@@ -20,7 +22,8 @@ namespace YY.Zhihu.UseCases
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             });
-
+            services.AddSingleton<QuestionViewCountService>();
+            services.AddHotService();
             return services;
         }
     }

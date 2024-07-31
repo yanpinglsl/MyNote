@@ -9,6 +9,6 @@ namespace YY.Zhihu.SharedLibraries.Domain
     public interface IEntity;
     public class IEntity<TId>: IEntity
     {
-        TId Id { get; set; }
+        TId? Id { get; set; }
     }
 }

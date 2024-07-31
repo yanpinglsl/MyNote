@@ -8,10 +8,12 @@ using YY.Zhihu.Domain.QuestionAggerate.Specifications;
 using YY.Zhihu.SharedLibraries.Message;
 using YY.Zhihu.SharedLibraries.Repositoy;
 using YY.Zhihu.SharedLibraries.Result;
-using YY.Zhihu.UseCases.Common.Interfaces;
+using YY.Zhihu.UseCases.Common.Attributes;
+using YY.Zhihu.UseCases.Contracts.Interfaces;
 
 namespace YY.Zhihu.UseCases.AppUsers.Commands
 {
+    [Authorize]
     public record DeleteQuestionCommand(int Id) : ICommand<IResult>;
 
     public class DeleteQuestionCommandValidator : AbstractValidator<DeleteQuestionCommand>

@@ -13,7 +13,7 @@ namespace YY.Zhihu.Domain.AppUserAggerate.Entites
     /// <summary>
     /// 用户类
     /// </summary>
-    public class AppUser : AuditBaseEntity,IAggregateRoot
+    public class AppUser : AuditBaseEntity, IAggregateRoot
     {
         //EFCore框架必须保证每个类中含有无参构造函数，否则会报错
         //所以此处追加了该无参构造函数

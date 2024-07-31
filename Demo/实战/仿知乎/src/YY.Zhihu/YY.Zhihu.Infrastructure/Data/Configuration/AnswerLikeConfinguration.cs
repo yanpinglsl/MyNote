@@ -21,7 +21,7 @@ namespace YY.Zhihu.Infrastructure.Configuration
             // 设置回答与点赞记录列表之间的一对多关系
             builder.HasOne(a => a.Answer)
                 .WithMany(a => a.AnswerLikes)
-                .HasForeignKey(a => a.UserId)
+                .HasForeignKey(a => a.AnswerId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientCascade);
         }

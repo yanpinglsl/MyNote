@@ -18,9 +18,12 @@ namespace YY.Zhihu.Infrastructure.Configuration
                 .HasMaxLength(DataSchemaConstants.DefaultQuestionTitleLength)
                 .IsRequired();
 
-            builder.Property(p => p.Description)
-                .HasMaxLength(DataSchemaConstants.DefaultDescriptionTitleLength)
-                .HasColumnType("text");
+            builder.Property(p => p.Title)
+                .HasMaxLength(DataSchemaConstants.DefaultQuestionTitleLength)
+                .IsRequired();
+
+            builder.Property(p => p.Summary)
+                .HasMaxLength(DataSchemaConstants.DefaultQuestionSummaryLength);
         }
     }
 }
