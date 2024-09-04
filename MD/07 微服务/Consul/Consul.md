@@ -133,8 +133,6 @@ consul 的一些特性：
 - 然后在服务器Server4和Server5上通过Consul Client分别注册Service A、B、C，这里每个Service分别部署在了两个服务器上，这样可以避免Service的单点问题。服务注册到Consul可以通过HTTP API（8500端口）的方式，也可以通过Consul配置文件的方式。Consul Client可以认为是无状态的，它将注册信息通过RPC转发到Consul Server，服务信息保存在Server的各个节点中，并且通过Raft实现了强一致性。
 - 最后在服务器Server6中Program D需要访问Service B，这时候Program D首先访问本机Consul Client提供的HTTP API，本机Client会将请求转发到Consul Server，Consul Server查询到Service B当前的信息返回，最终Program D拿到了Service B的所有部署的IP和端口，然后就可以选择Service B的其中一个部署并向其发起请求了。如果服务发现采用的是DNS方式，则Program D中直接使用Service B的服务发现域名，域名解析请求首先到达本机DNS代理，然后转发到本机Consul Client，本机Client会将请求转发到Consul Server，Consul Server查询到Service B当前的信息返回，最终Program D拿到了Service B的某个部署的IP和端口。
 
-
-
 ### 服务注册
 
 consul支持两种方式实现服务注册，一种是通过consul的服务注册http API，由服务自己调用API实现注册，另一种方式是通过json个是的配置文件实现注册，将需要注册的服务以json格式的配置文件给出。consul官方建议使用第二种方式。
@@ -171,13 +169,21 @@ consul services register sample-service.json
 {
   "services": [
     {
+      //唯一标识服务的id
       "ID": "sample-service-1",
+      //服务名称
       "Name": "sample-service",
+      //服务地址
       "Address": "192.168.1.101",
+      //服务端口
       "Port": 80,
+      //配置健康检查
       "Check": {
+         //服务注销时间， Consul 判断你超时之后，过一段时间会注销服务，注销时间可能与设置时间会有一段延迟
         "DeregisterCriticalServiceAfter": "20s",
+        //健康检查地址
         "HTTP": "http://192.168.1.101/health",
+        //每隔5s检查一次
         "Interval": "5s"
       }
     },
@@ -230,9 +236,7 @@ http://localhost:8500/v1/catalog/service/服务名称?tag=test6688
 
 #### DNS方式
 
-
-
-
+一般不会使用此方式
 
 ### 服务间的通信协议
 
@@ -240,107 +244,93 @@ Consul使用gossip协议管理成员关系、广播消息到整个集群，他�
 
 > gossip协议原理可参照扩展资料
 
+### 集群搭建
+
+| 主机          | 角色   |
+| ------------- | ------ |
+| 192.168.1.101 | server |
+| 192.168.1.102 | server |
+| 192.168.1.103 | server |
+| 192.168.1.103 | client |
+
+```shell
+#为每台主机安装consul
+unzip consul_1.19.1_linux_386.zip  -d /usr/local/bin/
+mv consul /usr/local/bin/
+consul -version
+#192.168.1.101
+consul agent -server -ui -config-file=consul-server-1.json
+#192.168.1.102
+consul agent -server -ui -config-file=consul-server-2.json
+#192.168.1.103
+consul agent -server -ui -config-file=consul-server-3.json
+#192.168.1.104
+consul agent -client 0.0.0.0 -ui -config-file=consul-client-1.json
+```
+
+配置文件如下：
+
+```json
+//192.168.1.101：consul-server-1.json
+{
+    "server": true,
+    "node_name": "consul-server1",
+    "datacenter": "dc1",
+    "data_dir": "/opt/consul",
+    "bind_addr": "192.168.1.101",
+    "client_addr": "0.0.0.0",
+    "bootstrap_expect": 3,
+    "retry_join": ["192.168.1.102", "192.168.1.103"]
+  }
+```
+
+```json
+//192.168.1.102：consul-server-2.json
+{
+    "server": true,
+    "node_name": "consul-server2",
+    "datacenter": "dc1",
+    "data_dir": "/opt/consul",
+    "bind_addr": "192.168.1.102",
+    "client_addr": "0.0.0.0",
+    "bootstrap_expect": 3,
+    "retry_join": ["192.168.1.101", "192.168.1.103"]
+  }
+```
+
+
+
+```json
+//192.168.1.103：consul-server-3.json
+{
+    "server": true,
+    "node_name": "consul-server3",
+    "datacenter": "dc1",
+    "data_dir": "/opt/consul",
+    "bind_addr": "192.168.1.103",
+    "client_addr": "0.0.0.0",
+    "bootstrap_expect": 3,
+    "retry_join": ["192.168.1.101", "192.168.1.102"]
+  }
+```
+
+```json
+//192.168.1.104：consul-client-1.json
+{
+  "server": false,
+  "node_name": "consul-client1",
+  "datacenter": "dc1",
+  "data_dir": "./consul",
+  "bind_addr": "192.168.1.104",
+  "client_addr": "0.0.0.0",
+  "retry_join": ["192.168.1.101", "192.168.1.102", "192.168.1.103"],
+  "ui": true
+}
+```
+
 ### ASP.NET集成负载均衡
 
 > 参照YY.MicroService代码
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### 使用Consul命令注册服务
-
-DNS服务发现
-
-DNS服务默认端口53端口
-
-Consul DNS服务默认通过8600端口提供服务
-
-相关命令
-
-consul members：查看Consul集群状态
-
-consul catalog services：查看Consul集群服务
-
-consul catalog nodes：查看Consul集群节点
-
-consul catalog datacenters
-
-consul services register  ***.json：通过配置文件注册服务
-
-### DNS服务发现与负载均衡
-
-dig命令专门用于查询DNS信息
-
-dig @127.0.0.1 -p 8600 sample-service.service.consul  
-
-service.service.consul 为域名
-
-在Consul DNS服务器上安装DNS转发器，此处使用dnsmasq
-
-dnsmasq在此处的作用是：53是默认的DNS端口，通过dnsmasq将53端口的请求转发给Consul的8600端口
-
-配置如下：
-
-apt install dnsmasq
-
-//停止本地DNS解析服务，systemd-resolved只能解析本地，需要使用dnsmasq代替原有服务
-
-system stop systemd-resolved
-
-system disable systemd-resolved
-
-//DNS客户端配置文件，系统在DNS解析使用的服务
-
-unlink /etc.resolv.conf 
-
-
-
-vim  /etc.resolv.conf 
-
-nameserver 127.0.0.1
-
-nameserver 114.114.114.114
-
-
-
-vim  /etc/dnsmasq.conf 
-
-cache-size=0
-
-listen-address=外部ID（例如：局域网IP）；127.0.0.1
-
-
-
-//配置上游DNS服务
-
-vim  /etc/dnsmasq.d/10-consul
-
-server=/consul/127.0.0.1#8600 #匹配所有以consul结尾的请求转发到8600端口
-
-
-
-//重启服务
-
-system restart dnsmasq
-
-
-
-//在本地网络中查询域名
-
-nslookup sample-service.service.consul
-
-> DNS可以实现服务发现，但是它不稳定，实际生成环境不会使用
->
-> DNS服务发现+Caddy负载均衡：类似于Nginx，服务器端的负载均衡
 
 # 扩展
 
@@ -407,3 +397,6 @@ Gossip 协议最终目的是将数据分发到网络中的每一个节点。根�
 
 利用Dnsmasq搭建本地自有DNS服务器：https://linuxgeeks.github.io/2016/04/07/214147-%E5%88%A9%E7%94%A8Dnsmasq%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E8%87%AA%E6%9C%89DNS%E6%9C%8D%E5%8A%A1%E5%99%A8/
 
+[来，Consul 服务发现入个门(一看就会的那种)](http://mp.weixin.qq.com/s?__biz=MzU1MzYwMjQ5MQ==&mid=2247484770&idx=1&sn=ff312957e0afa17d186666e9f1803b97&chksm=fbf119b6cc8690a08f433d9d5dc97286cac341e065d4c858233ff3856c3add0924b9f6326058#rd)
+
+[运维小姐姐说这篇Consul集群和ACL配置超给力(保姆级)](http://mp.weixin.qq.com/s?__biz=MzU1MzYwMjQ5MQ==&mid=2247484887&idx=1&sn=60cb2677844a81469177df350385befc&chksm=fbf11903cc86901506ba273b743e480cffa02356373a135e223612266c4d925cb4b1545957bc#rd)

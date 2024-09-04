@@ -80,16 +80,16 @@ namespace IdentityServer
                 #endregion
                 
                 #region 资源所有者密码授权模式
-                //new Client
-                //{
-                //    ClientId = "ro.client",
-                //    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                //    ClientSecrets =
-                //    {
-                //        new Secret("secret".Sha256())
-                //    },
-                //    AllowedScopes = { "group1" }
-                //},
+                new Client
+                {
+                    ClientId = "ro.client",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    AllowedScopes = { "group1" }
+                },
                 #endregion
                 
                 #region OpenID Connect
@@ -117,31 +117,31 @@ namespace IdentityServer
                 #endregion
 
                 #region 混合模式
-                new Client
-                {
-                    ClientId = "hybrid",
-                    ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Hybrid,
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
+                //new Client
+                //{
+                //    ClientId = "hybrid",
+                //    ClientName = "MVC Client",
+                //    AllowedGrantTypes = GrantTypes.Hybrid,
+                //    ClientSecrets =
+                //    {
+                //        new Secret("secret".Sha256())
+                //    },
 
-                    RedirectUris           = { "https://localhost:4001/signin-oidc" },
-                    PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
+                //    RedirectUris           = { "https://localhost:4001/signin-oidc" },
+                //    PostLogoutRedirectUris = { "https://localhost:4001/signout-callback-oidc" },
 
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "group1"
-                    },
-                    //AllowOfflineAccess = true 
-                    //允许将token通过浏览器传递
-                    AllowAccessTokensViaBrowser=true,
-                    // 是否需要同意授权 （默认是false）
-                    RequireConsent = true
-                }
+                //    AllowedScopes =
+                //    {
+                //        IdentityServerConstants.StandardScopes.OpenId,
+                //        IdentityServerConstants.StandardScopes.Profile,
+                //        "group1"
+                //    },
+                //    //AllowOfflineAccess = true 
+                //    //允许将token通过浏览器传递
+                //    AllowAccessTokensViaBrowser=true,
+                //    // 是否需要同意授权 （默认是false）
+                //    RequireConsent = true
+                //}
             #endregion
         };
         }

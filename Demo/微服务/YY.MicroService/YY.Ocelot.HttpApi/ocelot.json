@@ -1,0 +1,332 @@
+﻿
+//===============================配置初体验=====================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ]
+//    },
+//    {
+//      "UpstreamPathTemplate": "/sample2/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7002
+//        }
+//      ]
+//    }
+//  ]
+//}
+
+
+
+////==============================设置匹配的优先级======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/ocelota/{url}",
+//      "DownstreamScheme": "http",
+//      "Priority": 0,
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ]
+//    },
+//    {
+//      "UpstreamPathTemplate": "/sample1/test/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/ocelotb/test/{url}",
+//      "DownstreamScheme": "http",
+//      "Priority": 1,
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7002
+//        }
+//      ]
+//    }
+//  ]
+//}
+
+
+
+//==============================路由聚合======================================================
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/sample1/{url}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/ocelotb/{url}",
+      "DownstreamScheme": "http",
+      "Key": "SampleService1",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/sample2/{url}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/ocelotb/test/{url}",
+      "DownstreamScheme": "http",
+      "Key": "SampleService2",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RouteIsCaseSensitive": false
+  },
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "SampleService1",
+        "SampleService2"
+      ],
+      "UpstreamPathTemplate": "/sample/{url}",
+      "Aggregator": "SampleAggregator" //自定义聚合方式
+    }
+  ]
+}
+
+
+
+//==============================集成Consule======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      //配置服务名称和负载均衡算法
+//      "UseServiceDiscovery": true,
+//      "ServiceName": "YY.Sample",
+//      "LoadBalancerOptions": {
+//        "Type": "RoundRobin"
+//      }
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "RouteIsCaseSensitive": false,
+//    //配置服务发现信息
+//    "ServiceDiscoveryProvider": {
+//      "Scheme": "http",
+//      "Host": "localhost",
+//      "Port": 8500,
+//      "Type": "Consul"
+//    }
+//  }
+//}
+
+
+//==============================集成默认缓存======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      "FileCacheOptions": {
+//        "TtlSeconds": 30, //缓存有效期为30s
+//        "Region": "CacheRegion" //缓存区域名
+//      }
+//    }
+//  ]
+//}
+
+
+
+//==============================超时熔断机制======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      //超时熔断配置
+//      "QoSOptions": {
+//        //允许异常次数
+//        "ExceptionsAllowedBeforeBreaking": 3,
+//        //熔断时间，这里代表3秒
+//        "DurationOfBreak": 5000,
+//        //超时时间，超过2s算超时
+//        "TimeoutValue": 2000
+//      }
+//    }
+//  ]
+//}
+
+
+//==============================限流配置======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      "RateLimitOptions": {
+//        //白名单列表，不限制白名单客户端请求，在请求头中带上，默认名称ClientId
+//        "ClientWhitelist": [ "client1" ],
+//        //是否开启限流
+//        "EnableRateLimiting": true,
+//        //设置采样时间，这里设置的是3秒，分钟用m表示，小时用h，天用d表示
+//        "Period": "10s",
+//        //限流之后多长时间可以重试，单位为秒
+//        "PeriodTimespan": 10,
+//        //允许指定时间内可以处理的最大请求数
+//        "Limit": 1
+//      }
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "RateLimitOptions": {
+//      // Http头  X-Rate-Limit 和 Retry-After 是否禁用
+//      "DisableRateLimitHeaders": false,
+//      //指定超出最大请求数时返回的消息
+//      "QuotaExceededMessage": "Request Limit 5",
+//      //指定超出最大请求时返回的Http状态码
+//      "HttpStatusCode": 429,
+//      //允许您指定应用于标识客户端的标头。默认情况下为“ClientId”
+//      "ClientIdHeader": "ClientId"
+//    }
+//  }
+//}
+
+
+//==============================IDS4配置======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      //配置认证信息
+//      "AuthenticationOptions": {
+//        //对应的值与网关项目中注册服务定义的authenticationProviderKey值一致。
+//        //如果配置了认证信息，就会经过授权服务器进行认证校验，否则不进行验证。
+//        "AuthenticationProviderKey": "ApiGateway",
+//        "AllowedScopes": []
+//      }
+//    }
+//  ]
+//}
+
+
+////==============================管道配置======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      //配置Ocelor自定义管道
+//      "DelegatingHandlers": [
+//        "AddHeaderHandler"
+//      ]
+//    },
+//    {
+//      "UpstreamPathTemplate": "/sample2/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7002
+//        }
+//      ]
+//    }
+//  ]
+//}
+
+
+//==============================管道配置======================================================
+//{
+//  "Routes": [
+//    {
+//      "UpstreamPathTemplate": "/sample1/{url}",
+//      "UpstreamHttpMethod": [ "Get" ],
+//      "DownstreamPathTemplate": "/api/{url}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 7001
+//        }
+//      ],
+//      "AddHeadersToRequest": {
+//        "UserId": "Claims[UserId] > value",
+//        "UserRole": "Claims[UserRole] > value"
+//      },
+//      //声明转换
+//      "AddQueriesToRequest": {
+//        "UserId": "Claims[UserId] > value",
+//        "UserRole": "Claims[UserRole] > value"
+//      },
+//      //配置认证信息
+//      "AuthenticationOptions": {
+//        //对应的值与网关项目中注册服务定义的authenticationProviderKey值一致。
+//        //如果配置了认证信息，就会经过授权服务器进行认证校验，否则不进行验证。
+//        "AuthenticationProviderKey": "ApiGateway",
+//        "AllowedScopes": ["YY"]
+//      }
+//    }
+//  ]
+//}

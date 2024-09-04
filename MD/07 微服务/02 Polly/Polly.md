@@ -42,7 +42,11 @@
 
 ![image-20240731191206060](images/image-20240731191206060.png)
 
-
+> 限流与舱壁隔离区别：
+>
+> 限流：控制时间窗口内的请求次数来管理负载（防止系统过载）
+>
+> 舱壁隔离：控制请求并发数量来管理资源消耗（防止故障蔓延）
 
 #### 服务熔断
 
@@ -102,447 +106,301 @@ Polly可以通过不同策略处理和应对故障场景，主要分为两大类
 - **缓存(Cache)**：将数据存入缓存中，后续的响应可以从缓存中获取; 目的就是为了提升性能；
 - **策略包装( PolicyWrap)**：策略可以组合进行使用；目的就是为了方便各种策略组合进行业务故障处理；
 
-### 超时策略
-
-```c#
-
-                var memberJson = await Policy.TimeoutAsync(5, TimeoutStrategy.Pessimistic, (t, s, y) =>
-                {
-                    Console.WriteLine("超时了~~~~");
-                    return Task.CompletedTask;
-                }).ExecuteAsync(async () =>
-                {
-                    // 业务逻辑
-                    using var httpClient = new HttpClient();
-                    httpClient.BaseAddress = new Uri($"http://localhost:5000");
-                    var memberResult = await httpClient.GetAsync("/api/polly/timeout");
-                    memberResult.EnsureSuccessStatusCode();
-                    var json = await memberResult.Content.ReadAsStringAsync();
-                    Console.WriteLine(json);
-
-                    return json;
-                });
-```
-
-### 重试策略
-
-```c#
-
-                //当发生 HttpRequestException 的时候触发 RetryAsync 重试，并且最多重试3次。
-                var memberJson1 = await Policy.Handle<HttpRequestException>().RetryAsync(3).ExecuteAsync(async () =>
-                {
-                    Console.WriteLine("重试中.....");
-                    using var httpClient = new HttpClient();
-                    httpClient.BaseAddress = new Uri($"http://localhost:8000");
-                    var memberResult = await httpClient.GetAsync("/member/1001");
-                    memberResult.EnsureSuccessStatusCode();
-                    var json = await memberResult.Content.ReadAsStringAsync();
-
-                    return json;
-                });
-
-                //使用 Polly 在出现当请求结果为 http status_code 500 的时候进行3次重试。
-                var memberResult = await Policy.HandleResult<HttpResponseMessage>
-                    (x => (int)x.StatusCode == 500).RetryAsync(3).ExecuteAsync(async () =>
-                {
-                    Thread.Sleep(1000);
-                    Console.WriteLine("响应状态码重试中.....");
-                    using var httpClient = new HttpClient();
-                    httpClient.BaseAddress = new Uri($"http://localhost:5000");
-                    var memberResult = await httpClient.GetAsync("/api/polly/error");
-
-                    return memberResult;
-                });
-```
-
-### 降级策略
-
-```c#
-
-            //首先我们使用 Policy 的 FallbackAsync("FALLBACK") 方法设置降级的返回值。当我们服务需要降级的时候会返回 "FALLBACK" 的固定值。
-            //同时使用 WrapAsync 方法把重试策略包裹起来。这样我们就可以达到当服务调用失败的时候重试3次，如果重试依然失败那么返回值降级为固定的 "FALLBACK" 值。
-            var fallback = Policy<string>.Handle<HttpRequestException>().Or<Exception>().FallbackAsync("FALLBACK", (x) =>
-            {
-                Console.WriteLine($"进行了服务降级 -- {x.Exception.Message}");
-                return Task.CompletedTask;
-            }).WrapAsync(Policy.Handle<HttpRequestException>().RetryAsync(3));
-
-            var memberJson = await fallback.ExecuteAsync(async () =>
-            {
-                using var httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri($"http://localhost:5000");
-                var result = await httpClient.GetAsync("/api/user/" + 1);
-                result.EnsureSuccessStatusCode();
-                var json = await result.Content.ReadAsStringAsync();
-                return json;
-
-            });
-            Console.WriteLine(memberJson);
-            if (memberJson != "FALLBACK")
-            {
-                var member = JsonConvert.DeserializeObject<User>(memberJson);
-                Console.WriteLine($"{member!.Id}---{member.Name}");
-            }
-```
-
-### 熔断策略
-
-### 策略包裹
-
-多种策略进行组装
-
-```c#
-            //定义熔断策略
-            var circuitBreaker = Policy.Handle<Exception>().CircuitBreakerAsync(
-               exceptionsAllowedBeforeBreaking: 2, // 出现几次异常就熔断
-               durationOfBreak: TimeSpan.FromSeconds(10), // 熔断10秒
-               onBreak: (ex, ts) =>
-               {
-                   Console.WriteLine("circuitBreaker onBreak ."); // 打开断路器
-               },
-               onReset: () =>
-               {
-                   Console.WriteLine("circuitBreaker onReset "); // 关闭断路器
-               },
-               onHalfOpen: () =>
-               {
-                   Console.WriteLine("circuitBreaker onHalfOpen"); // 半开
-               }
-            );
-
-            // 定义重试策略
-            var retry = Policy.Handle<HttpRequestException>().RetryAsync(3);
-            // 定义降级策略
-            var fallbackPolicy = Policy<string>.Handle<HttpRequestException>().Or<BrokenCircuitException>()
-                .FallbackAsync("FALLBACK", (x) =>
-                {
-                    Console.WriteLine($"进行了服务降级 -- {x.Exception.Message}");
-                    return Task.CompletedTask;
-                })
-                .WrapAsync(circuitBreaker.WrapAsync(retry));
-            string memberJsonResult = "";
-
-            do
-            {
-                memberJsonResult = await fallbackPolicy.ExecuteAsync(async () =>
-                {
-                    using var httpClient = new HttpClient();
-                    httpClient.BaseAddress = new Uri($"http://localhost:5000");
-                    var result = await httpClient.GetAsync("/api/user/" + 1);
-                    result.EnsureSuccessStatusCode();
-                    var json = await result.Content.ReadAsStringAsync();
-                    return json;
-                });
-                Thread.Sleep(1000);
-            } while (memberJsonResult == "FALLBACK");
-
-            if (memberJsonResult != "FALLBACK")
-            {
-                var member = JsonConvert.DeserializeObject<User>(memberJsonResult);
-                Console.WriteLine($"{member!.Id}---{member.Name}");
-            }
-```
-
-当请求出错时-->重试-->两次异常-->打开断路器--->10S后-->半开断路器，再次尝试请求，如果正常则关闭断路器，反之，打开。
-
-## 微服务对接Polly
-
-使用AutoFac AOP注入方式，实现Polly调用
-
-（1）Nuget包引入
-
-	- Autofac
-	- Autofac.Extras.DynamicProxy
-	- Autofac.Extensions.DependencyInjection
-
-（2）创建Polly策略特性配置类，用于设计策略参数
+### 基本用法
 
 ```C#
 
-    /// <summary>
-    /// Polly策略特性配置类（用于设计策略参数）
-    /// </summary>
-    public class PollyPolicyConfigAttribute : Attribute
-    {
         /// <summary>
-        /// 最多重试几次，如果为0则不重试
+        /// Polly基本使用
         /// </summary>
-        public int MaxRetryTimes { get; set; } = 0;
-
-        /// <summary>
-        /// 重试间隔的毫秒数
-        /// </summary>
-        public int RetryIntervalMilliseconds { get; set; } = 100;
-
-        /// <summary>
-        /// 是否启用熔断
-        /// </summary>
-        public bool IsEnableCircuitBreaker { get; set; } = false;
-
-        /// <summary>
-        /// 熔断前出现允许错误几次
-        /// </summary>
-        public int ExceptionsAllowedBeforeBreaking { get; set; } = 3;
-
-        /// <summary>
-        /// 熔断多长时间（毫秒）
-        /// </summary>
-        public int MillisecondsOfBreak { get; set; } = 1000;
-
-        /// <summary>
-        /// 执行超过多少毫秒则认为超时（0表示不检测超时）
-        /// </summary>
-        public int TimeOutMilliseconds { get; set; } = 0;
-
-        /// <summary>
-        /// 缓存多少毫秒（0表示不缓存），用“类名+方法名+所有参数ToString拼接”做缓存Key
-        /// </summary>
-
-        public int CacheTTLMilliseconds { get; set; } = 0;
-
-        /// <summary>
-        /// 回退方法
-        /// </summary>
-        public string? FallBackMethod { get; set; }
-    }
-```
-
-（3）创建PollyPolicyAttribute属性（即拦截器），用于AOP注入
-
-```C#
-
-    /// <summary>
-    /// 定义AOP特性类及封装Polly策略
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Method)]
-    public class PollyPolicyAttribute : Attribute, IInterceptor
-    {
-        private static ConcurrentDictionary<MethodInfo, AsyncPolicy> policies
-            = new ConcurrentDictionary<MethodInfo, AsyncPolicy>();
-
-        //private static readonly IMemoryCache memoryCache
-        //    = new MemoryCache(new MemoryCacheOptions());
-
-        public void Intercept(IInvocation invocation)
+        static void BasicUse()
         {
-            if (!invocation.Method.IsDefined(typeof(PollyPolicyConfigAttribute), true))
+            #region 定义故障的多种方式
+            Policy
+                .Handle<ArgumentException>(ex => ex.Message == "Error");
+
+            Policy
+                .Handle<HttpRequestException>()
+                .Or<ArgumentException>();
+
+            Policy
+                .Handle<HttpRequestException>(ex => ex.Message == "Http Error")
+                .Or<ArgumentException>(ex => ex.ParamName == "example");
+
+            #endregion
+
+            #region 降级策略
+            Policy.HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.NotFound)
+                .Fallback(() =>
+                {
+                    Console.WriteLine("未找到");
+                    return new HttpResponseMessage(HttpStatusCode.OK);
+                })
+                .Execute(() => new HttpResponseMessage(HttpStatusCode.NotFound));
+
+            Policy
+                .Handle<HttpRequestException>()
+                .OrResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.NotFound);
+
+            #endregion
+
+            #region 重试策略
+            Policy
+                .Handle<ArgumentException>()
+                .Retry();
+            //指定重试次数
+            Policy
+                .Handle<ArgumentException>()
+                .Retry(3);
+            //一直重试
+            Policy
+                .Handle<ArgumentException>()
+                .RetryForever();
+
+            //重试三次，等待时间分别为1、2、3
+            Policy
+                .Handle<ArgumentException>()
+                .WaitAndRetry(new[]
+                {
+                TimeSpan.FromSeconds(1),
+                TimeSpan.FromSeconds(2),
+                TimeSpan.FromSeconds(3)
+                });
+
+            //重试5次，等待时间分别为2的n次方
+            Policy
+                .Handle<ArgumentException>()
+                .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+            //一直重试，等待时间分别为2的n次方
+            Policy
+                .Handle<Exception>()
+                .WaitAndRetryForever(retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+            #endregion
+
+
+            #region 断路器策略
+            Policy
+                .Handle<Exception>()
+                .CircuitBreaker(2, TimeSpan.FromMinutes(1));
+
+            Policy
+                .Handle<Exception>()
+                .AdvancedCircuitBreaker(
+                    failureThreshold: 0.5,
+                    samplingDuration: TimeSpan.FromSeconds(10),
+                    minimumThroughput: 8,
+                    durationOfBreak: TimeSpan.FromSeconds(30)
+                );
+            #endregion
+
+            #region 超时策略
+            Policy.Timeout(3);
+            #endregion
+
+            #region 限流策略
+            //该策略将允许在1分钟窗口内最多执行100次请求
+            Policy.RateLimit(100, TimeSpan.FromMinutes(1));
+            #endregion
+
+            #region 舱壁隔离策略
+            //用来限制并发请求的数量。
+            //该方法允许用户指定最大并发请求数，超过这个数量的请求将被拒绝或排队等待。
+            Policy.Bulkhead(12);
+            Policy.Bulkhead(12, 2);
+            #endregion
+
+        }
+```
+
+### 多策略组合
+
+场景：服务A（集群、多个实例）=》请求发生异常或者超时=》重新再次请求=》重试3次仍然失败=》切断对A的访问，响应1个替代结果，过一段时间尝试访问A=》是否恢复正常
+
+```c#
+        /// <summary>
+        /// 多策略组合包装
+        /// </summary>
+        /// <returns></returns>
+        public static ISyncPolicy CreatePolicy()
+        {
+            // 定义故障
+            var builder = Policy.Handle<Exception>();
+
+            // 等待并重试
+            var retryPolicy = builder.WaitAndRetry(2,
+                retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                (_, _, retryCount, _) =>
+                {
+                    Console.WriteLine($"{DateTime.Now} - 重试 {retryCount} 次");
+                });
+
+            // 断路器
+            var circuitPolicy = builder.CircuitBreaker(2, TimeSpan.FromSeconds(5),
+                onBreak: (_, _) =>
+                {
+                    Console.WriteLine($"{DateTime.Now} - 断路器：开启状态（熔断时触发）");
+                },
+                onReset: () =>
+                {
+                    Console.WriteLine($"{DateTime.Now} - 断路器：关闭状态（恢复时触发）");
+                },
+                onHalfOpen: () =>
+                {
+                    Console.WriteLine($"{DateTime.Now} - 断路器：半开启状态");
+                });
+
+            // 降级回退
+            var fallbackPolicy = builder.Fallback(() =>
             {
-                // 直接调用方法本身
-                invocation.Proceed();
-            }
-            else
+                Console.WriteLine("这是一个降级操作");
+            });
+
+            // 超时
+            var timeoutPolicy = Policy.Timeout(1, (_, _, _) =>
             {
-                PollyPolicyConfigAttribute pollyPolicyConfigAttribute = invocation.Method.GetCustomAttribute<PollyPolicyConfigAttribute>()!;
-                //一个PollyPolicyAttribute中保持一个policy对象即可
-                //其实主要是CircuitBreaker要求对于同一段代码要共享一个policy对象
-                //根据反射原理，同一个方法的MethodInfo是同一个对象，但是对象上取出来的PollyPolicyAttribute
-                //每次获取的都是不同的对象，因此以MethodInfo为Key保存到policies中，确保一个方法对应一个policy实例
-                policies.TryGetValue(invocation.Method, out AsyncPolicy? policy);
-                //把本地调用的AspectContext传递给Polly，主要给FallbackAsync中使用
-                // 创建Polly上下文对象(字典)
-                Context pollyCtx= new Context();
-                pollyCtx["invocation"] = invocation;
+                Console.WriteLine("执行超时");
+            });
 
-                lock (policies)//因为Invoke可能是并发调用，因此要确保policies赋值的线程安全
+            // 策略包装：从左到右
+            return Policy.Wrap(fallbackPolicy, circuitPolicy, retryPolicy, timeoutPolicy);
+
+        }
+```
+
+```C#
+       /// <summary>
+       /// 多策略组合包装测试
+       /// </summary>
+        static async void MultiPolicyCombine()
+        {
+            var serviceName = "YY.MyBService.HttpApi";
+
+            var services = new ServiceCollection()
+                .AddConsul()
+                .AddConsulClient();
+
+            services.AddHttpClient(serviceName);
+            
+            var serviceProvider = services.BuildServiceProvider();
+
+            var serviceClient = serviceProvider.GetRequiredService<IServiceClient>();
+            var loadBalancer = new LoadBalancer.LoadBalancer(LoadBalancingStrategy.RoundRobin);
+
+            // 创建策略器
+            var policy = PolicyFactory.CreatePolicy();
+
+            var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
+
+            for (var i = 0; i < 1000; i++)
+            {
+                Console.WriteLine($"----------------第{i}次请求---YY.MyBService.HttpApi-------------");
+                try
                 {
-                    if (policy == null)
+                    var serviceList = await serviceClient.GetServicesAsync(serviceName);
+
+                    // 策略器执行业务逻辑
+                    policy.Execute(() =>
                     {
-                        policy = Policy.NoOpAsync();//创建一个空的Policy
-                        if (pollyPolicyConfigAttribute.IsEnableCircuitBreaker)
-                        {
-                            policy = policy.WrapAsync(Policy.Handle<Exception>()
-                                .CircuitBreakerAsync(pollyPolicyConfigAttribute.ExceptionsAllowedBeforeBreaking,
-                                TimeSpan.FromMilliseconds(pollyPolicyConfigAttribute.MillisecondsOfBreak),
-                                onBreak: (ex, ts) =>
-                                {
-                                    Console.WriteLine($"熔断器打开 熔断{pollyPolicyConfigAttribute.MillisecondsOfBreak / 1000}s.");
-                                },
-                                onReset: () =>
-                                {
-                                    Console.WriteLine("熔断器关闭，流量正常通行");
-                                },
-                                onHalfOpen: () =>
-                                {
-                                    Console.WriteLine("熔断时间到，熔断器半开，放开部分流量进入");
-                                }));
-                        }
-                        if (pollyPolicyConfigAttribute.TimeOutMilliseconds > 0)
-                        {
-                            policy = policy.WrapAsync(Policy.TimeoutAsync(() =>
-                                TimeSpan.FromMilliseconds(pollyPolicyConfigAttribute.TimeOutMilliseconds),
-                                Polly.Timeout.TimeoutStrategy.Pessimistic));
-                        }
-                        if (pollyPolicyConfigAttribute.MaxRetryTimes > 0)
-                        {
-                            policy = policy.WrapAsync(Policy.Handle<Exception>()
-                                .WaitAndRetryAsync(pollyPolicyConfigAttribute.MaxRetryTimes, i =>
-                                TimeSpan.FromMilliseconds(pollyPolicyConfigAttribute.RetryIntervalMilliseconds)));
-                        }
-                        // 定义降级测试
-                        var policyFallBack = Policy.Handle<Exception>().FallbackAsync((fallbackContent, token) =>
-                        {
-                            // 必须从Polly的Context种获取IInvocation对象
-                            IInvocation iv = (IInvocation)fallbackContent["invocation"];
-                            var fallBackMethod = iv.TargetType.GetMethod(pollyPolicyConfigAttribute.FallBackMethod!);
-                            var fallBackResult = fallBackMethod!.Invoke(iv.InvocationTarget, iv.Arguments);
-                            iv.ReturnValue = fallBackResult;
-                            return Task.CompletedTask;
-                        }, (ex, t) =>
-                        {
-                            Console.WriteLine("====================>触发服务降级");
-                            return Task.CompletedTask;
-                        });
-
-                        policy = policyFallBack.WrapAsync(policy);
-                        //放入到缓存
-                        policies.TryAdd(invocation.Method, policy);
-                    }
+                        var serviceAddress = loadBalancer.GetNode(serviceList);
+                        Console.WriteLine($"{DateTime.Now} - 正在调用:{serviceAddress}");
+                        var httpClient = httpClientFactory.CreateClient(serviceName);
+                        httpClient.BaseAddress = new Uri($"http://{serviceAddress}");
+                        var result = httpClient.GetStringAsync("api/Hello").Result;
+                        Console.WriteLine($"调用结果:{result}");
+                    });
                 }
-
-                // 是否启用缓存
-                if (pollyPolicyConfigAttribute.CacheTTLMilliseconds > 0)
+                catch (Exception e)
                 {
-                    //用类名+方法名+参数的下划线连接起来作为缓存key
-                    string cacheKey = "PollyMethodCacheManager_Key_" + invocation.Method.DeclaringType
-                                                                       + "." + invocation.Method + string.Join("_", invocation.Arguments);
-                    //尝试去缓存中获取。如果找到了，则直接用缓存中的值做返回值
-                    //if (memoryCache.TryGetValue(cacheKey, out var cacheValue))
-                    //{
-                    //    invocation.ReturnValue = cacheValue;
-                    //}
-                    //else
-                    {
-                        //如果缓存中没有，则执行实际被拦截的方法
-                        Task task = policy.ExecuteAsync(
-                            async (context) =>
-                            {
-                                invocation.Proceed();
-                                await Task.CompletedTask;
-                            },
-                            pollyCtx
-                        );
-                        task.Wait();
+                    Console.WriteLine(e);
+                }
 
-                        ////存入缓存中
-                        //using var cacheEntry = memoryCache.CreateEntry(cacheKey);
-                        //{
-                        //    cacheEntry.Value = invocation.ReturnValue;
-                        //    cacheEntry.AbsoluteExpiration = DateTime.Now + TimeSpan.FromMilliseconds(pollyPolicyConfigAttribute.CacheTTLMilliseconds);
-                        //}
-                    }
-                }
-                else//如果没有启用缓存，就直接执行业务方法
-                {
-                    Task task = policy.ExecuteAsync(
-                            async (context) =>
-                            {
-                                invocation.Proceed();
-                                await Task.CompletedTask;
-                            },
-                            pollyCtx
-                        );
-                    task.Wait();
-                }
+                Thread.Sleep(1000);
             }
         }
-
-    }
 ```
 
-（4）AutoFac IOC注册(Program.cs)
+
+
+## Polly弹性管道模式
+
+1、Nuget包引入
 
 ```C#
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-        #region IOC容器
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-            .ConfigureContainer<ContainerBuilder>((context, buider) =>
-                {
-                    // 必须使用单例注册
-                    buider.RegisterType<UserService>()
-                    .As<IUserService>().SingleInstance().EnableInterfaceInterceptors();
-                    buider.RegisterType<PollyPolicyAttribute>();
-
-                });
-        #endregion
+Microsoft.Extensions.Http.Resilience    
 ```
 
-(5)在服务接口上添加[Intercept(typeof(Class))]标签
+说明：
+  Microsoft.Extensions.Http.Polly库是早些年就存在的产物了,针对Polly V8及后续的版本增加了 Microsoft.Extensions.Http.Resilience库作为替代方案。基于 Polly v8 构建的Microsoft.Extensions.Http.Resilience速度较快的同时，使用的内存也减少了4倍之多。所以至NET8+以后推荐使用Microsoft.Extensions.Http.Resilience替代Microsoft.Extensions.Http.Polly库
+
+2、扩展类
 
 ```C#
-    [Intercept(typeof(PollyPolicyAttribute))]//表示要polly生效
-    public interface IUserService
+    public static class ResiliencePipelineExtension
     {
-        User FindUser(int id);
+        public static IHttpClientBuilder AddCustomResiliencePipeline(this IHttpClientBuilder builder)
+        {
+            builder.AddResilienceHandler("common", pipelineBuilder =>
+            {
+                pipelineBuilder.AddFallback(new FallbackStrategyOptions<HttpResponseMessage>
+                {
+                    FallbackAction = _ =>
+                    {
+                        Console.WriteLine("降级操作");
+                        return Outcome.FromResultAsValueTask(new HttpResponseMessage
+                        {
+                            Content = new StringContent("Hello 我是降级操作"),
+                            StatusCode = HttpStatusCode.OK,
+                        });
+                    }
+                });
 
-        IEnumerable<User> UserAll();
+                pipelineBuilder.AddCircuitBreaker(new HttpCircuitBreakerStrategyOptions
+                {
+                    FailureRatio = 0.5,
+                    SamplingDuration = TimeSpan.FromSeconds(60),
+                    MinimumThroughput = 2,
+                    BreakDuration = TimeSpan.FromSeconds(60),
+                    OnOpened = _ =>
+                    {
+                        Console.WriteLine($"{DateTime.Now} - 断路器：开启状态（熔断时触发）");
+                        return default;
+                    },
+                    OnClosed = _ =>
+                    {
+                        Console.WriteLine($"{DateTime.Now} - 断路器：关闭状态（恢复时触发）");
+                        return default;
+                    },
+                    OnHalfOpened = _ =>
+                    {
+                        Console.WriteLine($"{DateTime.Now} - 断路器：半开启状态");
+                        return default;
+                    }
+                });
 
-        #region Polly
-        [PollyPolicy]
-        [PollyPolicyConfig(FallBackMethod = "UserServiceFallback",
-            IsEnableCircuitBreaker = true,
-            ExceptionsAllowedBeforeBreaking = 3,
-            MillisecondsOfBreak = 1000 * 5,
-            CacheTTLMilliseconds = 1000 * 20)]
-        User AOPGetById(int id);
+                pipelineBuilder.AddRetry(new HttpRetryStrategyOptions
+                {
+                    MaxRetryAttempts = 2,
+                    Delay = TimeSpan.FromSeconds(1),
+                    OnRetry = arg =>
+                    {
+                        Console.WriteLine($"{DateTime.Now} - 重试 {arg.AttemptNumber} 次");
+                        return default;
+                    }
+                });
 
-        Task<User> GetById(int id);
-        #endregion
-
+                pipelineBuilder.AddTimeout(new TimeoutStrategyOptions
+                {
+                    Timeout = TimeSpan.FromSeconds(1),
+                    OnTimeout = arg =>
+                    {
+                        Console.WriteLine($"{DateTime.Now} - 请求超时");
+                        return default;
+                    }
+                });
+            });
+            return builder;
+        }
     }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
